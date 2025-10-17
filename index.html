@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haoyi Song - Artist Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #8b4513;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home Page - Full Screen */
+        #home {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 2rem;
+            gap: 4rem;
+        }
+
+        #home.active {
+            display: flex;
+        }
+
+        .home-center {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        #home .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .home-statement {
+            flex: 1;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .home-statement h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            border: none;
+            color: #8b4513;
+            text-align: left;
+        }
+
+        .home-statement p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
+            color: #666;
+        }
+
+        /* Section Styling */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5m;
+            color: #2c2c2c;
+            border-bottom: 3px solid #8b4513;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #8b4513;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .artwork-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .artwork-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+        }
+
+        .artwork-info h4 {
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: #8b4513;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #654321;
+        }
+
+        /* Experience Lists */
+        .experience-list {
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .experience-item h4 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            #home {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            #home h1 {
+                font-size: 2.5rem;
+            }
+
+            #home .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .home-statement {
+                max-width: 100%;
+            }
+
+            .home-statement p {
+                font-size: 0.8rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .page {
+                padding: 3rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #888;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        .back-button:hover {
+            background-color: #666;
+        }
+
+        /* Spiritual Space / Prayer Styles */
+        #spiritual {
+            padding: 0;
+            max-width: 100%;
+        }
+
+        #spiritual h2 {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto 2rem;
+        }
+
+        /* Hide navigation when spiritual page is active */
+        #spiritual.active ~ nav,
+        body:has(#spiritual.active) nav {
+            display: none;
+        }
+
+        .prayer-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .immersive-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* Pray Again button on top right */
+        .pray-again-button {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            display: none;
+            opacity: 0;
+        }
+
+        .pray-again-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .prayer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            padding: 2rem;
+            transition: background 0.8s ease;
+        }
+
+        .prayer-overlay.connected {
+            background: transparent;
+        }
+
+        .prayer-content {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .prayer-description {
+            display: none;
+        }
+
+        .prayer-controls {
+            margin: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .prayer-button {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 400;
+            backdrop-filter: blur(10px);
+        }
+
+        .prayer-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .prayer-button:active {
+            transform: scale(0.98);
+        }
+
+        .prayer-text {
+            padding: 1.5rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .prayer-text p {
+            color: #ffffff;
+            line-height: 2;
+            font-size: 1.3rem;
+            margin: 0;
+            font-style: italic;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.9);
+            font-weight: 400;
+        }
+
+        /* Play button for fallback */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button p {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments for spiritual page */
+        @media (max-width: 768px) {
+            .prayer-container {
+                height: 70vh;
+                min-height: 500px;
+            }
+
+            .prayer-content {
+                padding: 2rem 1.5rem;
+                max-width: 90%;
+            }
+
+            .prayer-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .prayer-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .prayer-text p {
+                font-size: 1rem;
+            }
+
+            .play-button svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-button p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('intro')">Background</a></li>
+            <li><a onclick="showPage('research')">Research</a></li>
+            <li><a onclick="showPage('paintings')">Paintings</a></li>
+            <li><a onclick="showPage('installation')">Installation</a></li>
+            <li><a onclick="showPage('teaching')">Teaching</a></li>
+            <li><a onclick="showPage('events')">Events</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+            <li><a onclick="showPage('spiritual')">My Spiritual Space</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="home-center">
+            <h1>Haoyi Song</h1>
+            <div class="subtitle">
+                <p>PhD Candidate, UTD</p>
+                <p>Professional Artist</p>
+            </div>
+        </div>
+        
+        <div class="home-statement">
+            <h2>Artist Statement</h2>
+            <p>
+                My work investigates how women's bodies become sites of emotional governance—where pain, discipline, and transformation are moralized and socially coded. I use everyday objects—beds, chairs, pillows, garments—as metaphors for endurance, containment, and relational spaces.
+            </p>
+            <p>
+                Painting is integral to my practice: through transparency, erasure, repetition, and layered surfaces, I allow the canvas to become an archive, a memory, and a testimony. At the same time, I explore how different media articulate meaning in distinct ways.
+            </p>
+            <p>
+                Grounded in cross-cultural perspectives, my art highlights both shared human experiences and cultural specificities in how bodies, identities, and emotional regimes are constructed.
+            </p>
+        </div>
+    </div>
+
+    <!-- Background/Intro Page -->
+    <div id="intro" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Background</h2>
+        <p>
+            [Add additional biographical information, education, exhibitions, awards, or other background details here.]
+        </p>
+    </div>
+
+    <!-- Research Page -->
+    <div id="research" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Research</h2>
+        <p>
+            [Describe your research interests, artistic investigations, and theoretical frameworks 
+            that inform your practice. Discuss the concepts you explore through your work.]
+        </p>
+        <p>
+            [Add more details about your research methodology, influences, and ongoing investigations.]
+        </p>
+    </div>
+
+    <!-- Paintings Page -->
+    <div id="paintings" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Paintings</h2>
+
+        <h3>Homeland</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Floating Dreams</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Daily Life</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Installation Page -->
+    <div id="installation" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Installation</h2>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Installation Image 1</div>
+                <div class="artwork-info">
+                    <h4>Installation Title</h4>
+                    <p>Materials, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Installation Image 2</div>
+                <div class="artwork-info">
+                    <h4>Installation Title</h4>
+                    <p>Materials, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Spiritual Space Page -->
+    <div id="spiritual" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <!-- Immersive Video Container -->
+        <div class="prayer-container">
+            <video
+                id="prayerVideo"
+                class="immersive-video"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+            >
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Pray Again button on Top Right (hidden initially) -->
+            <button id="prayAgainButton" class="pray-again-button" onclick="restartPrayer()">Pray Again</button>
+
+            <!-- Fallback play button if autoplay fails -->
+            <div id="playButton" class="play-button" onclick="forcePlayVideo()" style="display: none;">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.9)" stroke="#888" stroke-width="2"/>
+                    <polygon points="30,20 30,60 60,40" fill="#888"/>
+                </svg>
+                <p>Click to Play Video</p>
+            </div>
+
+            <!-- Prayer Overlay -->
+            <div class="prayer-overlay" id="prayerOverlay">
+                <div class="prayer-content" id="prayerContent">
+                    <!-- Initial: Two buttons for English and Chinese -->
+                    <div class="prayer-controls" id="prayButtons" style="display: flex; gap: 1rem;">
+                        <button onclick="generatePrayer('en')" class="prayer-button">Pray</button>
+                        <button onclick="generatePrayer('zh')" class="prayer-button">祈福</button>
+                    </div>
+
+                    <!-- Prayer text (no box background) -->
+                    <div id="prayerText" class="prayer-text" style="display: none;">
+                        <p></p>
+                    </div>
+
+                    <!-- Connect button -->
+                    <div class="prayer-controls" id="connectButton" style="display: none; margin-top: 1.5rem;">
+                        <button onclick="connectToPrayer()" class="prayer-button">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teaching Experience Page -->
+    <div id="teaching" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Teaching Experience</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Directed Events Page -->
+    <div id="events" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Directed Events</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email:</strong>
+                <a href="mailto:your.email@example.com">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+                <strong>Instagram:</strong>
+                <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a>
+            </div>
+            <div class="contact-item">
+                <strong>Facebook:</strong>
+                <a href="https://facebook.com/yourpage" target="_blank">Your Page Name</a>
+            </div>
+            <div class="contact-item">
+                <strong>Twitter/X:</strong>
+                <a href="https://twitter.com/yourusername" target="_blank">@yourusername</a>
+            </div>
+            <div class="contact-item">
+                <strong>LinkedIn:</strong>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+                page.style.display = 'none';
+            });
+
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            selectedPage.classList.add('active');
+
+            // Get navigation element
+            const nav = document.querySelector('nav');
+
+            // Set proper display based on page
+            if (pageId === 'home') {
+                selectedPage.style.display = 'flex';
+                nav.style.display = 'block';
+            } else if (pageId === 'spiritual') {
+                selectedPage.style.display = 'block';
+                nav.style.display = 'none'; // Hide navigation on spiritual page
+            } else {
+                selectedPage.style.display = 'block';
+                nav.style.display = 'block';
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Handle video playback for spiritual page
+            if (pageId === 'spiritual') {
+                setTimeout(() => {
+                    attemptVideoPlay();
+                }, 100);
+            }
+        }
+
+        // Rule-based prayer generator
+        function generatePrayer(language) {
+            const chinesePrayers = {
+                openings: [
+                    "在万物有灵的宇宙中",
+                    "当天地相连之时",
+                    "在自然的怀抱里",
+                    "于寂静的山水之间",
+                    "在时光的长河里",
+                    "在晨曦初现之际",
+                    "当月光洒满大地",
+                    "在四季轮转之中",
+                    "于静谧的深夜",
+                    "在万籁俱寂时",
+                    "当心灵宁静之刻",
+                    "在天地交融处"
+                ],
+                subjects: [
+                    "我向石头祈祷",
+                    "我向树木祈祷",
+                    "我向流水祈祷",
+                    "我向风祈祷",
+                    "我向大地祈祷",
+                    "我向星辰祈祷",
+                    "我向山川祈祷",
+                    "我向云朵祈祷",
+                    "我向雨露祈祷",
+                    "我向花草祈祷",
+                    "我向日月祈祷",
+                    "我向万物祈祷"
+                ],
+                wishes: [
+                    "愿心灵得到平静",
+                    "愿智慧如泉涌现",
+                    "愿身心和谐共存",
+                    "愿找到内在的光",
+                    "愿与万物同在",
+                    "愿感受到生命的连接",
+                    "愿灵魂得到滋养",
+                    "愿获得内心的安宁",
+                    "愿感知自然的呼吸",
+                    "愿心中充满爱与慈悲",
+                    "愿觉知生命的美好",
+                    "愿体悟万物的灵性"
+                ],
+                closings: [
+                    "感恩万物的恩赐",
+                    "感谢自然的馈赠",
+                    "愿灵性之光照耀前路",
+                    "与自然同行，与万物共生",
+                    "心怀敬畏，感恩当下",
+                    "愿生命之光永不熄灭",
+                    "与天地共鸣，与万物为友",
+                    "感恩这一刻的存在",
+                    "愿心中常怀感激",
+                    "万物有灵，皆值得敬畏"
+                ]
+            };
+
+            const englishPrayers = {
+                openings: [
+                    "In the universe where all things have spirit",
+                    "When heaven and earth unite",
+                    "In nature's embrace",
+                    "Among silent mountains and waters",
+                    "In the river of time",
+                    "At the break of dawn",
+                    "Under the moonlit sky",
+                    "Through the turning of seasons",
+                    "In the stillness of night",
+                    "When all is quiet",
+                    "In moments of inner peace",
+                    "Where heaven and earth meet"
+                ],
+                subjects: [
+                    "I pray to the stones",
+                    "I pray to the trees",
+                    "I pray to the flowing water",
+                    "I pray to the wind",
+                    "I pray to the earth",
+                    "I pray to the stars",
+                    "I pray to the mountains",
+                    "I pray to the clouds",
+                    "I pray to the rain",
+                    "I pray to the flowers",
+                    "I pray to the sun and moon",
+                    "I pray to all living things"
+                ],
+                wishes: [
+                    "May my spirit find peace",
+                    "May wisdom flow like a spring",
+                    "May body and mind exist in harmony",
+                    "May I find the inner light",
+                    "May I be one with all things",
+                    "May I feel the connection of life",
+                    "May my soul be nourished",
+                    "May I find serenity within",
+                    "May I sense nature's breath",
+                    "May my heart be filled with love and compassion",
+                    "May I perceive life's beauty",
+                    "May I understand the spirit of all beings"
+                ],
+                closings: [
+                    "Gratitude for the gifts of all things",
+                    "Thanks for nature's blessings",
+                    "May spiritual light illuminate the path",
+                    "Walk with nature, coexist with all beings",
+                    "With reverence, grateful for the present",
+                    "May the light of life never fade",
+                    "In harmony with heaven and earth, befriend all things",
+                    "Grateful for this moment of existence",
+                    "May gratitude always fill my heart",
+                    "All things have spirit, all deserve reverence"
+                ]
+            };
+
+            const prayerElements = language === 'zh' ? chinesePrayers : englishPrayers;
+
+            // Randomly select elements
+            const opening = prayerElements.openings[Math.floor(Math.random() * prayerElements.openings.length)];
+            const subject = prayerElements.subjects[Math.floor(Math.random() * prayerElements.subjects.length)];
+            const wish = prayerElements.wishes[Math.floor(Math.random() * prayerElements.wishes.length)];
+            const closing = prayerElements.closings[Math.floor(Math.random() * prayerElements.closings.length)];
+
+            // Combine into prayer
+            const separator = language === 'zh' ? '，' : ', ';
+            const period = language === 'zh' ? '。' : '.';
+            const prayer = `${opening}${separator}${subject}${separator}${wish}${period}${closing}${period}`;
+
+            // Hide Pray buttons
+            const prayButtons = document.getElementById('prayButtons');
+            prayButtons.style.opacity = '0';
+
+            setTimeout(() => {
+                prayButtons.style.display = 'none';
+
+                // Show prayer text
+                const prayerTextDiv = document.getElementById('prayerText');
+                prayerTextDiv.style.display = 'flex';
+                prayerTextDiv.innerHTML = `<p>${prayer}</p>`;
+                prayerTextDiv.style.opacity = '0';
+
+                setTimeout(() => {
+                    prayerTextDiv.style.transition = 'opacity 0.8s ease-in';
+                    prayerTextDiv.style.opacity = '1';
+
+                    // Show Connect button after prayer appears with language-specific text
+                    setTimeout(() => {
+                        const connectButton = document.getElementById('connectButton');
+                        const buttonText = language === 'zh' ? '连接天地灵气' : 'Connect';
+                        connectButton.innerHTML = `<button onclick="connectToPrayer()" class="prayer-button">${buttonText}</button>`;
+                        connectButton.style.display = 'block';
+                        connectButton.style.opacity = '0';
+                        setTimeout(() => {
+                            connectButton.style.transition = 'opacity 0.5s ease-in';
+                            connectButton.style.opacity = '1';
+                        }, 100);
+                    }, 800);
+                }, 100);
+            }, 300);
+        }
+
+        // Connect - hide everything and show "Pray Again" button
+        function connectToPrayer() {
+            const prayerTextDiv = document.getElementById('prayerText');
+            const connectButton = document.getElementById('connectButton');
+            const prayerOverlay = document.getElementById('prayerOverlay');
+            const prayAgainButton = document.getElementById('prayAgainButton');
+
+            // Fade out prayer text and connect button
+            prayerTextDiv.style.opacity = '0';
+            connectButton.style.opacity = '0';
+
+            setTimeout(() => {
+                prayerTextDiv.style.display = 'none';
+                connectButton.style.display = 'none';
+
+                // Make overlay transparent (show only video)
+                prayerOverlay.classList.add('connected');
+
+                // Show Pray Again button
+                prayAgainButton.style.display = 'block';
+                setTimeout(() => {
+                    prayAgainButton.style.transition = 'opacity 0.5s ease';
+                    prayAgainButton.style.opacity = '1';
+                }, 100);
+            }, 500);
+        }
+
+        // Restart - go back to initial state
+        function restartPrayer() {
+            const prayButtons = document.getElementById('prayButtons');
+            const prayerOverlay = document.getElementById('prayerOverlay');
+            const prayAgainButton = document.getElementById('prayAgainButton');
+
+            // Hide Pray Again button
+            prayAgainButton.style.opacity = '0';
+
+            setTimeout(() => {
+                prayAgainButton.style.display = 'none';
+
+                // Remove connected class
+                prayerOverlay.classList.remove('connected');
+
+                // Show Pray buttons again
+                prayButtons.style.display = 'flex';
+                prayButtons.style.opacity = '0';
+                setTimeout(() => {
+                    prayButtons.style.transition = 'opacity 0.5s ease-in';
+                    prayButtons.style.opacity = '1';
+                }, 100);
+            }, 300);
+        }
+
+        // Force play video function
+        function forcePlayVideo() {
+            const video = document.getElementById('prayerVideo');
+            const playButton = document.getElementById('playButton');
+
+            if (video) {
+                video.muted = true; // Ensure it's muted
+                video.play().then(() => {
+                    console.log('Video playing successfully');
+                    if (playButton) {
+                        playButton.style.display = 'none';
+                    }
+                }).catch(err => {
+                    console.error('Failed to play video:', err);
+                    alert('Unable to play video. Please check:\n1. The video file "video.mp4" exists in the same folder\n2. The video file format is correct (MP4)\n3. Your browser supports video playback');
+                });
+            }
+        }
+
+        // Try to play video with multiple attempts
+        function attemptVideoPlay() {
+            const video = document.getElementById('prayerVideo');
+            const playButton = document.getElementById('playButton');
+
+            if (!video) return;
+
+            // Check if video file exists by trying to load it
+            video.addEventListener('loadeddata', function() {
+                console.log('Video loaded successfully');
+            });
+
+            video.addEventListener('error', function(e) {
+                console.error('Video error:', e);
+                alert('Video file not found!\n\nPlease make sure "video.mp4" is in the same folder as this HTML file.');
+                if (playButton) {
+                    playButton.innerHTML = '<p style="color: red; background: white; padding: 1rem; border-radius: 8px;">Video file "video.mp4" not found</p>';
+                    playButton.style.display = 'block';
+                }
+            });
+
+            // Attempt 1: Immediate play
+            video.play().then(() => {
+                console.log('Autoplay successful');
+                if (playButton) {
+                    playButton.style.display = 'none';
+                }
+            }).catch(err => {
+                console.log('Autoplay blocked, showing play button:', err);
+                if (playButton) {
+                    playButton.style.display = 'block';
+                }
+
+                // Attempt 2: Try again after a short delay
+                setTimeout(() => {
+                    video.play().then(() => {
+                        console.log('Delayed autoplay successful');
+                        if (playButton) {
+                            playButton.style.display = 'none';
+                        }
+                    }).catch(err2 => {
+                        console.log('Delayed autoplay also failed:', err2);
+                    });
+                }, 1000);
+            });
+        }
+
+        // Ensure video plays when page loads (if spiritual page is active)
+        window.addEventListener('load', function() {
+            const spiritualPage = document.getElementById('spiritual');
+            if (spiritualPage && spiritualPage.classList.contains('active')) {
+                attemptVideoPlay();
+            }
+        });
+
+        // Also try to play when user interacts with the page (browsers allow autoplay after user interaction)
+        document.addEventListener('click', function playOnFirstClick() {
+            const video = document.getElementById('prayerVideo');
+            const spiritualPage = document.getElementById('spiritual');
+
+            if (video && spiritualPage && spiritualPage.classList.contains('active') && video.paused) {
+                video.play().then(() => {
+                    console.log('Video started after user interaction');
+                    const playButton = document.getElementById('playButton');
+                    if (playButton) {
+                        playButton.style.display = 'none';
+                    }
+                }).catch(err => console.log('Still cannot play:', err));
+            }
+        }, { once: false });
+    </script>
+</body>
+</html>
