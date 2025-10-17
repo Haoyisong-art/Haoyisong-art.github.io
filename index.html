@@ -28,6 +28,11 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
             padding: 1rem 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav.hidden {
+            transform: translateY(-100%);
         }
 
         nav ul {
@@ -124,7 +129,7 @@
         /* Section Styling */
         h2 {
             font-size: 2.5rem;
-            margin-bottom: 0.5m;
+            margin-bottom: 0.5rem;
             color: #2c2c2c;
             border-bottom: 3px solid #8b4513;
             padding-bottom: 0.5rem;
@@ -266,6 +271,15 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Auto-hide navigation on mobile */
+            nav {
+                transform: translateY(-100%);
+            }
+            
+            nav.show {
+                transform: translateY(0);
+            }
         }
 
         /* Back Button */
@@ -312,15 +326,15 @@
             height: 100vh;
             overflow: hidden;
             margin: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%);
         }
 
-        .immersive-video {
+        #particleCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             z-index: 1;
         }
 
@@ -354,17 +368,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
             padding: 2rem;
-            transition: background 0.8s ease;
+            transition: opacity 0.8s ease;
         }
 
-        .prayer-overlay.connected {
-            background: transparent;
+        .prayer-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .prayer-content {
@@ -425,34 +439,10 @@
             font-weight: 400;
         }
 
-        /* Play button for fallback */
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .play-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .play-button p {
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
         /* Responsive adjustments for spiritual page */
         @media (max-width: 768px) {
             .prayer-container {
-                height: 70vh;
+                height: 100vh;
                 min-height: 500px;
             }
 
@@ -471,15 +461,6 @@
             }
 
             .prayer-text p {
-                font-size: 1rem;
-            }
-
-            .play-button svg {
-                width: 60px;
-                height: 60px;
-            }
-
-            .play-button p {
                 font-size: 1rem;
             }
         }
@@ -653,48 +634,26 @@
     <!-- My Spiritual Space Page -->
     <div id="spiritual" class="page">
         <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <!-- Immersive Video Container -->
         <div class="prayer-container">
-            <video
-                id="prayerVideo"
-                class="immersive-video"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="auto"
-            >
-                <source src="video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <canvas id="particleCanvas"></canvas>
 
-            <!-- Pray Again button on Top Right (hidden initially) -->
             <button id="prayAgainButton" class="pray-again-button" onclick="restartPrayer()">Pray Again</button>
 
-            <!-- Fallback play button if autoplay fails -->
-            <div id="playButton" class="play-button" onclick="forcePlayVideo()" style="display: none;">
-                <svg width="80" height="80" viewBox="0 0 80 80">
-                    <circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.9)" stroke="#888" stroke-width="2"/>
-                    <polygon points="30,20 30,60 60,40" fill="#888"/>
-                </svg>
-                <p>Click to Play Video</p>
-            </div>
-
-            <!-- Prayer Overlay -->
             <div class="prayer-overlay" id="prayerOverlay">
                 <div class="prayer-content" id="prayerContent">
-                    <!-- Initial: Two buttons for English and Chinese -->
                     <div class="prayer-controls" id="prayButtons" style="display: flex; gap: 1rem;">
                         <button onclick="generatePrayer('en')" class="prayer-button">Pray</button>
-                        <button onclick="generatePrayer('zh')" class="prayer-button">祈福</button>
+                        <button onclick="generatePrayer('zh')" class="prayer-button">祈祷</button>
                     </div>
 
-                    <!-- Prayer text (no box background) -->
                     <div id="prayerText" class="prayer-text" style="display: none;">
                         <p></p>
                     </div>
 
-                    <!-- Connect button -->
+                    <div id="additionalInput" style="display: none; margin-top: 1rem;">
+                        <input type="text" id="additionalPrayer" placeholder="Add your own words..." style="padding: 0.5rem 1rem; width: 300px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(10px); font-size: 0.9rem;">
+                    </div>
+
                     <div class="prayer-controls" id="connectButton" style="display: none; margin-top: 1.5rem;">
                         <button onclick="connectToPrayer()" class="prayer-button">Connect</button>
                     </div>
@@ -778,191 +737,304 @@
     </div>
 
     <script>
+        // Mobile navigation auto-hide
+        let lastScrollTop = 0;
+        let touchStartY = 0;
+        let isMobile = window.innerWidth <= 768;
+
+        function handleNavigation() {
+            if (!isMobile) return;
+            const nav = document.querySelector('nav');
+            const spiritualPage = document.getElementById('spiritual');
+            if (spiritualPage && spiritualPage.classList.contains('active')) return;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                nav.classList.remove('show');
+            } else {
+                nav.classList.add('show');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+
+        function handleTouchStart(e) {
+            if (!isMobile) return;
+            touchStartY = e.touches[0].clientY;
+        }
+
+        function handleTouchMove(e) {
+            if (!isMobile) return;
+            const nav = document.querySelector('nav');
+            const touchY = e.touches[0].clientY;
+            const diff = touchY - touchStartY;
+            if (touchStartY < 50 && diff > 0) {
+                nav.classList.add('show');
+            } else if (diff < -30) {
+                nav.classList.remove('show');
+            }
+        }
+
+        function handleMouseMove(e) {
+            if (!isMobile) return;
+            const nav = document.querySelector('nav');
+            const spiritualPage = document.getElementById('spiritual');
+            if (spiritualPage && spiritualPage.classList.contains('active')) return;
+            if (e.clientY < 50) {
+                nav.classList.add('show');
+            } else if (e.clientY > 150) {
+                nav.classList.remove('show');
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            isMobile = window.innerWidth <= 768;
+            const nav = document.querySelector('nav');
+            if (!isMobile) {
+                nav.classList.remove('show');
+                nav.style.transform = 'translateY(0)';
+            }
+        });
+
+        window.addEventListener('scroll', handleNavigation);
+        window.addEventListener('touchstart', handleTouchStart);
+        window.addEventListener('touchmove', handleTouchMove);
+        window.addEventListener('mousemove', handleMouseMove);
+
+        // Particle System
+        let canvas, ctx, particles = [], animationId;
+
+        class Particle {
+            constructor(char, x, y, type) {
+                this.char = char;
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.size = Math.random() * 20 + 15;
+                this.opacity = 1;
+                this.life = 1;
+
+                if (type === 'ashes') {
+                    this.vx = (Math.random() - 0.5) * 2;
+                    this.vy = Math.random() * 2 + 1;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.1;
+                } else if (type === 'stars') {
+                    this.vx = (Math.random() - 0.5) * 3;
+                    this.vy = -Math.random() * 2 - 1;
+                    this.twinkle = 0;
+                    this.scale = 1;
+                } else if (type === 'smoke') {
+                    this.vx = (Math.random() - 0.5) * 1.5;
+                    this.vy = -Math.random() * 1.5 - 0.5;
+                    this.expansion = 1;
+                    this.blur = 0;
+                } else if (type === 'water') {
+                    this.vx = (Math.random() - 0.5) * 2;
+                    this.vy = Math.random() * 1 + 0.5;
+                    this.wave = Math.random() * Math.PI * 2;
+                    this.waveSpeed = Math.random() * 0.1 + 0.05;
+                } else if (type === 'fire') {
+                    this.vx = (Math.random() - 0.5) * 1;
+                    this.vy = -Math.random() * 3 - 2;
+                    this.flicker = Math.random() * Math.PI;
+                    this.flickerSpeed = Math.random() * 0.2 + 0.1;
+                    this.intensity = 1;
+                } else if (type === 'wind') {
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.radius = 0;
+                    this.spiralSpeed = Math.random() * 0.05 + 0.03;
+                    this.radiusSpeed = Math.random() * 2 + 1;
+                } else if (type === 'light') {
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.speed = Math.random() * 3 + 2;
+                    this.glow = 1;
+                }
+            }
+
+            update() {
+                if (this.type === 'ashes') {
+                    this.vy += 0.05;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.rotation += this.rotSpeed;
+                } else if (this.type === 'stars') {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.twinkle += 0.1;
+                    this.scale = 1 + Math.sin(this.twinkle) * 0.3;
+                } else if (this.type === 'smoke') {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vx *= 0.98;
+                    this.expansion += 0.02;
+                    this.blur += 0.3;
+                } else if (this.type === 'water') {
+                    this.wave += this.waveSpeed;
+                    this.x += this.vx + Math.sin(this.wave) * 2;
+                    this.y += this.vy;
+                    this.vx *= 0.97;
+                } else if (this.type === 'fire') {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.flicker += this.flickerSpeed;
+                    this.intensity = 0.7 + Math.sin(this.flicker) * 0.3;
+                    this.vy *= 0.97;
+                } else if (this.type === 'wind') {
+                    this.angle += this.spiralSpeed;
+                    this.radius += this.radiusSpeed;
+                    this.x = canvas.width / 2 + Math.cos(this.angle) * this.radius;
+                    this.y = canvas.height / 2 + Math.sin(this.angle) * this.radius;
+                } else if (this.type === 'light') {
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    this.glow = 1 - (this.life * 0.5);
+                }
+
+                this.life -= 0.008;
+                this.opacity = Math.max(0, this.life);
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                if (this.type === 'ashes') {
+                    ctx.rotate(this.rotation);
+                    ctx.fillStyle = `rgba(150, 100, 80, ${this.opacity})`;
+                } else if (this.type === 'stars') {
+                    ctx.scale(this.scale, this.scale);
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = 'white';
+                    ctx.fillStyle = `rgba(255, 255, 200, ${this.opacity})`;
+                } else if (this.type === 'smoke') {
+                    ctx.scale(this.expansion, this.expansion);
+                    ctx.globalAlpha = this.opacity * 0.5;
+                    ctx.filter = `blur(${this.blur}px)`;
+                    ctx.fillStyle = `rgba(200, 200, 220, ${this.opacity})`;
+                } else if (this.type === 'water') {
+                    ctx.globalAlpha = this.opacity * 0.7;
+                    ctx.fillStyle = `rgba(100, 150, 255, ${this.opacity})`;
+                } else if (this.type === 'fire') {
+                    ctx.shadowBlur = 30;
+                    ctx.shadowColor = 'orange';
+                    const r = Math.floor(255 * this.intensity);
+                    const g = Math.floor(100 * this.intensity);
+                    ctx.fillStyle = `rgba(${r}, ${g}, 0, ${this.opacity})`;
+                } else if (this.type === 'wind') {
+                    ctx.globalAlpha = this.opacity * 0.6;
+                    ctx.fillStyle = `rgba(220, 220, 255, ${this.opacity})`;
+                } else if (this.type === 'light') {
+                    ctx.shadowBlur = 40 * this.glow;
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                }
+                
+                ctx.font = `${this.size}px Georgia`;
+                ctx.textAlign = 'center';
+                ctx.fillText(this.char, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        function initCanvas() {
+            canvas = document.getElementById('particleCanvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticles(text, type) {
+            particles = [];
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            text.split('').forEach((c, i) => {
+                if (c.trim()) {
+                    const angle = (i / text.length) * Math.PI * 2;
+                    const x = cx + Math.cos(angle) * 100;
+                    const y = cy + Math.sin(angle) * 100;
+                    particles.push(new Particle(c, x, y, type));
+                }
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => {
+                p.update();
+                p.draw();
+                return p.life > 0;
+            });
+            if (particles.length > 0) requestAnimationFrame(animate);
+        }
+
         function showPage(pageId) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.display = 'none';
             });
 
-            // Show selected page
             const selectedPage = document.getElementById(pageId);
             selectedPage.classList.add('active');
-
-            // Get navigation element
             const nav = document.querySelector('nav');
 
-            // Set proper display based on page
             if (pageId === 'home') {
                 selectedPage.style.display = 'flex';
                 nav.style.display = 'block';
             } else if (pageId === 'spiritual') {
                 selectedPage.style.display = 'block';
-                nav.style.display = 'none'; // Hide navigation on spiritual page
+                nav.style.display = 'none';
+                setTimeout(() => initCanvas(), 100);
             } else {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'block';
             }
 
-            // Scroll to top
             window.scrollTo(0, 0);
-
-            // Handle video playback for spiritual page
-            if (pageId === 'spiritual') {
-                setTimeout(() => {
-                    attemptVideoPlay();
-                }, 100);
-            }
         }
 
-        // Rule-based prayer generator
         function generatePrayer(language) {
             const chinesePrayers = {
-                openings: [
-                    "在万物有灵的宇宙中",
-                    "当天地相连之时",
-                    "在自然的怀抱里",
-                    "于寂静的山水之间",
-                    "在时光的长河里",
-                    "在晨曦初现之际",
-                    "当月光洒满大地",
-                    "在四季轮转之中",
-                    "于静谧的深夜",
-                    "在万籁俱寂时",
-                    "当心灵宁静之刻",
-                    "在天地交融处"
-                ],
-                subjects: [
-                    "我向石头祈祷",
-                    "我向树木祈祷",
-                    "我向流水祈祷",
-                    "我向风祈祷",
-                    "我向大地祈祷",
-                    "我向星辰祈祷",
-                    "我向山川祈祷",
-                    "我向云朵祈祷",
-                    "我向雨露祈祷",
-                    "我向花草祈祷",
-                    "我向日月祈祷",
-                    "我向万物祈祷"
-                ],
-                wishes: [
-                    "愿心灵得到平静",
-                    "愿智慧如泉涌现",
-                    "愿身心和谐共存",
-                    "愿找到内在的光",
-                    "愿与万物同在",
-                    "愿感受到生命的连接",
-                    "愿灵魂得到滋养",
-                    "愿获得内心的安宁",
-                    "愿感知自然的呼吸",
-                    "愿心中充满爱与慈悲",
-                    "愿觉知生命的美好",
-                    "愿体悟万物的灵性"
-                ],
-                closings: [
-                    "感恩万物的恩赐",
-                    "感谢自然的馈赠",
-                    "愿灵性之光照耀前路",
-                    "与自然同行，与万物共生",
-                    "心怀敬畏，感恩当下",
-                    "愿生命之光永不熄灭",
-                    "与天地共鸣，与万物为友",
-                    "感恩这一刻的存在",
-                    "愿心中常怀感激",
-                    "万物有灵，皆值得敬畏"
-                ]
+                openings: ["在万物有灵的宇宙中", "当天地相连之时", "在自然的怀抱里", "于寂静的山水之间", "在时光的长河里", "在晨曦初现之际", "当月光洒满大地", "在四季轮转之中", "于静谧的深夜", "在万籁俱寂时", "当心灵宁静之刻", "在天地交融处"],
+                subjects: ["我向石头祈祷", "我向树木祈祷", "我向流水祈祷", "我向风祈祷", "我向大地祈祷", "我向星辰祈祷", "我向山川祈祷", "我向云朵祈祷", "我向雨露祈祷", "我向花草祈祷", "我向日月祈祷", "我向万物祈祷"],
+                wishes: ["愿心灵得到平静", "愿智慧如泉涌现", "愿身心和谐共存", "愿找到内在的光", "愿与万物同在", "愿感受到生命的连接", "愿灵魂得到滋养", "愿获得内心的安宁", "愿感知自然的呼吸", "愿心中充满爱与慈悲", "愿觉知生命的美好", "愿体悟万物的灵性"],
+                closings: ["感恩万物的恩赐", "感谢自然的馈赠", "愿灵性之光照耀前路", "与自然同行，与万物共生", "心怀敬畏，感恩当下", "愿生命之光永不熄灭", "与天地共鸣，与万物为友", "感恩这一刻的存在", "愿心中常怀感激", "万物有灵，皆值得敬畏"]
             };
 
             const englishPrayers = {
-                openings: [
-                    "In the universe where all things have spirit",
-                    "When heaven and earth unite",
-                    "In nature's embrace",
-                    "Among silent mountains and waters",
-                    "In the river of time",
-                    "At the break of dawn",
-                    "Under the moonlit sky",
-                    "Through the turning of seasons",
-                    "In the stillness of night",
-                    "When all is quiet",
-                    "In moments of inner peace",
-                    "Where heaven and earth meet"
-                ],
-                subjects: [
-                    "I pray to the stones",
-                    "I pray to the trees",
-                    "I pray to the flowing water",
-                    "I pray to the wind",
-                    "I pray to the earth",
-                    "I pray to the stars",
-                    "I pray to the mountains",
-                    "I pray to the clouds",
-                    "I pray to the rain",
-                    "I pray to the flowers",
-                    "I pray to the sun and moon",
-                    "I pray to all living things"
-                ],
-                wishes: [
-                    "May my spirit find peace",
-                    "May wisdom flow like a spring",
-                    "May body and mind exist in harmony",
-                    "May I find the inner light",
-                    "May I be one with all things",
-                    "May I feel the connection of life",
-                    "May my soul be nourished",
-                    "May I find serenity within",
-                    "May I sense nature's breath",
-                    "May my heart be filled with love and compassion",
-                    "May I perceive life's beauty",
-                    "May I understand the spirit of all beings"
-                ],
-                closings: [
-                    "Gratitude for the gifts of all things",
-                    "Thanks for nature's blessings",
-                    "May spiritual light illuminate the path",
-                    "Walk with nature, coexist with all beings",
-                    "With reverence, grateful for the present",
-                    "May the light of life never fade",
-                    "In harmony with heaven and earth, befriend all things",
-                    "Grateful for this moment of existence",
-                    "May gratitude always fill my heart",
-                    "All things have spirit, all deserve reverence"
-                ]
+                openings: ["In the universe where all things have spirit", "When heaven and earth unite", "In nature's embrace", "Among silent mountains and waters", "In the river of time", "At the break of dawn", "Under the moonlit sky", "Through the turning of seasons", "In the stillness of night", "When all is quiet", "In moments of inner peace", "Where heaven and earth meet"],
+                subjects: ["I pray to the stones", "I pray to the trees", "I pray to the flowing water", "I pray to the wind", "I pray to the earth", "I pray to the stars", "I pray to the mountains", "I pray to the clouds", "I pray to the rain", "I pray to the flowers", "I pray to the sun and moon", "I pray to all living things"],
+                wishes: ["May my spirit find peace", "May wisdom flow like a spring", "May body and mind exist in harmony", "May I find the inner light", "May I be one with all things", "May I feel the connection of life", "May my soul be nourished", "May I find serenity within", "May I sense nature's breath", "May my heart be filled with love and compassion", "May I perceive life's beauty", "May I understand the spirit of all beings"],
+                closings: ["Gratitude for the gifts of all things", "Thanks for nature's blessings", "May spiritual light illuminate the path", "Walk with nature, coexist with all beings", "With reverence, grateful for the present", "May the light of life never fade", "In harmony with heaven and earth, befriend all things", "Grateful for this moment of existence", "May gratitude always fill my heart", "All things have spirit, all deserve reverence"]
             };
 
             const prayerElements = language === 'zh' ? chinesePrayers : englishPrayers;
-
-            // Randomly select elements
             const opening = prayerElements.openings[Math.floor(Math.random() * prayerElements.openings.length)];
             const subject = prayerElements.subjects[Math.floor(Math.random() * prayerElements.subjects.length)];
             const wish = prayerElements.wishes[Math.floor(Math.random() * prayerElements.wishes.length)];
             const closing = prayerElements.closings[Math.floor(Math.random() * prayerElements.closings.length)];
 
-            // Combine into prayer
             const separator = language === 'zh' ? '，' : ', ';
             const period = language === 'zh' ? '。' : '.';
             const prayer = `${opening}${separator}${subject}${separator}${wish}${period}${closing}${period}`;
 
-            // Hide Pray buttons
             const prayButtons = document.getElementById('prayButtons');
             prayButtons.style.opacity = '0';
 
             setTimeout(() => {
                 prayButtons.style.display = 'none';
-
-                // Show prayer text
                 const prayerTextDiv = document.getElementById('prayerText');
                 prayerTextDiv.style.display = 'flex';
                 prayerTextDiv.innerHTML = `<p>${prayer}</p>`;
                 prayerTextDiv.style.opacity = '0';
 
+                document.getElementById('additionalInput').style.display = 'block';
+
                 setTimeout(() => {
                     prayerTextDiv.style.transition = 'opacity 0.8s ease-in';
                     prayerTextDiv.style.opacity = '1';
 
-                    // Show Connect button after prayer appears with language-specific text
                     setTimeout(() => {
                         const connectButton = document.getElementById('connectButton');
                         const buttonText = language === 'zh' ? '连接天地灵气' : 'Connect';
@@ -978,49 +1050,38 @@
             }, 300);
         }
 
-        // Connect - hide everything and show "Pray Again" button
         function connectToPrayer() {
-            const prayerTextDiv = document.getElementById('prayerText');
-            const connectButton = document.getElementById('connectButton');
-            const prayerOverlay = document.getElementById('prayerOverlay');
-            const prayAgainButton = document.getElementById('prayAgainButton');
-
-            // Fade out prayer text and connect button
-            prayerTextDiv.style.opacity = '0';
-            connectButton.style.opacity = '0';
-
+            const generatedText = document.getElementById('prayerText').querySelector('p').textContent;
+            const additionalInput = document.getElementById('additionalPrayer').value.trim();
+            const combinedText = additionalInput ? generatedText + ' ' + additionalInput : generatedText;
+            
+            document.getElementById('prayerOverlay').classList.add('hidden');
+            document.getElementById('prayAgainButton').style.display = 'block';
             setTimeout(() => {
-                prayerTextDiv.style.display = 'none';
-                connectButton.style.display = 'none';
-
-                // Make overlay transparent (show only video)
-                prayerOverlay.classList.add('connected');
-
-                // Show Pray Again button
-                prayAgainButton.style.display = 'block';
-                setTimeout(() => {
-                    prayAgainButton.style.transition = 'opacity 0.5s ease';
-                    prayAgainButton.style.opacity = '1';
-                }, 100);
-            }, 500);
+                document.getElementById('prayAgainButton').style.opacity = '1';
+            }, 100);
+            
+            const effectTypes = ['stars', 'ashes', 'fire', 'water', 'wind', 'smoke', 'light'];
+            const randomEffect = effectTypes[Math.floor(Math.random() * effectTypes.length)];
+            
+            createParticles(combinedText, randomEffect);
+            animate();
         }
 
-        // Restart - go back to initial state
         function restartPrayer() {
             const prayButtons = document.getElementById('prayButtons');
             const prayerOverlay = document.getElementById('prayerOverlay');
             const prayAgainButton = document.getElementById('prayAgainButton');
 
-            // Hide Pray Again button
             prayAgainButton.style.opacity = '0';
-
             setTimeout(() => {
                 prayAgainButton.style.display = 'none';
-
-                // Remove connected class
-                prayerOverlay.classList.remove('connected');
-
-                // Show Pray buttons again
+                prayerOverlay.classList.remove('hidden');
+                document.getElementById('prayerText').style.display = 'none';
+                document.getElementById('additionalInput').style.display = 'none';
+                document.getElementById('connectButton').style.display = 'none';
+                document.getElementById('additionalPrayer').value = '';
+                
                 prayButtons.style.display = 'flex';
                 prayButtons.style.opacity = '0';
                 setTimeout(() => {
@@ -1029,96 +1090,6 @@
                 }, 100);
             }, 300);
         }
-
-        // Force play video function
-        function forcePlayVideo() {
-            const video = document.getElementById('prayerVideo');
-            const playButton = document.getElementById('playButton');
-
-            if (video) {
-                video.muted = true; // Ensure it's muted
-                video.play().then(() => {
-                    console.log('Video playing successfully');
-                    if (playButton) {
-                        playButton.style.display = 'none';
-                    }
-                }).catch(err => {
-                    console.error('Failed to play video:', err);
-                    alert('Unable to play video. Please check:\n1. The video file "video.mp4" exists in the same folder\n2. The video file format is correct (MP4)\n3. Your browser supports video playback');
-                });
-            }
-        }
-
-        // Try to play video with multiple attempts
-        function attemptVideoPlay() {
-            const video = document.getElementById('prayerVideo');
-            const playButton = document.getElementById('playButton');
-
-            if (!video) return;
-
-            // Check if video file exists by trying to load it
-            video.addEventListener('loadeddata', function() {
-                console.log('Video loaded successfully');
-            });
-
-            video.addEventListener('error', function(e) {
-                console.error('Video error:', e);
-                alert('Video file not found!\n\nPlease make sure "video.mp4" is in the same folder as this HTML file.');
-                if (playButton) {
-                    playButton.innerHTML = '<p style="color: red; background: white; padding: 1rem; border-radius: 8px;">Video file "video.mp4" not found</p>';
-                    playButton.style.display = 'block';
-                }
-            });
-
-            // Attempt 1: Immediate play
-            video.play().then(() => {
-                console.log('Autoplay successful');
-                if (playButton) {
-                    playButton.style.display = 'none';
-                }
-            }).catch(err => {
-                console.log('Autoplay blocked, showing play button:', err);
-                if (playButton) {
-                    playButton.style.display = 'block';
-                }
-
-                // Attempt 2: Try again after a short delay
-                setTimeout(() => {
-                    video.play().then(() => {
-                        console.log('Delayed autoplay successful');
-                        if (playButton) {
-                            playButton.style.display = 'none';
-                        }
-                    }).catch(err2 => {
-                        console.log('Delayed autoplay also failed:', err2);
-                    });
-                }, 1000);
-            });
-        }
-
-        // Ensure video plays when page loads (if spiritual page is active)
-        window.addEventListener('load', function() {
-            const spiritualPage = document.getElementById('spiritual');
-            if (spiritualPage && spiritualPage.classList.contains('active')) {
-                attemptVideoPlay();
-            }
-        });
-
-        // Also try to play when user interacts with the page (browsers allow autoplay after user interaction)
-        document.addEventListener('click', function playOnFirstClick() {
-            const video = document.getElementById('prayerVideo');
-            const spiritualPage = document.getElementById('spiritual');
-
-            if (video && spiritualPage && spiritualPage.classList.contains('active') && video.paused) {
-                video.play().then(() => {
-                    console.log('Video started after user interaction');
-                    const playButton = document.getElementById('playButton');
-                    if (playButton) {
-                        playButton.style.display = 'none';
-                    }
-                }).catch(err => console.log('Still cannot play:', err));
-            }
-        }, { once: false });
     </script>
 </body>
 </html>
