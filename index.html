@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haoyi Song - Artist Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #8b4513;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:first-of-type {
+            margin-top: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+            border-bottom: 3px solid #8b4513;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #8b4513;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Intro Section */
+        #intro {
+            text-align: center;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        #intro h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #intro .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .artwork-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .artwork-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+        }
+
+        .artwork-info h4 {
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: #8b4513;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #654321;
+        }
+
+        /* Experience Lists */
+        .experience-list {
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .experience-item h4 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#intro">Home</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#paintings">Paintings</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro">
+        <h1>Haoyi Song</h1>
+        <p class="subtitle">Visual Artist</p>
+        <p style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            [Add your artist statement and background here. Describe your artistic practice, 
+            your inspiration, and what drives your creative work. This is your introduction to visitors.]
+        </p>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <h2>Research</h2>
+        <p>
+            [Describe your research interests, artistic investigations, and theoretical frameworks 
+            that inform your practice. Discuss the concepts you explore through your work.]
+        </p>
+        <p>
+            [Add more details about your research methodology, influences, and ongoing investigations.]
+        </p>
+    </section>
+
+    <!-- Paintings Section -->
+    <section id="paintings">
+        <h2>Paintings</h2>
+
+        <h3>Homeland</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Floating Dreams</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Daily Life</h3>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 1</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 2</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Artwork Image 3</div>
+                <div class="artwork-info">
+                    <h4>Artwork Title</h4>
+                    <p>Medium, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation">
+        <h2>Installation</h2>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Installation Image 1</div>
+                <div class="artwork-info">
+                    <h4>Installation Title</h4>
+                    <p>Materials, Dimensions, Year</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <div class="artwork-placeholder">Installation Image 2</div>
+                <div class="artwork-info">
+                    <h4>Installation Title</h4>
+                    <p>Materials, Dimensions, Year</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Experience Section -->
+    <section id="teaching">
+        <h2>Teaching Experience</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Course/Position Title</h4>
+                <p><strong>Institution Name</strong> | Year</p>
+                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directed Events Section -->
+    <section id="events">
+        <h2>Directed Events</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+            <div class="experience-item">
+                <h4>Event Name</h4>
+                <p><strong>Location</strong> | Date</p>
+                <p>Description of the event, your role, and outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email:</strong>
+                <a href="mailto:your.email@example.com">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+                <strong>Instagram:</strong>
+                <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a>
+            </div>
+            <div class="contact-item">
+                <strong>Facebook:</strong>
+                <a href="https://facebook.com/yourpage" target="_blank">Your Page Name</a>
+            </div>
+            <div class="contact-item">
+                <strong>Twitter/X:</strong>
+                <a href="https://twitter.com/yourusername" target="_blank">@yourusername</a>
+            </div>
+            <div class="contact-item">
+                <strong>LinkedIn:</strong>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
