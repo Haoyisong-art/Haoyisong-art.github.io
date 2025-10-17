@@ -16,6 +16,7 @@
             line-height: 1.6;
             color: #333;
             background-color: #fafafa;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -42,33 +43,55 @@
             color: #333;
             font-weight: 500;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         nav a:hover {
             color: #8b4513;
         }
 
-        /* Sections */
-        section {
+        /* Page Container */
+        .page {
+            display: none;
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home Page - Full Screen */
+        #home {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding-top: 0;
         }
 
-        section:first-of-type {
-            margin-top: 60px;
+        #home.active {
+            display: flex;
         }
 
-        h1 {
-            font-size: 3rem;
+        #home h1 {
+            font-size: 4rem;
             margin-bottom: 1rem;
             color: #2c2c2c;
         }
 
+        #home .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Section Styling */
         h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
@@ -88,23 +111,6 @@
             margin-bottom: 1rem;
             font-size: 1.1rem;
             line-height: 1.8;
-        }
-
-        /* Intro Section */
-        #intro {
-            text-align: center;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-        }
-
-        #intro h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        #intro .subtitle {
-            font-size: 1.5rem;
-            color: #666;
-            font-style: italic;
         }
 
         /* Gallery Grid */
@@ -198,15 +204,19 @@
                 padding: 0 1rem;
             }
 
-            h1 {
-                font-size: 2rem;
+            #home h1 {
+                font-size: 2.5rem;
+            }
+
+            #home .subtitle {
+                font-size: 1.1rem;
             }
 
             h2 {
                 font-size: 1.8rem;
             }
 
-            section {
+            .page {
                 padding: 3rem 1rem;
             }
 
@@ -220,28 +230,49 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#intro">Home</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#paintings">Paintings</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('intro')">Background</a></li>
+            <li><a onclick="showPage('research')">Research</a></li>
+            <li><a onclick="showPage('paintings')">Paintings</a></li>
+            <li><a onclick="showPage('installation')">Installation</a></li>
+            <li><a onclick="showPage('teaching')">Teaching</a></li>
+            <li><a onclick="showPage('events')">Events</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Intro Section -->
-    <section id="intro">
+    <!-- Home Page -->
+    <div id="home" class="page active">
         <h1>Haoyi Song</h1>
-        <p class="subtitle">Visual Artist</p>
-        <p style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-            [Add your artist statement and background here. Describe your artistic practice, 
-            your inspiration, and what drives your creative work. This is your introduction to visitors.]
-        </p>
-    </section>
+        <div class="subtitle">
+            <p>PhD Candidate, UTD</p>
+            <p>Professional Artist</p>
+        </div>
+        
+        <div style="max-width: 800px; margin-top: 3rem; text-align: left;">
+            <h2 style="border: none; font-size: 1.8rem; margin-bottom: 1.5rem;">Artist Statement</h2>
+            <p>
+                My work investigates how women's bodies become sites of emotional governance—where pain, discipline, and transformation are moralized and socially coded. I use everyday objects—beds, chairs, pillows, garments—as metaphors for endurance, containment, and relational spaces. These objects embody how individuals internalize or resist social power, shaping both self-perception and external visibility.
+            </p>
+            <p>
+                Painting is integral to my practice: through transparency, erasure, repetition, and layered surfaces, I allow the canvas to become an archive, a memory, and a testimony. At the same time, I explore how different media articulate meaning in distinct ways. Sculpture and light-based works expand the spatial and atmospheric dimensions of my practice, giving form to tension, fragility, and resilience beyond the canvas. Parallel to these approaches, I create interactive installations using sensors, projections, and generative systems. Such works transform passive seeing into embodied dialogue, enabling audiences to sense how their own bodies engage with systems of visibility and regulation.
+            </p>
+            <p>
+                Grounded in cross-cultural perspectives, my art highlights both shared human experiences and cultural specificities in how bodies, identities, and emotional regimes are constructed.
+            </p>
+        </div>
+    </div>
 
-    <!-- Research Section -->
-    <section id="research">
+    <!-- Background/Intro Page -->
+    <div id="intro" class="page">
+        <h2>Background</h2>
+        <p>
+            [Add additional biographical information, education, exhibitions, awards, or other background details here.]
+        </p>
+    </div>
+
+    <!-- Research Page -->
+    <div id="research" class="page">
         <h2>Research</h2>
         <p>
             [Describe your research interests, artistic investigations, and theoretical frameworks 
@@ -250,10 +281,10 @@
         <p>
             [Add more details about your research methodology, influences, and ongoing investigations.]
         </p>
-    </section>
+    </div>
 
-    <!-- Paintings Section -->
-    <section id="paintings">
+    <!-- Paintings Page -->
+    <div id="paintings" class="page">
         <h2>Paintings</h2>
 
         <h3>Homeland</h3>
@@ -330,10 +361,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Installation Section -->
-    <section id="installation">
+    <!-- Installation Page -->
+    <div id="installation" class="page">
         <h2>Installation</h2>
         <div class="gallery-grid">
             <div class="artwork-card">
@@ -351,10 +382,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Teaching Experience Section -->
-    <section id="teaching">
+    <!-- Teaching Experience Page -->
+    <div id="teaching" class="page">
         <h2>Teaching Experience</h2>
         <div class="experience-list">
             <div class="experience-item">
@@ -373,10 +404,10 @@
                 <p>Description of teaching role, courses taught, and responsibilities.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Directed Events Section -->
-    <section id="events">
+    <!-- Directed Events Page -->
+    <div id="events" class="page">
         <h2>Directed Events</h2>
         <div class="experience-list">
             <div class="experience-item">
@@ -395,10 +426,10 @@
                 <p>Description of the event, your role, and outcomes.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Contact Page -->
+    <div id="contact" class="page">
         <h2>Contact Me</h2>
         <div class="contact-info">
             <div class="contact-item">
@@ -422,7 +453,20 @@
                 <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
             </div>
         </div>
-    </section>
+    </div>
 
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
