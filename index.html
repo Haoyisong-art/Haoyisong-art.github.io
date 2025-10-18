@@ -843,7 +843,6 @@
         // Particle System
         let canvas, ctx, particles = [], lines = [], animationId;
 
-<<<<<<< HEAD
         // Mouse tracking for speed modulation (Relief mode only)
         let mouseX = 0, mouseY = 0, prevMouseX = 0, prevMouseY = 0;
         let mouseSpeed = 0;
@@ -854,28 +853,6 @@
         let wheelRotating = true;
         let wheelAnimationId = null;
 
-=======
->>>>>>> origin/main
-        class Particle {
-            constructor(char, x, y, type, charIndex) {
-                this.char = char;
-                this.startX = x;
-                this.startY = y;
-                this.x = x;
-                this.y = y;
-                this.type = type;
-                this.charIndex = charIndex;
-                this.size = Math.random() * 3 + 2; // Smaller particles
-                this.opacity = 1;
-                this.life = 1;
-                this.trail = [];
-<<<<<<< HEAD
-                this.birthDelay = 0; // Frames to wait before becoming visible
-                this.showChar = false; // Whether to show as character initially
-                this.charToParticleProgress = 0; // 0 = character, 1 = particle
-                this.age = 0; // How long the particle has been alive
-=======
->>>>>>> origin/main
 
                 if (type === 'wind') {
                     // Swirling wind effect
@@ -913,7 +890,6 @@
                     this.glow = 1;
                     this.pulseSpeed = Math.random() * 0.1 + 0.05;
                 } else if (type === 'smoke') {
-<<<<<<< HEAD
                     // Fading smoke falling slowly
                     this.vx = (Math.random() - 0.5) * 1;
                     this.vy = Math.random() * 0.5 + 0.3; // Slow downward drift
@@ -925,14 +901,6 @@
                     this.driftSpeed = Math.random() * 0.08 + 0.05;
                     this.fadeStage = 0; // 0 = dark smoke, 1 = faded
                     this.fadeSpeed = Math.random() * 0.006 + 0.004;
-=======
-                    // Heavy smoke falling
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = Math.random() * 2 + 1;
-                    this.expansion = 1;
-                    this.rotation = Math.random() * Math.PI * 2;
-                    this.rotSpeed = (Math.random() - 0.5) * 0.1;
->>>>>>> origin/main
                 } else if (type === 'shatter') {
                     // Glass shattering effect
                     this.vx = (Math.random() - 0.5) * 8;
@@ -982,7 +950,6 @@
                     this.expansion = 1;
                     this.expansionSpeed = Math.random() * 0.02 + 0.01;
                 } else if (type === 'wood-break') {
-<<<<<<< HEAD
                     // Splintering wood - slow fall
                     this.vx = (Math.random() - 0.5) * 1.5; // Reduced from 6
                     this.vy = Math.random() * 0.5; // Reduced from 6, starts slow
@@ -1018,41 +985,10 @@
                     this.settled = false;
                     this.drift = Math.random() * Math.PI * 2;
                     this.driftSpeed = Math.random() * 0.03 + 0.01;
-=======
-                    // Splintering wood
-                    this.vx = (Math.random() - 0.5) * 6;
-                    this.vy = (Math.random() - 0.5) * 6;
-                    this.gravity = 0.25;
-                    this.rotation = Math.random() * Math.PI * 2;
-                    this.rotSpeed = (Math.random() - 0.5) * 0.4;
-                    this.length = Math.random() * 10 + 5;
-                } else if (type === 'flood') {
-                    // Rushing water
-                    this.vx = (Math.random() - 0.5) * 5;
-                    this.vy = Math.random() * 4 + 2;
-                    this.wave = Math.random() * Math.PI * 2;
-                    this.waveSpeed = Math.random() * 0.2 + 0.15;
-                } else if (type === 'burn') {
-                    // Burning/ash particles
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = -Math.random() * 5 - 3;
-                    this.burnStage = Math.random();
-                    this.flicker = Math.random() * Math.PI;
-                    this.flickerSpeed = Math.random() * 0.4 + 0.2;
-                } else if (type === 'earth-crack') {
-                    // Cracking earth particles
-                    this.angle = Math.random() * Math.PI * 2;
-                    this.speed = Math.random() * 3 + 1;
-                    this.vx = Math.cos(this.angle) * this.speed;
-                    this.vy = Math.sin(this.angle) * this.speed;
-                    this.gravity = 0.15;
-                    this.settled = false;
->>>>>>> origin/main
                 }
             }
 
             update() {
-<<<<<<< HEAD
                 // Handle birth delay
                 if (this.birthDelay > 0) {
                     this.birthDelay--;
@@ -1066,52 +1002,6 @@
                     this.charToParticleProgress += 0.011; // Reach 1.0 after ~90 frames
                 }
 
-=======
->>>>>>> origin/main
-                if (this.type === 'wind') {
-                    this.angle += this.spiralSpeed;
-                    this.radius += this.radiusSpeed;
-                    this.x = this.orbitCenterX + Math.cos(this.angle) * this.radius;
-                    this.y = this.orbitCenterY + Math.sin(this.angle) * this.radius;
-                    this.orbitCenterY -= 1; // Drift upward
-                } else if (this.type === 'fire') {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vy *= 0.98;
-                    this.vx *= 0.95;
-                    this.flicker += this.flickerSpeed;
-                } else if (this.type === 'water') {
-                    this.wave += this.waveSpeed;
-                    this.x += this.vx + Math.sin(this.wave) * this.waveAmplitude;
-                    this.y += this.vy;
-                } else if (this.type === 'floating') {
-                    this.drift += this.driftSpeed;
-                    this.x += this.vx + Math.sin(this.drift) * 0.5;
-                    this.y += this.vy;
-                } else if (this.type === 'light') {
-                    this.x += Math.cos(this.angle) * this.speed;
-                    this.y += Math.sin(this.angle) * this.speed;
-                    this.glow = 0.5 + Math.sin(this.life * Math.PI * 2) * 0.5;
-                } else if (this.type === 'smoke') {
-<<<<<<< HEAD
-                    // Drifting smoke falling slowly and fading
-                    this.drift += this.driftSpeed;
-                    this.x += this.vx + Math.sin(this.drift) * 1.5;
-                    this.y += this.vy;
-                    this.vx *= 0.98;
-                    this.expansion += this.expansionSpeed;
-                    this.rotation += this.rotSpeed;
-                    this.fadeStage += this.fadeSpeed;
-
-                    // Slow down falling as it expands and fades
-                    this.vy *= 0.99;
-=======
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vx *= 0.98;
-                    this.expansion += 0.03;
-                    this.rotation += this.rotSpeed;
->>>>>>> origin/main
                 } else if (this.type === 'shatter') {
                     this.vy += this.gravity;
                     this.x += this.vx;
@@ -1154,7 +1044,6 @@
                     this.vy -= 0.02; // Gentle lift
                     this.expansion += this.expansionSpeed;
                 } else if (this.type === 'wood-break') {
-<<<<<<< HEAD
                     this.vy += this.gravity * speedMultiplier;
                     this.x += this.vx * speedMultiplier;
                     this.y += this.vy * speedMultiplier;
@@ -1193,27 +1082,6 @@
                     this.vy += this.gravity * speedMultiplier;
                     this.x += this.vx * speedMultiplier;
                     this.y += this.vy * speedMultiplier;
-=======
-                    this.vy += this.gravity;
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.rotation += this.rotSpeed;
-                    this.vx *= 0.97;
-                } else if (this.type === 'flood') {
-                    this.wave += this.waveSpeed;
-                    this.x += this.vx;
-                    this.y += this.vy;
-                } else if (this.type === 'burn') {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.flicker += this.flickerSpeed;
-                    this.vy *= 0.96;
-                    this.burnStage += 0.01;
-                } else if (this.type === 'earth-crack') {
-                    this.vy += this.gravity;
-                    this.x += this.vx;
-                    this.y += this.vy;
->>>>>>> origin/main
                     this.vx *= 0.95;
                     if (this.y > canvas.height - 30) {
                         this.settled = true;
@@ -1228,16 +1096,11 @@
                     if (this.trail.length > 10) this.trail.shift();
                 }
 
-<<<<<<< HEAD
                 this.life -= 0.0015; // Slower fade (was 0.006) - particles last ~5.5 seconds
-=======
-                this.life -= 0.006;
->>>>>>> origin/main
                 this.opacity = Math.max(0, this.life);
             }
 
             draw() {
-<<<<<<< HEAD
                 // Don't draw if still in birth delay
                 if (this.birthDelay > 0) return;
 
@@ -1260,10 +1123,6 @@
                 const particleOpacity = this.showChar ? this.charToParticleProgress * this.opacity : this.opacity;
                 ctx.globalAlpha = particleOpacity;
 
-=======
-                ctx.save();
-
->>>>>>> origin/main
                 // Draw trails
                 if (this.trail.length > 1) {
                     ctx.beginPath();
@@ -1277,11 +1136,7 @@
                     ctx.stroke();
                 }
 
-<<<<<<< HEAD
                 // globalAlpha already set above based on transformation progress
-=======
-                ctx.globalAlpha = this.opacity;
->>>>>>> origin/main
                 ctx.translate(this.x, this.y);
 
                 if (this.type === 'wind') {
@@ -1324,7 +1179,6 @@
                 } else if (this.type === 'smoke') {
                     ctx.rotate(this.rotation);
                     ctx.scale(this.expansion, this.expansion);
-<<<<<<< HEAD
 
                     // Calculate smoke color - starts darker, fades to lighter gray
                     const smokeDarkness = 60 + this.fadeStage * 100; // 60 (dark) to 160 (light gray)
@@ -1350,12 +1204,6 @@
                     ctx.arc(0, 0, this.size, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(${smokeDarkness}, ${smokeDarkness}, ${smokeDarkness}, ${smokeAlpha * 0.6})`;
                     ctx.filter = `blur(${2 + this.expansion * 0.5}px)`;
-=======
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(80, 80, 80, ${this.opacity * 0.6})`;
-                    ctx.filter = 'blur(3px)';
->>>>>>> origin/main
                     ctx.fill();
                 } else if (this.type === 'shatter') {
                     ctx.rotate(this.rotation);
@@ -1455,7 +1303,6 @@
                     ctx.shadowColor = 'rgba(30, 144, 255, 0.4)';
                     ctx.fill();
                 } else if (this.type === 'burn') {
-<<<<<<< HEAD
                     const intensity = 0.5 + Math.sin(this.flicker) * 0.5;
 
                     if (this.burnStage < 0.3) {
@@ -1500,20 +1347,6 @@
                         ctx.fillStyle = `rgba(${ashDarkness + 20}, ${ashDarkness + 20}, ${ashDarkness + 20}, ${this.opacity * 0.15})`;
                         ctx.fill();
                     }
-=======
-                    const burnHue = Math.max(0, 60 - this.burnStage * 60);
-                    const intensity = 0.5 + Math.sin(this.flicker) * 0.5;
-                    if (this.burnStage < 0.7) {
-                        ctx.fillStyle = `hsla(${burnHue}, 100%, ${50 + intensity * 30}%, ${this.opacity})`;
-                    } else {
-                        ctx.fillStyle = `rgba(80, 80, 80, ${this.opacity * (1 - this.burnStage)})`;
-                    }
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.shadowBlur = this.burnStage < 0.7 ? 20 : 5;
-                    ctx.shadowColor = this.burnStage < 0.7 ? `hsla(${burnHue}, 100%, 50%, 0.8)` : 'rgba(80, 80, 80, 0.5)';
-                    ctx.fill();
->>>>>>> origin/main
                 } else if (this.type === 'earth-crack') {
                     ctx.beginPath();
                     for (let i = 0; i < 4; i++) {
@@ -1559,7 +1392,6 @@
             const cx = canvas.width / 2;
             const cy = canvas.height / 2;
 
-<<<<<<< HEAD
             // Create screen-immersive particles - based on screen area, not character count
             const totalParticles = Math.floor((canvas.width * canvas.height) / 3000); // ~1 particle per 3000 pixels
 
@@ -1668,74 +1500,15 @@
                     this.style.filter = 'none';
                 });
             });
-=======
-            // Create multiple particles per character for more vivid effect
-            const particlesPerChar = 5;
-
-            text.split('').forEach((c, i) => {
-                if (c.trim()) {
-                    const angle = (i / text.length) * Math.PI * 2;
-                    const baseX = cx + Math.cos(angle) * 150;
-                    const baseY = cy + Math.sin(angle) * 150;
-
-                    // Create cluster of particles for each character
-                    for (let j = 0; j < particlesPerChar; j++) {
-                        const offsetX = (Math.random() - 0.5) * 30;
-                        const offsetY = (Math.random() - 0.5) * 30;
-                        particles.push(new Particle(c, baseX + offsetX, baseY + offsetY, type, i));
-                    }
-                }
-            });
->>>>>>> origin/main
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-<<<<<<< HEAD
 
             // Rapidly decay mouse speed to make particles stop quickly when mouse stops
             mouseSpeed *= 0.80; // Faster decay = quicker stop
             speedMultiplier = Math.min(mouseSpeed / 50, 3.0); // Match the tracking sensitivity
 
-=======
->>>>>>> origin/main
-            particles = particles.filter(p => {
-                p.update();
-                p.draw();
-                return p.life > 0;
-            });
-            if (particles.length > 0) requestAnimationFrame(animate);
-        }
-
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-                page.style.display = 'none';
-            });
-
-            const selectedPage = document.getElementById(pageId);
-            selectedPage.classList.add('active');
-            const nav = document.querySelector('nav');
-
-            if (pageId === 'home') {
-                selectedPage.style.display = 'flex';
-                nav.style.display = 'block';
-            } else if (pageId === 'spiritual') {
-                selectedPage.style.display = 'block';
-                nav.style.display = 'none';
-
-                // Ensure video is visible when entering spiritual page
-                document.getElementById('backgroundVideo').style.display = 'block';
-                document.querySelector('.video-overlay').style.display = 'block';
-                document.querySelector('.prayer-container').style.background = 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%)';
-
-<<<<<<< HEAD
-                // Add mouse tracking for Relief mode speed control
-                document.addEventListener('mousemove', trackMouseSpeed);
-
-=======
->>>>>>> origin/main
                 setTimeout(() => initCanvas(), 100);
             } else {
                 selectedPage.style.display = 'block';
@@ -1749,19 +1522,14 @@
 
         function generatePrayer(language, mode) {
             currentPrayerMode = mode;
-<<<<<<< HEAD
 
             const chinesePrayPrayers = {
-=======
-            const chinesePrayers = {
->>>>>>> origin/main
                 openings: ["在万物有灵的宇宙中", "当天地相连之时", "在自然的怀抱里", "于寂静的山水之间", "在时光的长河里", "在晨曦初现之际", "当月光洒满大地", "在四季轮转之中", "于静谧的深夜", "在万籁俱寂时", "当心灵宁静之刻", "在天地交融处"],
                 subjects: ["我向石头祈祷", "我向树木祈祷", "我向流水祈祷", "我向风祈祷", "我向大地祈祷", "我向星辰祈祷", "我向山川祈祷", "我向云朵祈祷", "我向雨露祈祷", "我向花草祈祷", "我向日月祈祷", "我向万物祈祷"],
                 wishes: ["愿心灵得到平静", "愿智慧如泉涌现", "愿身心和谐共存", "愿找到内在的光", "愿与万物同在", "愿感受到生命的连接", "愿灵魂得到滋养", "愿获得内心的安宁", "愿感知自然的呼吸", "愿心中充满爱与慈悲", "愿觉知生命的美好", "愿体悟万物的灵性"],
                 closings: ["感恩万物的恩赐", "感谢自然的馈赠", "愿灵性之光照耀前路", "与自然同行，与万物共生", "心怀敬畏，感恩当下", "愿生命之光永不熄灭", "与天地共鸣，与万物为友", "感恩这一刻的存在", "愿心中常怀感激", "万物有灵，皆值得敬畏"]
             };
 
-<<<<<<< HEAD
             const chineseReliefPrayers = {
                 openings: ["在黑暗散去之时", "当负能量聚集之处", "于内心混沌之际", "在阴霾笼罩之时", "当心魔侵扰之刻", "在痛苦缠绕之际", "于迷茫困顿之时", "当怨念堆积之处", "在执念束缚之时", "于恐惧升起之刻", "当焦虑弥漫之际", "在创伤未愈之时"],
                 subjects: ["我召唤净化之力", "我呼唤解构之能", "我引导消融之光", "我释放破除之火", "我启动涤荡之风", "我激发粉碎之雷", "我唤醒转化之水", "我开启剥离之刃", "我点燃焚烧之焰", "我发动震碎之力", "我运转洗涤之流", "我施展崩解之术"],
@@ -1770,16 +1538,12 @@
             };
 
             const englishPrayPrayers = {
-=======
-            const englishPrayers = {
->>>>>>> origin/main
                 openings: ["In the universe where all things have spirit", "When heaven and earth unite", "In nature's embrace", "Among silent mountains and waters", "In the river of time", "At the break of dawn", "Under the moonlit sky", "Through the turning of seasons", "In the stillness of night", "When all is quiet", "In moments of inner peace", "Where heaven and earth meet"],
                 subjects: ["I pray to the stones", "I pray to the trees", "I pray to the flowing water", "I pray to the wind", "I pray to the earth", "I pray to the stars", "I pray to the mountains", "I pray to the clouds", "I pray to the rain", "I pray to the flowers", "I pray to the sun and moon", "I pray to all living things"],
                 wishes: ["May my spirit find peace", "May wisdom flow like a spring", "May body and mind exist in harmony", "May I find the inner light", "May I be one with all things", "May I feel the connection of life", "May my soul be nourished", "May I find serenity within", "May I sense nature's breath", "May my heart be filled with love and compassion", "May I perceive life's beauty", "May I understand the spirit of all beings"],
                 closings: ["Gratitude for the gifts of all things", "Thanks for nature's blessings", "May spiritual light illuminate the path", "Walk with nature, coexist with all beings", "With reverence, grateful for the present", "May the light of life never fade", "In harmony with heaven and earth, befriend all things", "Grateful for this moment of existence", "May gratitude always fill my heart", "All things have spirit, all deserve reverence"]
             };
 
-<<<<<<< HEAD
             const englishReliefPrayers = {
                 openings: ["As darkness begins to fade", "Where negative energy gathers", "In moments of inner chaos", "When shadows loom heavy", "As demons of the mind arise", "In times of pain's embrace", "When confusion clouds the way", "Where resentment accumulates", "In the grip of attachment", "As fear takes root", "When anxiety fills the air", "In the presence of unhealed wounds"],
                 subjects: ["I summon the power of purification", "I invoke the force of deconstruction", "I channel the light of dissolution", "I release the fire of destruction", "I unleash the wind of cleansing", "I activate the thunder of shattering", "I awaken the water of transformation", "I open the blade of separation", "I ignite the flame of burning", "I deploy the force of breaking", "I turn the current of washing", "I cast the art of disintegration"],
@@ -1794,17 +1558,6 @@
                 prayerElements = language === 'zh' ? chineseReliefPrayers : englishReliefPrayers;
             }
 
-=======
->>>>>>> origin/main
-            // Hide video and show black background immediately
-            document.getElementById('backgroundVideo').style.display = 'none';
-            document.querySelector('.video-overlay').style.display = 'none';
-            document.querySelector('.prayer-container').style.background = '#000000';
-
-<<<<<<< HEAD
-=======
-            const prayerElements = language === 'zh' ? chinesePrayers : englishPrayers;
->>>>>>> origin/main
             const opening = prayerElements.openings[Math.floor(Math.random() * prayerElements.openings.length)];
             const subject = prayerElements.subjects[Math.floor(Math.random() * prayerElements.subjects.length)];
             const wish = prayerElements.wishes[Math.floor(Math.random() * prayerElements.wishes.length)];
@@ -1831,21 +1584,11 @@
                     prayerTextDiv.style.opacity = '1';
 
                     setTimeout(() => {
-<<<<<<< HEAD
                         const elementWheel = document.getElementById('elementWheel');
                         elementWheel.style.display = 'block';
                         wheelRotating = true;
                         initElementWheelInteractions();
                         animateElementWheel();
-=======
-                        const elementButtons = document.getElementById('elementButtons');
-                        elementButtons.style.display = 'block';
-                        elementButtons.style.opacity = '0';
-                        setTimeout(() => {
-                            elementButtons.style.transition = 'opacity 0.5s ease-in';
-                            elementButtons.style.opacity = '1';
-                        }, 100);
->>>>>>> origin/main
                     }, 800);
                 }, 100);
             }, 300);
@@ -1904,7 +1647,6 @@
                 prayerOverlay.classList.remove('hidden');
                 document.getElementById('prayerText').style.display = 'none';
                 document.getElementById('additionalInput').style.display = 'none';
-<<<<<<< HEAD
                 document.getElementById('elementWheel').style.display = 'none';
                 document.getElementById('additionalPrayer').value = '';
 
@@ -1912,11 +1654,6 @@
                 wheelRotating = false;
                 if (wheelAnimationId) cancelAnimationFrame(wheelAnimationId);
 
-=======
-                document.getElementById('elementButtons').style.display = 'none';
-                document.getElementById('additionalPrayer').value = '';
-
->>>>>>> origin/main
                 prayButtons.style.display = 'flex';
                 prayButtons.style.opacity = '0';
                 setTimeout(() => {
