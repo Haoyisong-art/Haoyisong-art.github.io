@@ -401,10 +401,10 @@
                 scene.remove(comet);
             }
 
-            // Create star shape for comet head
+            // Create star shape for comet head (4 times smaller)
             const starShape = new THREE.Shape();
-            const outerRadius = 0.15;
-            const innerRadius = 0.06;
+            const outerRadius = 0.0375;  // 0.15 / 4
+            const innerRadius = 0.015;   // 0.06 / 4
             const points = 5;
 
             for (let i = 0; i < points * 2; i++) {
@@ -429,8 +429,8 @@
             });
             const head = new THREE.Mesh(headGeometry, headMaterial);
 
-            // Add subtle glow around star
-            const glowGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+            // Add subtle glow around star (4 times smaller)
+            const glowGeometry = new THREE.SphereGeometry(0.05, 16, 16);  // 0.2 / 4
             const glowMaterial = new THREE.MeshBasicMaterial({
                 color: 0xffffff,
                 transparent: true,

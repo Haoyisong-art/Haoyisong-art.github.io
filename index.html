@@ -227,6 +227,77 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Section Styling */
+        .artwork-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #8b4513;
+            display: inline-block;
+        }
+
+        .section-description {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            max-width: 900px;
+        }
+
+        .page-intro {
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 900px;
+        }
+
+        /* Image styling */
+        .artwork-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Event cards */
+        .event-card {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .event-title {
+            color: #8b4513;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-meta {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .event-description {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
         .experience-item h4 {
             color: #8b4513;
             margin-bottom: 0.5rem;
@@ -382,79 +453,160 @@
         <a class="back-button" onclick="showPage('home')">← Back to Home</a>
         <h2>Paintings</h2>
 
-        <h3>Homeland</h3>
+        <div class="artwork-section">
+            <h3 class="section-title">Homeland Series (2008)</h3>
+            <p class="section-description">
+                This series used a typical structure and pattern found in traditional Chinese painting. It expresses sadness towards the decay of traditional culture.
+                The observational paintings were created in the fall season, with objects representative of the decay present in the natural world, such as dead leaves and discarded implements.
+                The art conveys the vanishing of one's homeland and traditional life in childhood due to the rapid development of the economy and modern technology.
+            </p>
         <div class="gallery-grid">
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
+                <img src="data/Haoyi_art_works/Home_land_serie/home之一纸本40cmX80cm.jpg" alt="Homeland I">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Homeland I</h4>
+                    <p>Oil on Paper, 40cm × 80cm (2008)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
+                <img src="data/Haoyi_art_works/Home_land_serie/home之二20cmX80cm.jpg" alt="Homeland II">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Homeland II</h4>
+                    <p>Oil on Paper, 20cm × 80cm (2008)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
+                <img src="data/Haoyi_art_works/Home_land_serie/home之三30cmX80cm.jpg" alt="Homeland III">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Homeland III</h4>
+                    <p>Oil on Paper, 30cm × 80cm (2008)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/Home_land_serie/home之四30CMX80CM.jpg" alt="Homeland IV">
+                <div class="artwork-info">
+                    <h4>Homeland IV</h4>
+                    <p>Oil on Paper, 30cm × 80cm (2008)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/Home_land_serie/IMG_0229.jpg" alt="Homeland Series Installation">
+                <div class="artwork-info">
+                    <h4>Homeland Series</h4>
+                    <p>Installation View</p>
                 </div>
             </div>
         </div>
+        </div>
 
-        <h3>Floating Dreams</h3>
+        <div class="artwork-section">
+            <h3 class="section-title">Floating Dreams (2009)</h3>
+            <p class="section-description">
+                This series of work illustrated my childhood memories. The freedom of exploration and joy in adventure disappeared in adulthood but flash back in fantasy and dreams.
+            </p>
         <div class="gallery-grid">
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
+                <img src="data/Haoyi_art_works/floating_dream_serie/DSC00781.jpg" alt="Floating Dream">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas, 48 x 60 inches (2009)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
+                <img src="data/Haoyi_art_works/floating_dream_serie/IMG_1085.jpg" alt="Floating Dream">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas (2009)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
+                <img src="data/Haoyi_art_works/floating_dream_serie/IMG_1087.jpg" alt="Floating Dream">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas (2009)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/floating_dream_serie/IMG_6095.jpg" alt="Floating Dream">
+                <div class="artwork-info">
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas (2009)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/floating_dream_serie/IMG_6097.jpg" alt="Floating Dream">
+                <div class="artwork-info">
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas (2009)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/floating_dream_serie/IMG_9561.jpg" alt="Floating Dream">
+                <div class="artwork-info">
+                    <h4>Floating Dream</h4>
+                    <p>Oil on Canvas (2009)</p>
                 </div>
             </div>
         </div>
+        </div>
 
-        <h3>Daily Life</h3>
+        <div class="artwork-section">
+            <h3 class="section-title">Porter Sketches (2011)</h3>
+            <p class="section-description">
+                Portrait | 22 x 30 inches | Pencil on paper<br>
+                This series was composed of observational sketches for porters, who represent the laboring class in Chongqing, a city located in southwest China.
+            </p>
         <div class="gallery-grid">
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
+                <img src="data/Haoyi_art_works/sketch/IMG_3548.JPG" alt="Porter I">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Porter I</h4>
+                    <p>Pencil on Paper, 22 x 30 inches (2011)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
+                <img src="data/Haoyi_art_works/sketch/IMG_3549.JPG" alt="Porter II">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Porter II</h4>
+                    <p>Pencil on Paper, 22 x 30 inches (2011)</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
+                <img src="data/Haoyi_art_works/stage_desgin/IMG_0083.JPG" alt="Stage Design">
                 <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
+                    <h4>Stage Design</h4>
+                    <p>Set Design</p>
                 </div>
             </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/stage_desgin/IMG_0085.JPG" alt="Stage Design">
+                <div class="artwork-info">
+                    <h4>Stage Design</h4>
+                    <p>Set Design</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/stage_desgin/IMG_0086.JPG" alt="Stage Design">
+                <div class="artwork-info">
+                    <h4>Stage Design</h4>
+                    <p>Set Design</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/stage_desgin/IMG_4740.JPG" alt="Stage Design">
+                <div class="artwork-info">
+                    <h4>Stage Design</h4>
+                    <p>Set Design</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/stage_desgin/IMG_4741.JPG" alt="Stage Design">
+                <div class="artwork-info">
+                    <h4>Stage Design</h4>
+                    <p>Set Design</p>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 
@@ -462,19 +614,104 @@
     <div id="installation" class="page">
         <a class="back-button" onclick="showPage('home')">← Back to Home</a>
         <h2>Installation</h2>
+
+        <div class="artwork-section">
+            <h3 class="section-title">Probes (2018)</h3>
+            <p class="section-description">
+                <strong>Inflatable, light-infused installation</strong> | 141 x 78 x 55 inches<br>
+                <strong>Materials:</strong> Acrylic, plastic, LED lights, sound speakers<br><br>
+                This installation was set in a dark room to integrate the beauty of movement with rhythmic music change.
+                This project aimed to present the interaction between society and women, especially how women respond to societal pressures.
+                Gentle, shifting color probes represent the soft but determined female spirit.
+            </p>
+        </div>
+
+        <div class="artwork-section">
+            <h3 class="section-title">Exposure (2019)</h3>
+            <p class="section-description">
+                <strong>Collage</strong> | 22 x 30 inches<br>
+                <strong>Materials:</strong> Paper, cyanotype emulsion, sunlight, magazines, capsule blisters, wires, and nails<br><br>
+                This series of collage work incorporated the cyanotype technique and mixed materials from daily life.
+                This project expressed the struggles of people exposed to materialism and commercialism.
+            </p>
+        </div>
+
         <div class="gallery-grid">
             <div class="artwork-card">
-                <div class="artwork-placeholder">Installation Image 1</div>
+                <img src="data/Haoyi_art_works/installation/IMG_4745.JPG" alt="Installation">
                 <div class="artwork-info">
-                    <h4>Installation Title</h4>
-                    <p>Materials, Dimensions, Year</p>
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
                 </div>
             </div>
             <div class="artwork-card">
-                <div class="artwork-placeholder">Installation Image 2</div>
+                <img src="data/Haoyi_art_works/installation/IMG_5892.jpg" alt="Installation">
                 <div class="artwork-info">
-                    <h4>Installation Title</h4>
-                    <p>Materials, Dimensions, Year</p>
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/IMG_5899.JPG" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/Picture1 (1).jpg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/Picture12 (1).jpg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/Picture2 (1).jpg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/WechatIMG77.jpeg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/WechatIMG78.jpeg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/WechatIMG79.jpeg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/WechatIMG82.jpeg" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Mixed Media</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/installation/Screenshot 2025-10-17 at 8.54.03 PM.png" alt="Installation">
+                <div class="artwork-info">
+                    <h4>Installation</h4>
+                    <p>Documentation</p>
                 </div>
             </div>
         </div>
@@ -489,21 +726,71 @@
     <div id="teaching" class="page">
         <a class="back-button" onclick="showPage('home')">← Back to Home</a>
         <h2>Teaching Experience</h2>
-        <div class="experience-list">
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
+        <p class="page-intro">K-12 Art Education - Teaching various mediums including oil painting, collage, clay relief, and drawing.</p>
+
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <img src="data/teaching_k12/class_activities_k12/IMG_0605.JPG" alt="Class Activity">
+                <div class="artwork-info">
+                    <h4>Class Activities</h4>
+                    <p>K-12 Teaching</p>
+                </div>
             </div>
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/class_activities_k12/IMG_6517.JPG" alt="Class Activity">
+                <div class="artwork-info">
+                    <h4>Class Activities</h4>
+                    <p>K-12 Teaching</p>
+                </div>
             </div>
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/class_activities_k12/IMG_7402.JPG" alt="Class Activity">
+                <div class="artwork-info">
+                    <h4>Class Activities</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/oil_painting_k12/IMG_1018.JPG" alt="Oil Painting Class">
+                <div class="artwork-info">
+                    <h4>Oil Painting Class</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/oil_painting_k12/IMG_7463.jpg" alt="Oil Painting Class">
+                <div class="artwork-info">
+                    <h4>Oil Painting Class</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/clay_relif_k12/IMG_3270.jpg" alt="Clay Relief">
+                <div class="artwork-info">
+                    <h4>Clay Relief</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/collage_k12/IMG_0360.JPG" alt="Collage Class">
+                <div class="artwork-info">
+                    <h4>Collage Class</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/exhibition_k12/IMG_0934.JPG" alt="Student Exhibition">
+                <div class="artwork-info">
+                    <h4>Student Exhibition</h4>
+                    <p>K-12 Teaching</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/teaching_k12/exhibition_k12/IMG_1001.JPG" alt="Student Exhibition">
+                <div class="artwork-info">
+                    <h4>Student Exhibition</h4>
+                    <p>K-12 Teaching</p>
+                </div>
             </div>
         </div>
     </div>
@@ -512,22 +799,127 @@
     <div id="events" class="page">
         <a class="back-button" onclick="showPage('home')">← Back to Home</a>
         <h2>Directed Events</h2>
-        <div class="experience-list">
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
+
+        <p class="page-intro">
+            As a director and community artist, I create participatory performances that bring together diverse communities through collaborative art-making.
+            My work integrates performance, visual arts, and social engagement to address themes of cultural memory, labor, healing, and human connection.
+        </p>
+
+        <div class="event-card">
+            <h4 class="event-title">The Promise of a Garden & 5000 Flowers Project</h4>
+            <p class="event-meta">Leeds Playhouse, University of Leeds, UK | August 2021</p>
+            <p class="event-description">
+                A major community theatre production co-produced with The Performance Ensemble, Leeds Older People's Forum, and Leeds 2023.
+                The Quarry Theatre at Leeds Playhouse was transformed into a magical garden where a company of older performers shared stories, visions, and dreams of what has been and what might happen tomorrow.
+            </p>
+            <p class="event-description">
+                <strong>The 5000 Flowers Project:</strong> A city-wide participatory art initiative inviting the people of Leeds to create flowers for the garden installation.
+                The project engaged community venues, schools, colleges, day centres, care homes, and neighborhood networks. Each flower was photographed and acknowledged, combining the art of nature with human creativity.
+            </p>
+            <p class="event-description" style="font-style: italic; background: #f9f9f9; padding: 1rem; border-left: 4px solid #8b4513; margin: 1rem 0;">
+                "Nature has been a faithful companion in lockdown. This production blended performance, dance, music, film and photography as a moment for Leeds to remember and gather strength to move past the pandemic."
+            </p>
+            <p class="event-description">
+                <strong>Performances:</strong> August 18-21, 2021 at Leeds Playhouse<br>
+                <strong>Venue:</strong> Leeds Playhouse, Playhouse Square, Quarry Hill, Leeds LS2 7UP
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Directed Events/Garden 2021 - Ben Pugh - XT4A1573.jpg" alt="Garden Event">
+                    <div class="artwork-info">
+                        <h4>Garden Performance</h4>
+                        <p>2021</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/Sally - Poppy 1.jpg" alt="Performance">
+                    <div class="artwork-info">
+                        <h4>Performance Scene</h4>
+                        <p>2021</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3864.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event Setup</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3917.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3918.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3959.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_4803.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_6148.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_8788.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9154.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9155.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9156.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
             </div>
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
-            </div>
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
-            </div>
+        </div>
+        </div>
+
+        <div class="event-card">
+            <h4 class="event-title">QSMC 2018 Evening Party</h4>
+            <p class="event-meta">Factory Workers Program, China | 2018</p>
+            <p class="event-description">
+                In electronics factories in China, the suicide rate is very high. In order to brighten the spirits of factory workers, I designed and directed a program for their benefit.
+                My responsibilities included orchestrating the stage design, making props, creating costumes, and directing various types of visual artists in the performances.
+            </p>
         </div>
     </div>
 

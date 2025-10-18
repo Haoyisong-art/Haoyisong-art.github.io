@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add spiritual-space.html audio/)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd audio support and update spiritual space experience\n\nAdded relaxing background audio and enhanced the spiritual space interface with improved cosmos visualization and particle effects.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push)",
+      "Bash(git add index.html)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nUpdate index.html to use iframe for spiritual space\n\nReplaced embedded spiritual space code with an iframe that loads the standalone spiritual-space.html file. This ensures both versions stay in sync and reduces code duplication.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(unzip -q \"Haoyi song portfolio revised.pptx\" -d pptx_extracted)",
+      "Bash(for i in {1..16})",
+      "Bash(do echo \"=== SLIDE $i ===\")",
+      "Bash(done)",
+      "Bash(git add -A)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
