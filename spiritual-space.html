@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haoyi Song - Artist Portfolio</title>
+    <title>My Spiritual Space</title>
     <style>
         * {
             margin: 0;
@@ -13,311 +13,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        nav.hidden {
-            transform: translateY(-100%);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        nav a:hover {
-            color: #8b4513;
-        }
-
-        /* Page Container */
-        .page {
-            display: none;
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Home Page - Full Screen */
-        #home {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            padding: 2rem;
-            gap: 4rem;
-        }
-
-        #home.active {
-            display: flex;
-        }
-
-        .home-center {
-            flex: 1;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #home h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: #2c2c2c;
-        }
-
-        #home .subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .home-statement {
-            flex: 1;
-            max-width: 600px;
-            text-align: left;
-        }
-
-        .home-statement h2 {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            border: none;
-            color: #8b4513;
-            text-align: left;
-        }
-
-        .home-statement p {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            margin-bottom: 0.6rem;
-            color: #666;
-        }
-
-        /* Section Styling */
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #2c2c2c;
-            border-bottom: 3px solid #8b4513;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            color: #8b4513;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .artwork-card {
-            background: white;
-            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .artwork-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-
-        .artwork-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .artwork-info {
-            padding: 1.5rem;
-        }
-
-        .artwork-info h4 {
-            margin-bottom: 0.5rem;
-            color: #2c2c2c;
-        }
-
-        /* Contact Section */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-item a {
-            color: #8b4513;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: #654321;
-        }
-
-        /* Experience Lists */
-        .experience-list {
-            margin-top: 2rem;
-        }
-
-        .experience-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .experience-item h4 {
-            color: #8b4513;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-
-            #home {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            #home h1 {
-                font-size: 2.5rem;
-            }
-
-            #home .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .home-statement {
-                max-width: 100%;
-            }
-
-            .home-statement p {
-                font-size: 0.8rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .page {
-                padding: 3rem 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Auto-hide navigation on mobile */
-            nav {
-                transform: translateY(-100%);
-            }
-            
-            nav.show {
-                transform: translateY(0);
-            }
-        }
-
-        /* Back Button */
-        .back-button {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: #888;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 999;
-        }
-
-        .back-button:hover {
-            background-color: #666;
-        }
-
-        /* Spiritual Space / Prayer Styles */
-        #spiritual {
-            padding: 0;
-            max-width: 100%;
-        }
-
-        #spiritual h2 {
-            text-align: center;
-            width: 100%;
-            margin: 0 auto 2rem;
-        }
-
-        /* Hide navigation when spiritual page is active */
-        #spiritual.active ~ nav,
-        body:has(#spiritual.active) nav {
-            display: none;
         }
 
         .prayer-container {
@@ -408,10 +104,6 @@
             transition: all 0.5s ease;
         }
 
-        .prayer-description {
-            display: none;
-        }
-
         .prayer-controls {
             margin: 0;
             transition: opacity 0.3s ease;
@@ -461,7 +153,7 @@
             font-weight: 400;
         }
 
-        /* Responsive adjustments for spiritual page */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .prayer-container {
                 height: 100vh;
@@ -471,10 +163,6 @@
             .prayer-content {
                 padding: 2rem 1.5rem;
                 max-width: 90%;
-            }
-
-            .prayer-content h3 {
-                font-size: 1.5rem;
             }
 
             .prayer-button {
@@ -489,360 +177,52 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a onclick="showPage('home')">Home</a></li>
-            <li><a onclick="showPage('intro')">Background</a></li>
-            <li><a onclick="showPage('research')">Research</a></li>
-            <li><a onclick="showPage('paintings')">Paintings</a></li>
-            <li><a onclick="showPage('installation')">Installation</a></li>
-            <li><a onclick="showPage('teaching')">Teaching</a></li>
-            <li><a onclick="showPage('events')">Events</a></li>
-            <li><a onclick="showPage('contact')">Contact</a></li>
-            <li><a onclick="showPage('spiritual')">My Spiritual Space</a></li>
-        </ul>
-    </nav>
+    <div class="prayer-container">
+        <video id="backgroundVideo" autoplay loop muted playsinline>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <canvas id="particleCanvas"></canvas>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <div class="home-center">
-            <h1>Haoyi Song</h1>
-            <div class="subtitle">
-                <p>PhD Candidate, UTD</p>
-                <p>Professional Artist</p>
-            </div>
-        </div>
-        
-        <div class="home-statement">
-            <h2>Artist Statement</h2>
-            <p>
-                My work investigates how women's bodies become sites of emotional governance, where pain, discipline, and transformation are moralized and socially coded. I use everyday objects, beds, chairs, pillows, garments, as metaphors for endurance, containment, and relational spaces.
-            </p>
-            <p>
-                Painting is integral to my practice: through transparency, erasure, repetition, and layered surfaces, I allow the canvas to become an archive, a memory, and a testimony. At the same time, I explore how different media articulate meaning in distinct ways.
-            </p>
-            <p>
-                Grounded in cross-cultural perspectives, my art highlights both shared human experiences and cultural specificities in how bodies, identities, and emotional regimes are constructed.
-            </p>
-        </div>
-    </div>
+        <button id="prayAgainButton" class="pray-again-button" onclick="restartPrayer()">Pray Again</button>
 
-    <!-- Background/Intro Page -->
-    <div id="intro" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Background</h2>
-        <p>
-            [Add additional biographical information, education, exhibitions, awards, or other background details here.]
-        </p>
-    </div>
-
-    <!-- Research Page -->
-    <div id="research" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Research</h2>
-        <p>
-            [Describe your research interests, artistic investigations, and theoretical frameworks 
-            that inform your practice. Discuss the concepts you explore through your work.]
-        </p>
-        <p>
-            [Add more details about your research methodology, influences, and ongoing investigations.]
-        </p>
-    </div>
-
-    <!-- Paintings Page -->
-    <div id="paintings" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Paintings</h2>
-
-        <h3>Homeland</h3>
-        <div class="gallery-grid">
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-        </div>
-
-        <h3>Floating Dreams</h3>
-        <div class="gallery-grid">
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-        </div>
-
-        <h3>Daily Life</h3>
-        <div class="gallery-grid">
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 1</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 2</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Artwork Image 3</div>
-                <div class="artwork-info">
-                    <h4>Artwork Title</h4>
-                    <p>Medium, Dimensions, Year</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Installation Page -->
-    <div id="installation" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Installation</h2>
-        <div class="gallery-grid">
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Installation Image 1</div>
-                <div class="artwork-info">
-                    <h4>Installation Title</h4>
-                    <p>Materials, Dimensions, Year</p>
-                </div>
-            </div>
-            <div class="artwork-card">
-                <div class="artwork-placeholder">Installation Image 2</div>
-                <div class="artwork-info">
-                    <h4>Installation Title</h4>
-                    <p>Materials, Dimensions, Year</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- My Spiritual Space Page -->
-    <div id="spiritual" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <div class="prayer-container">
-            <video id="backgroundVideo" autoplay loop muted playsinline>
-                <source src="video.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay"></div>
-            <canvas id="particleCanvas"></canvas>
-
-            <button id="prayAgainButton" class="pray-again-button" onclick="restartPrayer()">Pray Again</button>
-
-            <div class="prayer-overlay" id="prayerOverlay">
-                <div class="prayer-content" id="prayerContent">
-                    <div class="prayer-controls" id="prayButtons" style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
-                        <!-- Pray Group -->
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 15px; backdrop-filter: blur(10px);">
-                            <button onclick="generatePrayer('en', 'pray')" class="prayer-button">Pray</button>
-                            <button onclick="generatePrayer('zh', 'pray')" class="prayer-button">祈祷</button>
-                        </div>
-
-                        <!-- Relief Group -->
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 15px; backdrop-filter: blur(10px);">
-                            <button onclick="generatePrayer('en', 'relief')" class="prayer-button">Relief</button>
-                            <button onclick="generatePrayer('zh', 'relief')" class="prayer-button">消灾</button>
-                        </div>
+        <div class="prayer-overlay" id="prayerOverlay">
+            <div class="prayer-content" id="prayerContent">
+                <div class="prayer-controls" id="prayButtons" style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+                    <!-- Pray Group -->
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <button onclick="generatePrayer('en', 'pray')" class="prayer-button">Pray</button>
+                        <button onclick="generatePrayer('zh', 'pray')" class="prayer-button">祈祷</button>
                     </div>
 
-                    <div id="prayerText" class="prayer-text" style="display: none;">
-                        <p></p>
-                    </div>
-
-                    <div id="additionalInput" style="display: none; margin-top: 1rem;">
-                        <input type="text" id="additionalPrayer" placeholder="Add your own words..." style="padding: 0.5rem 1rem; width: 300px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(10px); font-size: 0.9rem;">
-                    </div>
-
-                    <!-- Five Elements Selection - Circular Wheel -->
-                    <div id="elementWheel" style="display: none; margin-top: 2rem; position: relative; width: 200px; height: 200px; margin-left: auto; margin-right: auto;">
-                        <div class="element-emoji" data-element="metal" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">💰</div>
-                        <div class="element-emoji" data-element="wood" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">🌳</div>
-                        <div class="element-emoji" data-element="water" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">💧</div>
-                        <div class="element-emoji" data-element="fire" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">🔥</div>
-                        <div class="element-emoji" data-element="earth" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">⛰️</div>
+                    <!-- Relief Group -->
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                        <button onclick="generatePrayer('en', 'relief')" class="prayer-button">Relief</button>
+                        <button onclick="generatePrayer('zh', 'relief')" class="prayer-button">消灾</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Teaching Experience Page -->
-    <div id="teaching" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Teaching Experience</h2>
-        <div class="experience-list">
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
-            </div>
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
-            </div>
-            <div class="experience-item">
-                <h4>Course/Position Title</h4>
-                <p><strong>Institution Name</strong> | Year</p>
-                <p>Description of teaching role, courses taught, and responsibilities.</p>
-            </div>
-        </div>
-    </div>
+                <div id="prayerText" class="prayer-text" style="display: none;">
+                    <p></p>
+                </div>
 
-    <!-- Directed Events Page -->
-    <div id="events" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Directed Events</h2>
-        <div class="experience-list">
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
-            </div>
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
-            </div>
-            <div class="experience-item">
-                <h4>Event Name</h4>
-                <p><strong>Location</strong> | Date</p>
-                <p>Description of the event, your role, and outcomes.</p>
-            </div>
-        </div>
-    </div>
+                <div id="additionalInput" style="display: none; margin-top: 1rem;">
+                    <input type="text" id="additionalPrayer" placeholder="Add your own words..." style="padding: 0.5rem 1rem; width: 300px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(10px); font-size: 0.9rem;">
+                </div>
 
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Contact Me</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>Email:</strong>
-                <a href="mailto:your.email@example.com">your.email@example.com</a>
-            </div>
-            <div class="contact-item">
-                <strong>Instagram:</strong>
-                <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a>
-            </div>
-            <div class="contact-item">
-                <strong>Facebook:</strong>
-                <a href="https://facebook.com/yourpage" target="_blank">Your Page Name</a>
-            </div>
-            <div class="contact-item">
-                <strong>Twitter/X:</strong>
-                <a href="https://twitter.com/yourusername" target="_blank">@yourusername</a>
-            </div>
-            <div class="contact-item">
-                <strong>LinkedIn:</strong>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a>
+                <!-- Five Elements Selection - Circular Wheel -->
+                <div id="elementWheel" style="display: none; margin-top: 2rem; position: relative; width: 200px; height: 200px; margin-left: auto; margin-right: auto;">
+                    <div class="element-emoji" data-element="metal" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">💰</div>
+                    <div class="element-emoji" data-element="wood" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">🌳</div>
+                    <div class="element-emoji" data-element="water" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">💧</div>
+                    <div class="element-emoji" data-element="fire" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">🔥</div>
+                    <div class="element-emoji" data-element="earth" style="position: absolute; font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">⛰️</div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Mobile navigation auto-hide
-        let lastScrollTop = 0;
-        let touchStartY = 0;
-        let isMobile = window.innerWidth <= 768;
-
-        function handleNavigation() {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
-            const spiritualPage = document.getElementById('spiritual');
-            if (spiritualPage && spiritualPage.classList.contains('active')) return;
-
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                nav.classList.remove('show');
-            } else {
-                nav.classList.add('show');
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }
-
-        function handleTouchStart(e) {
-            if (!isMobile) return;
-            touchStartY = e.touches[0].clientY;
-        }
-
-        function handleTouchMove(e) {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
-            const touchY = e.touches[0].clientY;
-            const diff = touchY - touchStartY;
-            if (touchStartY < 50 && diff > 0) {
-                nav.classList.add('show');
-            } else if (diff < -30) {
-                nav.classList.remove('show');
-            }
-        }
-
-        function handleMouseMove(e) {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
-            const spiritualPage = document.getElementById('spiritual');
-            if (spiritualPage && spiritualPage.classList.contains('active')) return;
-            if (e.clientY < 50) {
-                nav.classList.add('show');
-            } else if (e.clientY > 150) {
-                nav.classList.remove('show');
-            }
-        }
-
-        window.addEventListener('resize', () => {
-            isMobile = window.innerWidth <= 768;
-            const nav = document.querySelector('nav');
-            if (!isMobile) {
-                nav.classList.remove('show');
-                nav.style.transform = 'translateY(0)';
-            }
-        });
-
-        window.addEventListener('scroll', handleNavigation);
-        window.addEventListener('touchstart', handleTouchStart);
-        window.addEventListener('touchmove', handleTouchMove);
-        window.addEventListener('mousemove', handleMouseMove);
-
-        // Particle System
-        let canvas, ctx, particles = [], lines = [], animationId;
-
         // Mouse tracking for speed modulation (Relief mode only)
         let mouseX = 0, mouseY = 0, prevMouseX = 0, prevMouseY = 0;
         let mouseSpeed = 0;
@@ -853,6 +233,16 @@
         let wheelRotating = true;
         let wheelAnimationId = null;
 
+        // Particle System
+        let canvas, ctx, particles = [], animationId;
+        let currentPrayerMode = 'pray';
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initCanvas();
+            document.addEventListener('mousemove', trackMouseSpeed);
+        });
+
         class Particle {
             constructor(char, x, y, type, charIndex) {
                 this.char = char;
@@ -862,7 +252,7 @@
                 this.y = y;
                 this.type = type;
                 this.charIndex = charIndex;
-                this.size = Math.random() * 3 + 2; // Smaller particles
+                this.size = Math.random() * 3 + 2;
                 this.opacity = 1;
                 this.life = 1;
                 this.trail = [];
@@ -871,71 +261,19 @@
                 this.charToParticleProgress = 0; // 0 = character, 1 = particle
                 this.age = 0; // How long the particle has been alive
 
-                if (type === 'wind') {
-                    // Swirling wind effect
-                    this.angle = Math.random() * Math.PI * 2;
-                    this.radius = Math.random() * 50;
-                    this.spiralSpeed = (Math.random() - 0.5) * 0.08;
-                    this.radiusSpeed = Math.random() * 2 + 1;
-                    this.orbitCenterX = x;
-                    this.orbitCenterY = y;
-                    this.color = `rgba(200, 220, 255, ${this.opacity})`;
-                } else if (type === 'fire') {
-                    // Rising fire particles
+                if (type === 'fire') {
                     this.vx = (Math.random() - 0.5) * 2;
                     this.vy = -Math.random() * 4 - 2;
                     this.flicker = Math.random() * Math.PI;
                     this.flickerSpeed = Math.random() * 0.3 + 0.2;
-                    this.hue = Math.random() * 60; // Orange to yellow
+                    this.hue = Math.random() * 60;
                 } else if (type === 'water') {
-                    // Flowing water particles
                     this.vx = (Math.random() - 0.5) * 3;
                     this.vy = Math.random() * 0.5 - 2;
                     this.wave = Math.random() * Math.PI * 2;
                     this.waveSpeed = Math.random() * 0.15 + 0.1;
                     this.waveAmplitude = Math.random() * 4 + 2;
-                } else if (type === 'floating') {
-                    // Gentle floating upward
-                    this.vx = (Math.random() - 0.5) * 1;
-                    this.vy = -Math.random() * 1.5 - 0.5;
-                    this.drift = Math.random() * Math.PI * 2;
-                    this.driftSpeed = Math.random() * 0.05 + 0.02;
-                } else if (type === 'light') {
-                    // Radiating light
-                    this.angle = Math.random() * Math.PI * 2;
-                    this.speed = Math.random() * 4 + 2;
-                    this.glow = 1;
-                    this.pulseSpeed = Math.random() * 0.1 + 0.05;
-                } else if (type === 'smoke') {
-                    // Fading smoke falling slowly
-                    this.vx = (Math.random() - 0.5) * 1;
-                    this.vy = Math.random() * 0.5 + 0.3; // Slow downward drift
-                    this.expansion = 1;
-                    this.expansionSpeed = Math.random() * 0.03 + 0.02;
-                    this.rotation = Math.random() * Math.PI * 2;
-                    this.rotSpeed = (Math.random() - 0.5) * 0.05;
-                    this.drift = Math.random() * Math.PI * 2;
-                    this.driftSpeed = Math.random() * 0.08 + 0.05;
-                    this.fadeStage = 0; // 0 = dark smoke, 1 = faded
-                    this.fadeSpeed = Math.random() * 0.006 + 0.004;
-                } else if (type === 'shatter') {
-                    // Glass shattering effect
-                    this.vx = (Math.random() - 0.5) * 8;
-                    this.vy = (Math.random() - 0.5) * 8;
-                    this.gravity = 0.3;
-                    this.rotation = Math.random() * Math.PI * 2;
-                    this.rotSpeed = (Math.random() - 0.5) * 0.3;
-                    this.edges = Math.floor(Math.random() * 3) + 3;
-                } else if (type === 'crash') {
-                    // Explosive crash particles
-                    this.angle = Math.random() * Math.PI * 2;
-                    this.speed = Math.random() * 6 + 3;
-                    this.vx = Math.cos(this.angle) * this.speed;
-                    this.vy = Math.sin(this.angle) * this.speed;
-                    this.gravity = 0.2;
-                    this.bounce = 0.6;
                 } else if (type === 'metal') {
-                    // Metallic particles - spiraling upward with expansion
                     this.angle = Math.random() * Math.PI * 2;
                     this.spiralRadius = Math.random() * 20;
                     this.spiralSpeed = (Math.random() - 0.5) * 0.1;
@@ -946,7 +284,6 @@
                     this.expansion = 1;
                     this.expansionSpeed = Math.random() * 0.015 + 0.01;
                 } else if (type === 'wood') {
-                    // Wood particles - swirling upward like leaves
                     this.vx = (Math.random() - 0.5) * 2;
                     this.vy = -Math.random() * 2.5 - 1.5;
                     this.swirl = Math.random() * Math.PI * 2;
@@ -955,9 +292,7 @@
                     this.growth = 1;
                     this.growthSpeed = Math.random() * 0.02 + 0.01;
                     this.branchAngle = (Math.random() - 0.5) * 0.5;
-                    this.lift = 0;
                 } else if (type === 'earth') {
-                    // Earth particles - floating upward with gentle drift
                     this.vx = (Math.random() - 0.5) * 1;
                     this.vy = -Math.random() * 2 - 1;
                     this.float = Math.random() * Math.PI * 2;
@@ -967,41 +302,53 @@
                     this.expansion = 1;
                     this.expansionSpeed = Math.random() * 0.02 + 0.01;
                 } else if (type === 'wood-break') {
-                    // Splintering wood - slow fall
-                    this.vx = (Math.random() - 0.5) * 1.5; // Reduced from 6
-                    this.vy = Math.random() * 0.5; // Reduced from 6, starts slow
-                    this.gravity = 0.08; // Reduced from 0.25
+                    this.vx = (Math.random() - 0.5) * 1.5;
+                    this.vy = Math.random() * 0.5;
+                    this.gravity = 0.08;
                     this.rotation = Math.random() * Math.PI * 2;
-                    this.rotSpeed = (Math.random() - 0.5) * 0.08; // Reduced from 0.4
+                    this.rotSpeed = (Math.random() - 0.5) * 0.08;
                     this.length = Math.random() * 10 + 5;
                     this.drift = Math.random() * Math.PI * 2;
                     this.driftSpeed = Math.random() * 0.04 + 0.02;
                 } else if (type === 'flood') {
-                    // Slowly dripping/flowing water
-                    this.vx = (Math.random() - 0.5) * 1; // Reduced from 5
-                    this.vy = Math.random() * 0.6 + 0.3; // Reduced from 4+2
+                    this.vx = (Math.random() - 0.5) * 1;
+                    this.vy = Math.random() * 0.6 + 0.3;
                     this.wave = Math.random() * Math.PI * 2;
-                    this.waveSpeed = Math.random() * 0.08 + 0.05; // Reduced from 0.2+0.15
+                    this.waveSpeed = Math.random() * 0.08 + 0.05;
                 } else if (type === 'burn') {
-                    // Burning to ash - starts as fire, turns to ash falling down
-                    this.vx = (Math.random() - 0.5) * 0.8; // Reduced from 1.5
-                    this.vy = 0; // Start stationary
-                    this.burnStage = 0; // 0 = fire, 1 = ash
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = 0;
+                    this.burnStage = 0;
                     this.flicker = Math.random() * Math.PI;
-                    this.flickerSpeed = Math.random() * 0.25 + 0.15; // Slightly reduced
-                    this.fallSpeed = Math.random() * 0.25 + 0.15; // Reduced from 0.3+0.2
+                    this.flickerSpeed = Math.random() * 0.25 + 0.15;
+                    this.fallSpeed = Math.random() * 0.25 + 0.15;
                     this.drift = Math.random() * Math.PI * 2;
-                    this.driftSpeed = Math.random() * 0.04 + 0.02; // Slightly reduced
+                    this.driftSpeed = Math.random() * 0.04 + 0.02;
                 } else if (type === 'earth-crack') {
-                    // Slowly crumbling earth particles
                     this.angle = Math.random() * Math.PI * 2;
-                    this.speed = Math.random() * 0.8 + 0.3; // Reduced from 3+1
+                    this.speed = Math.random() * 0.8 + 0.3;
                     this.vx = Math.cos(this.angle) * this.speed;
                     this.vy = Math.sin(this.angle) * this.speed;
-                    this.gravity = 0.05; // Reduced from 0.15
+                    this.gravity = 0.05;
                     this.settled = false;
+                } else if (type === 'shatter') {
+                    this.vx = (Math.random() - 0.5) * 8;
+                    this.vy = (Math.random() - 0.5) * 8;
+                    this.gravity = 0.3;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.3;
+                    this.edges = Math.floor(Math.random() * 3) + 3;
+                } else if (type === 'smoke') {
+                    this.vx = (Math.random() - 0.5) * 1;
+                    this.vy = Math.random() * 0.5 + 0.3;
+                    this.expansion = 1;
+                    this.expansionSpeed = Math.random() * 0.03 + 0.02;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.05;
                     this.drift = Math.random() * Math.PI * 2;
-                    this.driftSpeed = Math.random() * 0.03 + 0.01;
+                    this.driftSpeed = Math.random() * 0.08 + 0.05;
+                    this.fadeStage = 0;
+                    this.fadeSpeed = Math.random() * 0.006 + 0.004;
                 }
             }
 
@@ -1019,13 +366,7 @@
                     this.charToParticleProgress += 0.011; // Reach 1.0 after ~90 frames
                 }
 
-                if (this.type === 'wind') {
-                    this.angle += this.spiralSpeed;
-                    this.radius += this.radiusSpeed;
-                    this.x = this.orbitCenterX + Math.cos(this.angle) * this.radius;
-                    this.y = this.orbitCenterY + Math.sin(this.angle) * this.radius;
-                    this.orbitCenterY -= 1; // Drift upward
-                } else if (this.type === 'fire') {
+                if (this.type === 'fire') {
                     this.x += this.vx;
                     this.y += this.vy;
                     this.vy *= 0.98;
@@ -1035,66 +376,26 @@
                     this.wave += this.waveSpeed;
                     this.x += this.vx + Math.sin(this.wave) * this.waveAmplitude;
                     this.y += this.vy;
-                } else if (this.type === 'floating') {
-                    this.drift += this.driftSpeed;
-                    this.x += this.vx + Math.sin(this.drift) * 0.5;
-                    this.y += this.vy;
-                } else if (this.type === 'light') {
-                    this.x += Math.cos(this.angle) * this.speed;
-                    this.y += Math.sin(this.angle) * this.speed;
-                    this.glow = 0.5 + Math.sin(this.life * Math.PI * 2) * 0.5;
-                } else if (this.type === 'smoke') {
-                    // Drifting smoke falling slowly and fading
-                    this.drift += this.driftSpeed;
-                    this.x += this.vx + Math.sin(this.drift) * 1.5;
-                    this.y += this.vy;
-                    this.vx *= 0.98;
-                    this.expansion += this.expansionSpeed;
-                    this.rotation += this.rotSpeed;
-                    this.fadeStage += this.fadeSpeed;
-
-                    // Slow down falling as it expands and fades
-                    this.vy *= 0.99;
-                } else if (this.type === 'shatter') {
-                    this.vy += this.gravity;
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vx *= 0.98;
-                    this.rotation += this.rotSpeed;
-                } else if (this.type === 'crash') {
-                    this.vy += this.gravity;
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vx *= 0.99;
-                    if (this.y > canvas.height - 20) {
-                        this.vy *= -this.bounce;
-                        this.y = canvas.height - 20;
-                        this.bounce *= 0.8;
-                    }
                 } else if (this.type === 'metal') {
-                    // Spiral upward with expansion
                     this.angle += this.spiralSpeed;
                     this.y -= this.upwardSpeed;
                     this.x += Math.cos(this.angle) * this.spiralRadius;
-                    this.spiralRadius += 0.3; // Expand spiral
+                    this.spiralRadius += 0.3;
                     this.shimmer += this.shimmerSpeed;
                     this.expansion += this.expansionSpeed;
                 } else if (this.type === 'wood') {
-                    // Swirling upward like rising leaves
                     this.swirl += this.swirlSpeed;
                     this.x += this.vx + Math.cos(this.swirl) * this.swirlRadius;
                     this.y += this.vy;
-                    this.vy -= 0.03; // Accelerate upward
+                    this.vy -= 0.03;
                     this.growth += this.growthSpeed;
                     this.branchAngle += 0.02;
-                    this.lift += 0.02;
-                    this.swirlRadius += 0.05; // Expand swirl
+                    this.swirlRadius += 0.05;
                 } else if (this.type === 'earth') {
-                    // Floating upward with drift
                     this.float += this.floatSpeed;
                     this.x += this.vx + Math.sin(this.float) * this.floatAmplitude;
                     this.y += this.vy;
-                    this.vy -= 0.02; // Gentle lift
+                    this.vy -= 0.02;
                     this.expansion += this.expansionSpeed;
                 } else if (this.type === 'wood-break') {
                     this.vy += this.gravity * speedMultiplier;
@@ -1108,23 +409,19 @@
                     this.y += this.vy * speedMultiplier;
                 } else if (this.type === 'burn') {
                     this.flicker += this.flickerSpeed * speedMultiplier;
-                    this.burnStage += 0.008 * speedMultiplier; // Slow burn transition
+                    this.burnStage += 0.008 * speedMultiplier;
 
-                    // Transition from fire (stationary) to falling ash
                     if (this.burnStage < 0.3) {
-                        // Fire stage - slight flickering movement
                         this.vx += (Math.random() - 0.5) * 0.1 * speedMultiplier;
                         this.vy += (Math.random() - 0.5) * 0.1 * speedMultiplier;
                         this.vx *= 0.95;
                         this.vy *= 0.95;
                     } else if (this.burnStage < 0.5) {
-                        // Transition stage - start falling slowly
                         this.vy += this.fallSpeed * 0.5 * speedMultiplier;
                         this.drift += this.driftSpeed * speedMultiplier;
                         this.x += Math.sin(this.drift) * 0.3 * speedMultiplier;
                     } else {
-                        // Ash stage - falling slowly with drift
-                        this.vy = (this.fallSpeed + (this.burnStage - 0.5) * 0.5) * speedMultiplier; // Gradually fall faster
+                        this.vy = (this.fallSpeed + (this.burnStage - 0.5) * 0.5) * speedMultiplier;
                         this.drift += this.driftSpeed * speedMultiplier;
                         this.x += Math.sin(this.drift) * 0.5 * speedMultiplier;
                     }
@@ -1141,10 +438,24 @@
                         this.vy = 0;
                         this.vx = 0;
                     }
+                } else if (this.type === 'shatter') {
+                    this.vy += this.gravity;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vx *= 0.98;
+                    this.rotation += this.rotSpeed;
+                } else if (this.type === 'smoke') {
+                    this.drift += this.driftSpeed;
+                    this.x += this.vx + Math.sin(this.drift) * 1.5;
+                    this.y += this.vy;
+                    this.vx *= 0.98;
+                    this.expansion += this.expansionSpeed;
+                    this.rotation += this.rotSpeed;
+                    this.fadeStage += this.fadeSpeed;
+                    this.vy *= 0.99;
                 }
 
-                // Store trail for certain effects
-                if (this.type === 'fire' || this.type === 'light' || this.type === 'water') {
+                if (this.type === 'fire' || this.type === 'water') {
                     this.trail.push({x: this.x, y: this.y, opacity: this.opacity});
                     if (this.trail.length > 10) this.trail.shift();
                 }
@@ -1176,7 +487,6 @@
                 const particleOpacity = this.showChar ? this.charToParticleProgress * this.opacity : this.opacity;
                 ctx.globalAlpha = particleOpacity;
 
-                // Draw trails
                 if (this.trail.length > 1) {
                     ctx.beginPath();
                     ctx.moveTo(this.trail[0].x, this.trail[0].y);
@@ -1192,14 +502,7 @@
                 // globalAlpha already set above based on transformation progress
                 ctx.translate(this.x, this.y);
 
-                if (this.type === 'wind') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = this.color;
-                    ctx.shadowBlur = 15;
-                    ctx.shadowColor = 'rgba(200, 220, 255, 0.5)';
-                    ctx.fill();
-                } else if (this.type === 'fire') {
+                if (this.type === 'fire') {
                     const intensity = 0.7 + Math.sin(this.flicker) * 0.3;
                     const hue = this.hue * intensity;
                     ctx.beginPath();
@@ -1215,83 +518,19 @@
                     ctx.shadowBlur = 10;
                     ctx.shadowColor = 'rgba(100, 180, 255, 0.5)';
                     ctx.fill();
-                } else if (this.type === 'floating') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
-                    ctx.shadowBlur = 20;
-                    ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-                    ctx.fill();
-                } else if (this.type === 'light') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size * (1 + this.glow), 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 200, ${this.opacity})`;
-                    ctx.shadowBlur = 30 * this.glow;
-                    ctx.shadowColor = 'rgba(255, 255, 200, 0.8)';
-                    ctx.fill();
-                } else if (this.type === 'smoke') {
-                    ctx.rotate(this.rotation);
-                    ctx.scale(this.expansion, this.expansion);
-
-                    // Calculate smoke color - starts darker, fades to lighter gray
-                    const smokeDarkness = 60 + this.fadeStage * 100; // 60 (dark) to 160 (light gray)
-                    const smokeAlpha = this.opacity * (0.7 - this.fadeStage * 0.5); // Fade out
-
-                    // Draw multiple layers for billowing smoke effect
-                    // Outer layer - very faint
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size * 2, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${smokeDarkness + 30}, ${smokeDarkness + 30}, ${smokeDarkness + 30}, ${smokeAlpha * 0.15})`;
-                    ctx.filter = `blur(${5 + this.expansion * 2}px)`;
-                    ctx.fill();
-
-                    // Middle layer
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size * 1.3, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${smokeDarkness + 15}, ${smokeDarkness + 15}, ${smokeDarkness + 15}, ${smokeAlpha * 0.35})`;
-                    ctx.filter = `blur(${3 + this.expansion}px)`;
-                    ctx.fill();
-
-                    // Core layer - most visible
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${smokeDarkness}, ${smokeDarkness}, ${smokeDarkness}, ${smokeAlpha * 0.6})`;
-                    ctx.filter = `blur(${2 + this.expansion * 0.5}px)`;
-                    ctx.fill();
-                } else if (this.type === 'shatter') {
-                    ctx.rotate(this.rotation);
-                    ctx.beginPath();
-                    for (let i = 0; i < this.edges; i++) {
-                        const angle = (i / this.edges) * Math.PI * 2;
-                        const x = Math.cos(angle) * this.size * 2;
-                        const y = Math.sin(angle) * this.size * 2;
-                        if (i === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.closePath();
-                    ctx.strokeStyle = `rgba(200, 220, 255, ${this.opacity})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                } else if (this.type === 'crash') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 100, 50, ${this.opacity})`;
-                    ctx.fill();
                 } else if (this.type === 'metal') {
                     const shimmerVal = Math.sin(this.shimmer) * 0.5 + 0.5;
                     const color = this.metalColor === 'silver' ?
                         `rgba(${192 + shimmerVal * 63}, ${192 + shimmerVal * 63}, ${192 + shimmerVal * 63}, ${this.opacity})` :
-                        `rgba(${255}, ${215 + shimmerVal * 40}, ${0}, ${this.opacity})`;
+                        `rgba(255, ${215 + shimmerVal * 40}, 0, ${this.opacity})`;
 
-                    // Draw expanding glow trail
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size * this.expansion, 0, Math.PI * 2);
-                    ctx.fillStyle = color.replace(this.opacity, this.opacity * 0.3);
+                    ctx.fillStyle = color.replace(this.opacity.toString(), (this.opacity * 0.3).toString());
                     ctx.shadowBlur = 30 * this.expansion;
                     ctx.shadowColor = color;
                     ctx.fill();
 
-                    // Draw core particle
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size * (1 + this.expansion * 0.3), 0, Math.PI * 2);
                     ctx.fillStyle = color;
@@ -1302,7 +541,6 @@
                     ctx.save();
                     ctx.rotate(this.branchAngle);
 
-                    // Draw expanding leaf shape
                     const leafSize = this.size * (1 + this.growth * 0.5);
                     ctx.beginPath();
                     ctx.ellipse(0, 0, leafSize * 0.6, leafSize * 1.2, 0, 0, Math.PI * 2);
@@ -1311,7 +549,6 @@
                     ctx.shadowColor = `rgba(50, 205, 50, ${this.opacity * 0.5})`;
                     ctx.fill();
 
-                    // Add glow for uplifting effect
                     ctx.beginPath();
                     ctx.ellipse(0, 0, leafSize * 0.8, leafSize * 1.4, 0, 0, Math.PI * 2);
                     ctx.strokeStyle = `rgba(50, 205, 50, ${this.opacity * 0.3})`;
@@ -1326,13 +563,11 @@
                         `rgba(210, 180, 140, ${this.opacity})`
                     ];
 
-                    // Draw expanding dust cloud
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size * this.expansion * 1.5, 0, Math.PI * 2);
-                    ctx.fillStyle = earthColors[this.earthColor].replace(this.opacity, this.opacity * 0.2);
+                    ctx.fillStyle = earthColors[this.earthColor].replace(this.opacity.toString(), (this.opacity * 0.2).toString());
                     ctx.fill();
 
-                    // Draw core particle
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size * (1 + this.expansion * 0.2), 0, Math.PI * 2);
                     ctx.fillStyle = earthColors[this.earthColor];
@@ -1359,8 +594,7 @@
                     const intensity = 0.5 + Math.sin(this.flicker) * 0.5;
 
                     if (this.burnStage < 0.3) {
-                        // Fire stage - bright orange/red flames
-                        const fireHue = 20 + Math.random() * 20; // Orange to red
+                        const fireHue = 20 + Math.random() * 20;
                         ctx.beginPath();
                         ctx.arc(0, 0, this.size * (1 + intensity * 0.5), 0, Math.PI * 2);
                         ctx.fillStyle = `hsla(${fireHue}, 100%, ${60 + intensity * 20}%, ${this.opacity})`;
@@ -1368,15 +602,13 @@
                         ctx.shadowColor = `hsla(${fireHue}, 100%, 50%, 0.8)`;
                         ctx.fill();
 
-                        // Add flame glow
                         ctx.beginPath();
                         ctx.arc(0, 0, this.size * (2 + intensity), 0, Math.PI * 2);
                         ctx.fillStyle = `hsla(${fireHue}, 100%, 50%, ${this.opacity * 0.2})`;
                         ctx.fill();
                     } else if (this.burnStage < 0.5) {
-                        // Burning stage - transitioning to gray
-                        const burnProgress = (this.burnStage - 0.3) / 0.2; // 0 to 1
-                        const burnHue = 20 * (1 - burnProgress); // Orange fading to gray
+                        const burnProgress = (this.burnStage - 0.3) / 0.2;
+                        const burnHue = 20 * (1 - burnProgress);
                         const saturation = 100 * (1 - burnProgress);
                         ctx.beginPath();
                         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
@@ -1385,8 +617,7 @@
                         ctx.shadowColor = `hsla(${burnHue}, ${saturation}%, 40%, 0.5)`;
                         ctx.fill();
                     } else {
-                        // Ash stage - dark gray particles falling
-                        const ashDarkness = 40 + (this.burnStage - 0.5) * 40; // Darker as it falls
+                        const ashDarkness = 40 + (this.burnStage - 0.5) * 40;
                         ctx.beginPath();
                         ctx.arc(0, 0, this.size * 0.8, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(${ashDarkness}, ${ashDarkness}, ${ashDarkness}, ${this.opacity * 0.8})`;
@@ -1394,7 +625,6 @@
                         ctx.shadowColor = `rgba(${ashDarkness}, ${ashDarkness}, ${ashDarkness}, 0.4)`;
                         ctx.fill();
 
-                        // Add slight ash dust cloud
                         ctx.beginPath();
                         ctx.arc(0, 0, this.size * 1.5, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(${ashDarkness + 20}, ${ashDarkness + 20}, ${ashDarkness + 20}, ${this.opacity * 0.15})`;
@@ -1415,6 +645,44 @@
                     ctx.lineWidth = 1;
                     ctx.fill();
                     ctx.stroke();
+                } else if (this.type === 'shatter') {
+                    ctx.rotate(this.rotation);
+                    ctx.beginPath();
+                    for (let i = 0; i < this.edges; i++) {
+                        const angle = (i / this.edges) * Math.PI * 2;
+                        const x = Math.cos(angle) * this.size * 2;
+                        const y = Math.sin(angle) * this.size * 2;
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.strokeStyle = `rgba(200, 220, 255, ${this.opacity})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                } else if (this.type === 'smoke') {
+                    ctx.rotate(this.rotation);
+                    ctx.scale(this.expansion, this.expansion);
+
+                    const smokeDarkness = 60 + this.fadeStage * 100;
+                    const smokeAlpha = this.opacity * (0.7 - this.fadeStage * 0.5);
+
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${smokeDarkness + 30}, ${smokeDarkness + 30}, ${smokeDarkness + 30}, ${smokeAlpha * 0.15})`;
+                    ctx.filter = `blur(${5 + this.expansion * 2}px)`;
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 1.3, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${smokeDarkness + 15}, ${smokeDarkness + 15}, ${smokeDarkness + 15}, ${smokeAlpha * 0.35})`;
+                    ctx.filter = `blur(${3 + this.expansion}px)`;
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${smokeDarkness}, ${smokeDarkness}, ${smokeDarkness}, ${smokeAlpha * 0.6})`;
+                    ctx.filter = `blur(${2 + this.expansion * 0.5}px)`;
+                    ctx.fill();
                 }
 
                 ctx.restore();
@@ -1425,8 +693,6 @@
                     return `hsla(${this.hue}, 100%, 50%, ${this.opacity})`;
                 } else if (this.type === 'water') {
                     return `rgba(100, 180, 255, ${this.opacity})`;
-                } else if (this.type === 'light') {
-                    return `rgba(255, 255, 200, ${this.opacity})`;
                 }
                 return `rgba(255, 255, 255, ${this.opacity})`;
             }
@@ -1489,16 +755,11 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
 
-            // Calculate distance moved
             const dx = mouseX - prevMouseX;
             const dy = mouseY - prevMouseY;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // Update mouse speed (more responsive, less smoothing)
             mouseSpeed = mouseSpeed * 0.2 + distance * 0.8; // Very responsive to mouse
-
-            // Calculate speed multiplier: 0 when no movement, up to 3.0 when moving fast
-            // Only affects Relief mode particles - more dramatic interaction
             speedMultiplier = Math.min(mouseSpeed / 50, 3.0); // Higher sensitivity and max speed
         }
 
@@ -1508,16 +769,16 @@
             const wheel = document.getElementById('elementWheel');
             if (!wheel || wheel.style.display === 'none') return;
 
-            wheelRotation += 0.01; // Slow rotation speed
+            wheelRotation += 0.01;
 
             const emojis = wheel.querySelectorAll('.element-emoji');
-            const radius = 80; // Distance from center
-            const centerX = 100; // Half of wheel width
-            const centerY = 100; // Half of wheel height
+            const radius = 80;
+            const centerX = 100;
+            const centerY = 100;
 
             emojis.forEach((emoji, index) => {
                 const angle = wheelRotation + (index * (Math.PI * 2) / 5);
-                const x = centerX + Math.cos(angle) * radius - 16; // -16 for emoji centering
+                const x = centerX + Math.cos(angle) * radius - 16;
                 const y = centerY + Math.sin(angle) * radius - 16;
 
                 emoji.style.left = x + 'px';
@@ -1533,12 +794,11 @@
                 emoji.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const element = this.getAttribute('data-element');
-                    wheelRotating = false; // Stop rotation
+                    wheelRotating = false;
                     if (wheelAnimationId) cancelAnimationFrame(wheelAnimationId);
                     connectWithElement(element);
                 });
 
-                // Hover effect - stop rotation and glow
                 emoji.addEventListener('mouseenter', function() {
                     wheelRotating = false;
                     if (wheelAnimationId) cancelAnimationFrame(wheelAnimationId);
@@ -1558,7 +818,6 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Rapidly decay mouse speed to make particles stop quickly when mouse stops
             mouseSpeed *= 0.80; // Faster decay = quicker stop
             speedMultiplier = Math.min(mouseSpeed / 50, 3.0); // Match the tracking sensitivity
 
@@ -1569,43 +828,6 @@
             });
             if (particles.length > 0) requestAnimationFrame(animate);
         }
-
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-                page.style.display = 'none';
-            });
-
-            const selectedPage = document.getElementById(pageId);
-            selectedPage.classList.add('active');
-            const nav = document.querySelector('nav');
-
-            if (pageId === 'home') {
-                selectedPage.style.display = 'flex';
-                nav.style.display = 'block';
-            } else if (pageId === 'spiritual') {
-                selectedPage.style.display = 'block';
-                nav.style.display = 'none';
-
-                // Ensure video is visible when entering spiritual page
-                document.getElementById('backgroundVideo').style.display = 'block';
-                document.querySelector('.video-overlay').style.display = 'block';
-                document.querySelector('.prayer-container').style.background = 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%)';
-
-                // Add mouse tracking for Relief mode speed control
-                document.addEventListener('mousemove', trackMouseSpeed);
-
-                setTimeout(() => initCanvas(), 100);
-            } else {
-                selectedPage.style.display = 'block';
-                nav.style.display = 'block';
-            }
-
-            window.scrollTo(0, 0);
-        }
-
-        let currentPrayerMode = 'pray'; // Global variable to store prayer mode
 
         function generatePrayer(language, mode) {
             currentPrayerMode = mode;
@@ -1645,7 +867,6 @@
                 prayerElements = language === 'zh' ? chineseReliefPrayers : englishReliefPrayers;
             }
 
-            // Hide video and show black background immediately
             document.getElementById('backgroundVideo').style.display = 'none';
             document.querySelector('.video-overlay').style.display = 'none';
             document.querySelector('.prayer-container').style.background = '#000000';
@@ -1697,10 +918,8 @@
                 document.getElementById('prayAgainButton').style.opacity = '1';
             }, 100);
 
-            // Map elements to effect types
             let effectType;
             if (currentPrayerMode === 'pray') {
-                // Uplifting elemental effects
                 switch(element) {
                     case 'metal': effectType = 'metal'; break;
                     case 'wood': effectType = 'wood'; break;
@@ -1709,7 +928,6 @@
                     case 'earth': effectType = 'earth'; break;
                 }
             } else {
-                // Destructive elemental effects for relief
                 switch(element) {
                     case 'metal': effectType = 'shatter'; break;
                     case 'wood': effectType = 'wood-break'; break;
@@ -1728,7 +946,6 @@
             const prayerOverlay = document.getElementById('prayerOverlay');
             const prayAgainButton = document.getElementById('prayAgainButton');
 
-            // Show video and overlay again
             document.getElementById('backgroundVideo').style.display = 'block';
             document.querySelector('.video-overlay').style.display = 'block';
             document.querySelector('.prayer-container').style.background = 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%)';
@@ -1742,7 +959,6 @@
                 document.getElementById('elementWheel').style.display = 'none';
                 document.getElementById('additionalPrayer').value = '';
 
-                // Stop wheel rotation
                 wheelRotating = false;
                 if (wheelAnimationId) cancelAnimationFrame(wheelAnimationId);
 
