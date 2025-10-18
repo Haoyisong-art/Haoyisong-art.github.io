@@ -10,7 +10,8 @@
       "Bash(for i in {1..16})",
       "Bash(do echo \"=== SLIDE $i ===\")",
       "Bash(done)",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nComplete portfolio update with artwork integration and styling improvements\n\nMajor Updates:\n- Integrated all artwork from data folder into portfolio pages\n- Added detailed artwork information from PowerPoint presentation\n- Extracted and included Leeds University event details from PDFs\n\nPaintings Page:\n- Homeland Series (2008): Added full descriptions and 5 paintings\n- Floating Dreams (2009): Added series description and 6 paintings\n- Porter Sketches (2011): Added observational sketches with context\n\nInstallation Page:\n- Probes (2018): Light-infused installation with full details\n- Exposure (2019): Cyanotype collage series with materials info\n- Added 11 installation photos\n\nTeaching Page:\n- K-12 Art Education photos from multiple categories\n- Class activities, oil painting, clay relief, collage, exhibitions\n\nEvents Page:\n- The Promise of a Garden & 5000 Flowers Project (Leeds, 2021)\n- QSMC 2018 Evening Party (Factory Workers Program)\n- Complete event descriptions with dates and venues\n\nStyling Improvements:\n- Added elegant section titles with brown underline accents\n- Professional section descriptions with optimal typography\n- Clean event cards with hover effects\n- Consistent spacing and visual hierarchy\n- Organized artwork sections with proper breathing room\n\nSpiritual Space:\n- Made comet 4 times smaller for better visual balance\n- Updated iframe integration for seamless experience\n\nTechnical:\n- Created ARTWORK_INFO.md documentation file\n- Cleaned up inline styles, centralized CSS\n- Professional color scheme throughout\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
