@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Haoyi Song - Artist Portfolio
 
 Welcome to my digital art portfolio featuring interactive spiritual experiences and visual art collections.
