@@ -853,6 +853,23 @@
         let wheelRotating = true;
         let wheelAnimationId = null;
 
+        class Particle {
+            constructor(char, x, y, type, charIndex) {
+                this.char = char;
+                this.startX = x;
+                this.startY = y;
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.charIndex = charIndex;
+                this.size = Math.random() * 3 + 2; // Smaller particles
+                this.opacity = 1;
+                this.life = 1;
+                this.trail = [];
+                this.birthDelay = 0; // Frames to wait before becoming visible
+                this.showChar = false; // Whether to show as character initially
+                this.charToParticleProgress = 0; // 0 = character, 1 = particle
+                this.age = 0; // How long the particle has been alive
 
                 if (type === 'wind') {
                     // Swirling wind effect
@@ -1002,6 +1019,42 @@
                     this.charToParticleProgress += 0.011; // Reach 1.0 after ~90 frames
                 }
 
+                if (this.type === 'wind') {
+                    this.angle += this.spiralSpeed;
+                    this.radius += this.radiusSpeed;
+                    this.x = this.orbitCenterX + Math.cos(this.angle) * this.radius;
+                    this.y = this.orbitCenterY + Math.sin(this.angle) * this.radius;
+                    this.orbitCenterY -= 1; // Drift upward
+                } else if (this.type === 'fire') {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy *= 0.98;
+                    this.vx *= 0.95;
+                    this.flicker += this.flickerSpeed;
+                } else if (this.type === 'water') {
+                    this.wave += this.waveSpeed;
+                    this.x += this.vx + Math.sin(this.wave) * this.waveAmplitude;
+                    this.y += this.vy;
+                } else if (this.type === 'floating') {
+                    this.drift += this.driftSpeed;
+                    this.x += this.vx + Math.sin(this.drift) * 0.5;
+                    this.y += this.vy;
+                } else if (this.type === 'light') {
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    this.glow = 0.5 + Math.sin(this.life * Math.PI * 2) * 0.5;
+                } else if (this.type === 'smoke') {
+                    // Drifting smoke falling slowly and fading
+                    this.drift += this.driftSpeed;
+                    this.x += this.vx + Math.sin(this.drift) * 1.5;
+                    this.y += this.vy;
+                    this.vx *= 0.98;
+                    this.expansion += this.expansionSpeed;
+                    this.rotation += this.rotSpeed;
+                    this.fadeStage += this.fadeSpeed;
+
+                    // Slow down falling as it expands and fades
+                    this.vy *= 0.99;
                 } else if (this.type === 'shatter') {
                     this.vy += this.gravity;
                     this.x += this.vx;
@@ -1509,6 +1562,40 @@
             mouseSpeed *= 0.80; // Faster decay = quicker stop
             speedMultiplier = Math.min(mouseSpeed / 50, 3.0); // Match the tracking sensitivity
 
+            particles = particles.filter(p => {
+                p.update();
+                p.draw();
+                return p.life > 0;
+            });
+            if (particles.length > 0) requestAnimationFrame(animate);
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+                page.style.display = 'none';
+            });
+
+            const selectedPage = document.getElementById(pageId);
+            selectedPage.classList.add('active');
+            const nav = document.querySelector('nav');
+
+            if (pageId === 'home') {
+                selectedPage.style.display = 'flex';
+                nav.style.display = 'block';
+            } else if (pageId === 'spiritual') {
+                selectedPage.style.display = 'block';
+                nav.style.display = 'none';
+
+                // Ensure video is visible when entering spiritual page
+                document.getElementById('backgroundVideo').style.display = 'block';
+                document.querySelector('.video-overlay').style.display = 'block';
+                document.querySelector('.prayer-container').style.background = 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%)';
+
+                // Add mouse tracking for Relief mode speed control
+                document.addEventListener('mousemove', trackMouseSpeed);
+
                 setTimeout(() => initCanvas(), 100);
             } else {
                 selectedPage.style.display = 'block';
@@ -1557,6 +1644,11 @@
             } else {
                 prayerElements = language === 'zh' ? chineseReliefPrayers : englishReliefPrayers;
             }
+
+            // Hide video and show black background immediately
+            document.getElementById('backgroundVideo').style.display = 'none';
+            document.querySelector('.video-overlay').style.display = 'none';
+            document.querySelector('.prayer-container').style.background = '#000000';
 
             const opening = prayerElements.openings[Math.floor(Math.random() * prayerElements.openings.length)];
             const subject = prayerElements.subjects[Math.floor(Math.random() * prayerElements.subjects.length)];
