@@ -27,7 +27,8 @@
       "Bash(fi)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(find . -name \"*.html\" -not -name \"*.backup\" -not -name \"index3.html\" -type f -exec sed -i 's/#8b4513/#666666/g' {} ;)"
+      "Bash(find . -name \"*.html\" -not -name \"*.backup\" -not -name \"index3.html\" -type f -exec sed -i 's/#8b4513/#666666/g' {} ;)",
+      "Bash(unzip -p \"Research.docx\" word/document.xml)"
     ],
     "deny": [],
     "ask": []
