@@ -366,16 +366,16 @@
 
             .collaboration-credit {
                 font-size: 0.6rem;
-                /* INCREASED the minimum bottom value significantly for better visibility */
-                bottom: calc(clamp(70px, 9vh, 90px) + env(safe-area-inset-bottom, 0px));
+                /* DOUBLED - Much more aggressive vertical spacing */
+                bottom: calc(clamp(140px, 18vh, 180px) + env(safe-area-inset-bottom, 0px));
                 line-height: 1.2;
             }
 
-            /* ADD THIS NEW RULE for the pray again button on mobile */
+            /* Pray again button on mobile - DOUBLED height */
             .pray-again-button {
-                /* Gave the button a dedicated, higher position on mobile */
-                bottom: calc(clamp(140px, 22vh, 200px) + env(safe-area-inset-bottom, 0px));
-                right: 1.5rem; /* Slightly adjusted for smaller screens */
+                /* Moved twice as high for maximum clearance */
+                bottom: calc(clamp(280px, 44vh, 400px) + env(safe-area-inset-bottom, 0px));
+                right: 1.5rem;
             }
         }
 
