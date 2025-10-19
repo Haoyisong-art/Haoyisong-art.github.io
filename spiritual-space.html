@@ -139,7 +139,7 @@
         /* Bottom prayer bar */
         .prayer-bar {
             position: fixed;
-            bottom: clamp(80px, 12vh, 15vh); /* Flexible positioning */
+            bottom: calc(clamp(80px, 12vh, 120px) + env(safe-area-inset-bottom, 0px));
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -213,7 +213,7 @@
         /* Collaboration credit */
         .collaboration-credit {
             position: fixed;
-            bottom: clamp(50px, 8vh, 80px); /* Higher - always above browser UI */
+            bottom: calc(clamp(30px, 5vh, 50px) + env(safe-area-inset-bottom, 0px));
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -271,7 +271,7 @@
         /* Pray again button */
         .pray-again-button {
             position: fixed;
-            bottom: clamp(100px, 15vh, 180px); /* Above browser UI */
+            bottom: calc(clamp(90px, 12vh, 140px) + env(safe-area-inset-bottom, 0px));
             right: 2rem;
             z-index: 10;
             background: rgba(255, 255, 255, 0.15);
@@ -346,7 +346,7 @@
             }
 
             .prayer-bar {
-                bottom: clamp(100px, 20vh, 180px); /* Responsive to screen size */
+                bottom: calc(clamp(110px, 18vh, 160px) + env(safe-area-inset-bottom, 0px));
                 flex-wrap: nowrap;
                 justify-content: center;
                 gap: 0.3rem;
@@ -366,7 +366,7 @@
 
             .collaboration-credit {
                 font-size: 0.6rem;
-                bottom: clamp(60px, 10vh, 90px); /* Much higher on mobile */
+                bottom: calc(clamp(40px, 6vh, 60px) + env(safe-area-inset-bottom, 0px));
                 line-height: 1.2;
             }
         }
@@ -438,7 +438,7 @@
             }
 
             .prayer-bar {
-                bottom: clamp(60px, 25vh, 100px);
+                bottom: calc(clamp(70px, 22vh, 110px) + env(safe-area-inset-bottom, 0px));
                 gap: 0.25rem;
             }
 
@@ -448,13 +448,13 @@
             }
 
             .collaboration-credit {
-                bottom: clamp(50px, 15vh, 80px); /* Much higher in landscape */
+                bottom: calc(clamp(35px, 10vh, 60px) + env(safe-area-inset-bottom, 0px));
                 font-size: 0.5rem;
                 line-height: 1.1;
             }
 
             .pray-again-button {
-                bottom: clamp(80px, 30vh, 120px); /* Higher in landscape */
+                bottom: calc(clamp(85px, 25vh, 120px) + env(safe-area-inset-bottom, 0px));
                 right: 1rem;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.7rem;
