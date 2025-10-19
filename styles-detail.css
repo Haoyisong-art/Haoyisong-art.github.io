@@ -28,7 +28,7 @@ nav {
     color: #333;
     font-weight: 500;
     transition: color 0.3s;
-    font-size: 0.55rem;
+    font-size: 1.1rem;
 }
 
 .back-link:hover {
@@ -55,7 +55,7 @@ h1 {
 }
 
 .series-description {
-    font-size: 0.475rem;
+    font-size: 1.05rem;
     font-weight: 300;
     line-height: 1.8;
     color: #555;
@@ -73,7 +73,7 @@ h1 {
 
 .artwork-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
