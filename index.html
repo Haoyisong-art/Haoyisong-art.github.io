@@ -392,6 +392,7 @@
             nav ul {
                 gap: 1rem;
                 padding: 0 1rem;
+                font-size: 0.9rem;
             }
 
             #home {
@@ -427,9 +428,10 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Keep navigation visible on mobile */
+            /* Keep navigation always visible on mobile */
             nav {
-                transform: translateY(0);
+                transform: translateY(0) !important;
+                display: block !important;
             }
         }
 
@@ -573,7 +575,6 @@
             if (pageId === 'home') {
                 selectedPage.style.display = 'flex';
                 nav.style.display = 'block';
-                showNav();
             } else if (pageId === 'spiritual') {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'none';
@@ -584,7 +585,6 @@
             } else {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'block';
-                showNav();
             }
 
             window.scrollTo(0, 0);
