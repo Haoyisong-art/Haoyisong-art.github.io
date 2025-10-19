@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>My Spiritual Space</title>
     <style>
         * {
@@ -11,19 +11,22 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
+        html {
+            width: 100vw;
             height: 100vh;
-            height: 100svh; /* Small viewport height for mobile browsers */
-            position: fixed;
+            height: 100dvh; /* Dynamic viewport height - adjusts with browser UI */
             overflow: hidden;
         }
 
         body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
             font-family: 'Georgia', serif;
             background: #000;
             color: white;
+            touch-action: pan-x pan-y;
         }
 
         /* Cosmos canvas backdrop */
@@ -33,7 +36,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            height: 100svh; /* Small viewport for mobile */
+            height: 100dvh; /* Dynamic viewport - adapts to browser UI */
             z-index: 1;
         }
 
@@ -44,7 +47,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            height: 100svh; /* Small viewport for mobile */
+            height: 100dvh; /* Dynamic viewport - adapts to browser UI */
             z-index: 3;
             pointer-events: none;
         }
@@ -136,7 +139,7 @@
         /* Bottom prayer bar */
         .prayer-bar {
             position: fixed;
-            bottom: 12vh; /* Viewport-relative: 12% of screen height */
+            bottom: clamp(80px, 12vh, 15vh); /* Flexible positioning */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -210,7 +213,7 @@
         /* Collaboration credit */
         .collaboration-credit {
             position: fixed;
-            bottom: 3vh; /* Viewport-relative: 3% of screen height */
+            bottom: clamp(15px, 3vh, 40px); /* Flexible positioning */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -342,8 +345,7 @@
             }
 
             .prayer-bar {
-                bottom: 18vh; /* Higher on mobile: 18% of screen height for Chrome */
-                bottom: max(18vh, 120px); /* Ensure minimum 120px from bottom */
+                bottom: clamp(100px, 20vh, 180px); /* Responsive to screen size */
                 flex-wrap: nowrap;
                 justify-content: center;
                 gap: 0.3rem;
@@ -363,8 +365,7 @@
 
             .collaboration-credit {
                 font-size: 0.65rem;
-                bottom: 3vh; /* Higher on mobile */
-                bottom: max(3vh, 20px); /* Ensure minimum 20px from bottom */
+                bottom: clamp(20px, 4vh, 50px); /* Always visible */
             }
         }
 
@@ -389,6 +390,71 @@
 
             .element-selector-title {
                 font-size: 0.55rem;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .prayer-overlay {
+                padding-top: 8vh;
+                padding-bottom: 25vh;
+            }
+
+            .prayer-text {
+                max-width: 80%;
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .prayer-text p {
+                font-size: 0.75rem;
+                line-height: 1.4;
+            }
+
+            .additional-input {
+                margin-top: 0.5rem;
+            }
+
+            .additional-input input {
+                width: 80%;
+                max-width: 250px;
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .element-selector {
+                gap: 0.3rem;
+                margin-top: 0.5rem;
+            }
+
+            .element-emoji {
+                font-size: 0.9rem;
+            }
+
+            .element-selector-title {
+                font-size: 0.5rem;
+            }
+
+            .prayer-bar {
+                bottom: clamp(60px, 25vh, 100px);
+                gap: 0.25rem;
+            }
+
+            .prayer-button {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.65rem;
+            }
+
+            .collaboration-credit {
+                bottom: clamp(10px, 3vh, 30px);
+                font-size: 0.55rem;
+            }
+
+            .animism-badge {
+                top: 0.5rem;
+                left: 0.5rem;
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
             }
         }
     </style>
