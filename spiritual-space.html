@@ -1090,6 +1090,9 @@
             const period = language === 'zh' ? '。' : '.';
             const prayer = `${opening}${separator}${subject}${separator}${wish}${period}${closing}${period}`;
 
+            // Hide prayer bar
+            document.getElementById('prayerBar').classList.add('hidden');
+
             // Show prayer text
             const prayerText = document.getElementById('prayerText');
             prayerText.querySelector('p').textContent = prayer;
@@ -1143,6 +1146,11 @@
             // Clear inputs
             document.getElementById('additionalPrayer').value = '';
             document.getElementById('prayerText').querySelector('p').textContent = '';
+
+            // Show prayer bar
+            setTimeout(() => {
+                document.getElementById('prayerBar').classList.remove('hidden');
+            }, 300);
 
             // Clear particles
             particles = [];
