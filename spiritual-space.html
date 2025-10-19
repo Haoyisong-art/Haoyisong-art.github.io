@@ -126,7 +126,7 @@
         /* Bottom prayer bar */
         .prayer-bar {
             position: fixed;
-            bottom: 3rem;
+            bottom: 12vh; /* Viewport-relative: 12% of screen height */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -200,7 +200,7 @@
         /* Collaboration credit */
         .collaboration-credit {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: 3vh; /* Viewport-relative: 3% of screen height */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -332,7 +332,7 @@
             }
 
             .prayer-bar {
-                bottom: 5rem;
+                bottom: 15vh; /* Higher on mobile: 15% of screen height */
                 flex-wrap: nowrap;
                 justify-content: center;
                 gap: 0.3rem;
@@ -352,7 +352,7 @@
 
             .collaboration-credit {
                 font-size: 0.65rem;
-                bottom: 1.2rem;
+                bottom: 2vh; /* Viewport-relative on mobile */
             }
         }
 
