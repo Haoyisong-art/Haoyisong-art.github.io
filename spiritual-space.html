@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>My Spiritual Space</title>
     <style>
         * {
@@ -285,6 +285,52 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .prayer-overlay {
+                padding: 1rem;
+                padding-top: 15vh; /* Ensure content starts higher on screen */
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+
+            .prayer-text {
+                max-width: 90%;
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .prayer-text p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .additional-input {
+                margin-top: 0.8rem;
+            }
+
+            .additional-input input {
+                width: 90%;
+                max-width: 280px;
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .element-selector {
+                flex-wrap: nowrap;
+                gap: 0.4rem;
+                margin-top: 0.8rem;
+                max-width: 100%;
+            }
+
+            .element-selector-title {
+                font-size: 0.6rem;
+                margin-right: 0.3rem;
+            }
+
+            .element-emoji {
+                font-size: 1.1rem;
+                padding: 0.15rem;
+            }
+
             .prayer-bar {
                 bottom: 5rem;
                 flex-wrap: nowrap;
@@ -297,23 +343,6 @@
                 font-size: 0.75rem;
             }
 
-            .element-selector {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .element-emoji {
-                font-size: 1.2rem;
-            }
-
-            .element-selector-title {
-                font-size: 0.65rem;
-            }
-
-            .prayer-text p {
-                font-size: 1.1rem;
-            }
-
             .animism-badge {
                 top: 1rem;
                 left: 1rem;
@@ -323,6 +352,31 @@
 
             .collaboration-credit {
                 font-size: 0.65rem;
+                bottom: 1.2rem;
+            }
+        }
+
+        /* Extra small devices - specific fixes for very small screens */
+        @media (max-width: 430px) {
+            .prayer-overlay {
+                padding-top: 12vh;
+            }
+
+            .prayer-text p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .element-selector {
+                gap: 0.3rem;
+            }
+
+            .element-emoji {
+                font-size: 1rem;
+            }
+
+            .element-selector-title {
+                font-size: 0.55rem;
             }
         }
     </style>
