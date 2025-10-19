@@ -447,8 +447,8 @@
             }
 
             .prayer-bar {
-                /* Match portrait mobile - prayer bar above credit */
-                bottom: calc(clamp(200px, 26vh, 260px) + env(safe-area-inset-bottom, 0px));
+                /* Landscape: lower positioning - screen is short, use bottom area */
+                bottom: calc(clamp(80px, 20vh, 120px) + env(safe-area-inset-bottom, 0px));
                 gap: 0.25rem;
             }
 
@@ -458,15 +458,15 @@
             }
 
             .collaboration-credit {
-                /* Match portrait mobile - doubled spacing */
-                bottom: calc(clamp(140px, 18vh, 180px) + env(safe-area-inset-bottom, 0px));
+                /* Landscape: reasonable spacing from bottom */
+                bottom: calc(clamp(40px, 8vh, 60px) + env(safe-area-inset-bottom, 0px));
                 font-size: 0.5rem;
                 line-height: 1.1;
             }
 
             .pray-again-button {
-                /* Match portrait mobile - same level as prayer bar */
-                bottom: calc(clamp(200px, 26vh, 260px) + env(safe-area-inset-bottom, 0px));
+                /* Landscape: same level as prayer bar */
+                bottom: calc(clamp(80px, 20vh, 120px) + env(safe-area-inset-bottom, 0px));
                 right: 1rem;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.7rem;
