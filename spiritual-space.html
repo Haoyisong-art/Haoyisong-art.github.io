@@ -447,7 +447,8 @@
             }
 
             .prayer-bar {
-                bottom: calc(clamp(70px, 22vh, 110px) + env(safe-area-inset-bottom, 0px));
+                /* Match portrait mobile - prayer bar above credit */
+                bottom: calc(clamp(200px, 26vh, 260px) + env(safe-area-inset-bottom, 0px));
                 gap: 0.25rem;
             }
 
@@ -457,13 +458,15 @@
             }
 
             .collaboration-credit {
-                bottom: calc(clamp(35px, 10vh, 60px) + env(safe-area-inset-bottom, 0px));
+                /* Match portrait mobile - doubled spacing */
+                bottom: calc(clamp(140px, 18vh, 180px) + env(safe-area-inset-bottom, 0px));
                 font-size: 0.5rem;
                 line-height: 1.1;
             }
 
             .pray-again-button {
-                bottom: calc(clamp(85px, 25vh, 120px) + env(safe-area-inset-bottom, 0px));
+                /* Match portrait mobile - same level as prayer bar */
+                bottom: calc(clamp(200px, 26vh, 260px) + env(safe-area-inset-bottom, 0px));
                 right: 1rem;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.7rem;
