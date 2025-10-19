@@ -213,7 +213,7 @@
         /* Collaboration credit */
         .collaboration-credit {
             position: fixed;
-            bottom: clamp(15px, 3vh, 40px); /* Flexible positioning */
+            bottom: clamp(50px, 8vh, 80px); /* Higher - always above browser UI */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -221,6 +221,7 @@
             color: rgba(255, 255, 255, 0.5);
             text-align: center;
             line-height: 1.4;
+            white-space: nowrap;
         }
 
         /* Music control button */
@@ -270,7 +271,7 @@
         /* Pray again button */
         .pray-again-button {
             position: fixed;
-            bottom: 5rem;
+            bottom: clamp(100px, 15vh, 180px); /* Above browser UI */
             right: 2rem;
             z-index: 10;
             background: rgba(255, 255, 255, 0.15);
@@ -364,8 +365,9 @@
             }
 
             .collaboration-credit {
-                font-size: 0.65rem;
-                bottom: clamp(20px, 4vh, 50px); /* Always visible */
+                font-size: 0.6rem;
+                bottom: clamp(60px, 10vh, 90px); /* Much higher on mobile */
+                line-height: 1.2;
             }
         }
 
@@ -446,8 +448,16 @@
             }
 
             .collaboration-credit {
-                bottom: clamp(10px, 3vh, 30px);
-                font-size: 0.55rem;
+                bottom: clamp(50px, 15vh, 80px); /* Much higher in landscape */
+                font-size: 0.5rem;
+                line-height: 1.1;
+            }
+
+            .pray-again-button {
+                bottom: clamp(80px, 30vh, 120px); /* Higher in landscape */
+                right: 1rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
             }
 
             .animism-badge {
