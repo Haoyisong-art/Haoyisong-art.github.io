@@ -544,6 +544,21 @@
 
     <script>
         // ============================================
+        // DEBOUNCE HELPER FUNCTION
+        // ============================================
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ============================================
         // THREE.JS COSMOS SETUP
         // ============================================
         let scene, camera, renderer, stars, comet;
@@ -569,8 +584,8 @@
             // Animation loop
             animateCosmos();
 
-            // Resize handler
-            window.addEventListener('resize', onWindowResize);
+            // Resize handler with debounce to prevent performance issues
+            window.addEventListener('resize', debounce(onWindowResize, 200));
         }
 
         function createStarfield() {
@@ -935,17 +950,24 @@
         }
 
         function onWindowResize() {
+            // Three.js Canvas (Cosmos)
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
 
-            // Also resize particle canvas
+            // 2D Particle Canvas
             const particleCanvas = document.getElementById('particleCanvas');
-            particleCanvas.width = window.innerWidth * window.devicePixelRatio;
-            particleCanvas.height = window.innerHeight * window.devicePixelRatio;
+            const particleCtx = particleCanvas.getContext('2d');
+            const dpr = window.devicePixelRatio;
+
+            particleCanvas.width = window.innerWidth * dpr;
+            particleCanvas.height = window.innerHeight * dpr;
             particleCanvas.style.width = window.innerWidth + 'px';
             particleCanvas.style.height = window.innerHeight + 'px';
-            particleCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            // **CRUCIAL FIX**: Reset the context's transform matrix before scaling.
+            // This prevents the scale from being applied over and over again on each resize.
+            particleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
 
         // ============================================
