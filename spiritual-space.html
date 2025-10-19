@@ -210,10 +210,56 @@
             line-height: 1.4;
         }
 
+        /* Music control button */
+        .music-control-button {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .music-control-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Back to home button */
+        .back-home-button {
+            position: fixed;
+            top: 2rem;
+            right: 10rem;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-home-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
         /* Pray again button */
         .pray-again-button {
             position: fixed;
-            top: 2rem;
+            bottom: 5rem;
             right: 2rem;
             z-index: 10;
             background: rgba(255, 255, 255, 0.15);
@@ -286,6 +332,12 @@
 <body>
     <!-- Animism badge -->
     <div class="animism-badge">Animism · 万物灵</div>
+
+    <!-- Back to Home button -->
+    <a href="index.html" class="back-home-button">← Back to Home</a>
+
+    <!-- Music control button -->
+    <button class="music-control-button" id="musicControl" onclick="toggleMusic()">🔊 Music On</button>
 
     <!-- Cosmos canvas -->
     <canvas id="cosmosCanvas"></canvas>
@@ -1030,16 +1082,41 @@
         // ============================================
         // AUDIO
         // ============================================
+        let audioPlaying = false;
+
         function initAudio() {
             const audio = document.getElementById('backgroundAudio');
 
             // Try to autoplay
-            audio.play().catch(() => {
+            audio.play().then(() => {
+                audioPlaying = true;
+                updateMusicButton();
+            }).catch(() => {
                 // If autoplay fails, play on first user interaction
                 document.addEventListener('pointerdown', () => {
-                    audio.play();
+                    audio.play().then(() => {
+                        audioPlaying = true;
+                        updateMusicButton();
+                    });
                 }, { once: true });
             });
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundAudio');
+            if (audioPlaying) {
+                audio.pause();
+                audioPlaying = false;
+            } else {
+                audio.play();
+                audioPlaying = true;
+            }
+            updateMusicButton();
+        }
+
+        function updateMusicButton() {
+            const button = document.getElementById('musicControl');
+            button.textContent = audioPlaying ? '🔊 Music On' : '🔇 Music Off';
         }
 
         // ============================================
