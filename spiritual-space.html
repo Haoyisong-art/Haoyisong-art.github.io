@@ -425,7 +425,7 @@
 
             // Main stars - small circles (most realistic)
             const mainStarGeometry = new THREE.BufferGeometry();
-            const mainStarCount = 2500;
+            const mainStarCount = 4000; // Increased from 2500
             const mainPositions = new Float32Array(mainStarCount * 3);
             const mainSizes = new Float32Array(mainStarCount);
             const mainOpacities = new Float32Array(mainStarCount);
@@ -437,29 +437,126 @@
                 mainPositions[i3 + 2] = (Math.random() - 0.5) * 100; // z
 
                 // Varying sizes for depth
-                mainSizes[i] = Math.random() * 0.15 + 0.05;
-                // Varying opacity for twinkling effect
-                mainOpacities[i] = Math.random() * 0.4 + 0.6;
+                mainSizes[i] = Math.random() * 0.2 + 0.08; // Larger stars
+                // Higher opacity - brighter stars
+                mainOpacities[i] = Math.random() * 0.3 + 0.7; // 0.7-1.0 instead of 0.6-1.0
             }
 
             mainStarGeometry.setAttribute('position', new THREE.BufferAttribute(mainPositions, 3));
             mainStarGeometry.setAttribute('size', new THREE.BufferAttribute(mainSizes, 1));
             mainStarGeometry.setAttribute('opacity', new THREE.BufferAttribute(mainOpacities, 1));
 
+            // Create circular star texture
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+            gradient.addColorStop(0.5, 'rgba(255,255,255,0.3)');
+            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 32, 32);
+            const starTexture = new THREE.CanvasTexture(canvas);
+
             const mainStarMaterial = new THREE.PointsMaterial({
                 color: 0xffffff,
-                size: 0.1,
+                size: 0.15, // Larger base size
                 transparent: true,
-                opacity: 0.8,
+                opacity: 1.0, // Full opacity
                 sizeAttenuation: true,
-                vertexColors: false
+                vertexColors: false,
+                map: starTexture,
+                blending: THREE.AdditiveBlending
             });
 
             const mainStars = new THREE.Points(mainStarGeometry, mainStarMaterial);
             starGroup.add(mainStars);
 
+            // Milky Way - Silver River effect
+            const milkyWayGeometry = new THREE.BufferGeometry();
+            const milkyWayCount = 12000; // Even more stars
+            const milkyWayPositions = new Float32Array(milkyWayCount * 3);
+            const milkyWayColors = new Float32Array(milkyWayCount * 3);
+            const milkyWaySizes = new Float32Array(milkyWayCount);
+
+            let actualCount = 0;
+            for (let i = 0; i < milkyWayCount; i++) {
+                const i3 = actualCount * 3;
+
+                // Create a diagonal band across the sky (Milky Way path)
+                const bandWidth = 30; // Even wider band
+                const bandAngle = Math.PI / 6; // Shallower angle (30 degrees)
+
+                // Position along the band
+                const alongBand = (Math.random() - 0.5) * 140;
+                const acrossBand = (Math.random() - 0.5) * bandWidth;
+
+                // Create diagonal distribution with Gaussian-like density (denser in center)
+                const density = Math.exp(-Math.pow(acrossBand / (bandWidth * 0.4), 2));
+
+                if (Math.random() > density * 1.2) continue; // Accept more stars
+
+                milkyWayPositions[i3] = alongBand * Math.cos(bandAngle) - acrossBand * Math.sin(bandAngle);
+                milkyWayPositions[i3 + 1] = alongBand * Math.sin(bandAngle) + acrossBand * Math.cos(bandAngle);
+                milkyWayPositions[i3 + 2] = (Math.random() - 0.5) * 60;
+
+                // Color variation - mix of white, blue-white, and slight yellow tints
+                const colorVariation = Math.random();
+                if (colorVariation < 0.6) {
+                    // Silvery white
+                    milkyWayColors[i3] = 1.0;
+                    milkyWayColors[i3 + 1] = 1.0;
+                    milkyWayColors[i3 + 2] = 1.0;
+                } else if (colorVariation < 0.85) {
+                    // Slight blue tint
+                    milkyWayColors[i3] = 0.85;
+                    milkyWayColors[i3 + 1] = 0.9;
+                    milkyWayColors[i3 + 2] = 1.0;
+                } else {
+                    // Warm white with yellow tint
+                    milkyWayColors[i3] = 1.0;
+                    milkyWayColors[i3 + 1] = 0.98;
+                    milkyWayColors[i3 + 2] = 0.9;
+                }
+
+                // Varying star sizes for the Milky Way - larger and more visible
+                milkyWaySizes[actualCount] = Math.random() * 0.25 + 0.1;
+                actualCount++;
+            }
+
+            // Trim arrays to actual count
+            const trimmedPositions = new Float32Array(actualCount * 3);
+            const trimmedColors = new Float32Array(actualCount * 3);
+            const trimmedSizes = new Float32Array(actualCount);
+            for (let i = 0; i < actualCount * 3; i++) {
+                trimmedPositions[i] = milkyWayPositions[i];
+                trimmedColors[i] = milkyWayColors[i];
+            }
+            for (let i = 0; i < actualCount; i++) {
+                trimmedSizes[i] = milkyWaySizes[i];
+            }
+
+            milkyWayGeometry.setAttribute('position', new THREE.BufferAttribute(trimmedPositions, 3));
+            milkyWayGeometry.setAttribute('color', new THREE.BufferAttribute(trimmedColors, 3));
+            milkyWayGeometry.setAttribute('size', new THREE.BufferAttribute(trimmedSizes, 1));
+
+            const milkyWayMaterial = new THREE.PointsMaterial({
+                size: 0.2, // Larger size
+                transparent: true,
+                opacity: 1.0, // Full opacity for maximum brightness
+                vertexColors: true,
+                sizeAttenuation: true,
+                blending: THREE.AdditiveBlending,
+                map: starTexture // Use same circular texture
+            });
+
+            const milkyWay = new THREE.Points(milkyWayGeometry, milkyWayMaterial);
+            starGroup.add(milkyWay);
+
             // Bright stars - create 4-pointed and 8-pointed star sprites
-            const brightStarCount = 150;
+            const brightStarCount = 250; // More bright stars
             for (let i = 0; i < brightStarCount; i++) {
                 const x = (Math.random() - 0.5) * 100;
                 const y = (Math.random() - 0.5) * 100;
@@ -475,7 +572,7 @@
                 const starMaterial = new THREE.MeshBasicMaterial({
                     color: 0xffffff,
                     transparent: true,
-                    opacity: Math.random() * 0.3 + 0.5,
+                    opacity: Math.random() * 0.2 + 0.8, // Brighter (0.8-1.0)
                     side: THREE.DoubleSide
                 });
 
