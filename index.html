@@ -546,97 +546,12 @@
     </div>
 
     <script>
-        // Navigation auto-hide functionality
+        // Navigation stays visible at all times
         let lastScrollTop = 0;
         let touchStartY = 0;
         let isMobile = window.innerWidth <= 768;
-        let navHideTimeout;
 
-        function startNavHideTimer() {
-            clearTimeout(navHideTimeout);
-            navHideTimeout = setTimeout(() => {
-                const nav = document.getElementById('mainNav');
-                const spiritualPage = document.getElementById('spiritual');
-                if (!spiritualPage.classList.contains('active')) {
-                    nav.classList.add('hidden');
-                }
-            }, 3000);
-        }
-
-        function showNav() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.remove('hidden');
-            startNavHideTimer();
-        }
-
-        function handleNavigation() {
-            const nav = document.getElementById('mainNav');
-            const spiritualPage = document.getElementById('spiritual');
-            if (spiritualPage && spiritualPage.classList.contains('active')) return;
-
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                if (!isMobile) nav.classList.add('hidden');
-            } else {
-                nav.classList.remove('hidden');
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }
-
-        // Show nav on mouse move to top
-        document.addEventListener('mousemove', (e) => {
-            if (e.clientY < 80) {
-                showNav();
-            }
-        });
-
-        // Start auto-hide timer on page load
-        window.addEventListener('load', () => {
-            startNavHideTimer();
-        });
-
-        function handleTouchStart(e) {
-            if (!isMobile) return;
-            touchStartY = e.touches[0].clientY;
-        }
-
-        function handleTouchMove(e) {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
-            const touchY = e.touches[0].clientY;
-            const diff = touchY - touchStartY;
-            if (touchStartY < 50 && diff > 0) {
-                nav.classList.add('show');
-            } else if (diff < -30) {
-                nav.classList.remove('show');
-            }
-        }
-
-        function handleMouseMove(e) {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
-            const spiritualPage = document.getElementById('spiritual');
-            if (spiritualPage && spiritualPage.classList.contains('active')) return;
-            if (e.clientY < 50) {
-                nav.classList.add('show');
-            } else if (e.clientY > 150) {
-                nav.classList.remove('show');
-            }
-        }
-
-        window.addEventListener('resize', () => {
-            isMobile = window.innerWidth <= 768;
-            const nav = document.querySelector('nav');
-            if (!isMobile) {
-                nav.classList.remove('show');
-                nav.style.transform = 'translateY(0)';
-            }
-        });
-
-        window.addEventListener('scroll', handleNavigation);
-        window.addEventListener('touchstart', handleTouchStart);
-        window.addEventListener('touchmove', handleTouchMove);
-        window.addEventListener('mousemove', handleMouseMove);
+        // Removed auto-hide functionality - navigation now stays visible
 
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
