@@ -332,7 +332,7 @@
     <div class="animism-badge">Animism · 万物灵</div>
 
     <!-- Back to Home button -->
-    <a href="index.html" class="back-home-button">Back to Home</a>
+    <button class="back-home-button" onclick="goBackHome()">Back to Home</button>
 
     <!-- Music control button -->
     <button class="music-control-button" id="musicControl" onclick="toggleMusic()">🔊</button>
@@ -1131,6 +1131,20 @@
         }
 
         // ============================================
+        // NAVIGATION
+        // ============================================
+        function goBackHome() {
+            // Stop music before leaving
+            const audio = document.getElementById('backgroundAudio');
+            audio.pause();
+            audio.currentTime = 0;
+            audioPlaying = false;
+
+            // Navigate to home
+            window.location.href = 'index.html';
+        }
+
+        // ============================================
         // INITIALIZATION
         // ============================================
         window.addEventListener('DOMContentLoaded', () => {
@@ -1138,6 +1152,19 @@
             initParticleCanvas();
             initAudio();
             initElementSelector();
+        });
+
+        // Stop music when page is hidden/unloaded
+        window.addEventListener('pagehide', () => {
+            const audio = document.getElementById('backgroundAudio');
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
+        window.addEventListener('beforeunload', () => {
+            const audio = document.getElementById('backgroundAudio');
+            audio.pause();
+            audio.currentTime = 0;
         });
     </script>
 </body>
