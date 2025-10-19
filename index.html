@@ -261,15 +261,48 @@
         /* Image styling */
         .artwork-card img {
             width: 100%;
-            height: auto;
+            height: 250px;
             object-fit: contain;
             display: block;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: all 0.3s ease;
         }
 
         .artwork-card img:hover {
             opacity: 0.9;
+        }
+
+        /* Paintings page - show original ratio on hover */
+        #paintings .artwork-card img {
+            height: 250px;
+            object-fit: contain;
+        }
+
+        #paintings .artwork-card:hover img {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: auto;
+            max-height: 90vh;
+            max-width: 90vw;
+            z-index: 9998;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        #paintings .artwork-card:hover {
+            z-index: 9998;
+        }
+
+        #paintings .artwork-card:hover::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9997;
         }
 
         /* Lightbox */
@@ -649,6 +682,64 @@
                 <div class="artwork-info">
                     <h4>Stage Design</h4>
                     <p>Set Design</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="artwork-section">
+            <h3 class="section-title">Daily Life (2022-2025)</h3>
+            <p class="section-description">
+                This recent series explores the poetry of everyday objects and intimate spaces. Through soft blues, purples, and ethereal compositions, these paintings transform ordinary moments - a chair bathed in light, pillows on a bed, scattered remote controls - into contemplative meditations on the beauty found in daily life. The work reflects a mature artistic voice that finds profound meaning in the quiet, overlooked corners of domestic existence.
+            </p>
+        <div class="gallery-grid">
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/False Wonders Haoyi Song (1).png" alt="False Wonders No.2">
+                <div class="artwork-info">
+                    <h4>False Wonders No.2</h4>
+                    <p>Oil paint, wood panel, 48 x 48 inches</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/20231106_154927.jpg" alt="False Wonders No.2 (Detail)">
+                <div class="artwork-info">
+                    <h4>False Wonders No.2</h4>
+                    <p>Detail View</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/Never Apart Haoyi Song.png" alt="Never Apart">
+                <div class="artwork-info">
+                    <h4>Never Apart</h4>
+                    <p>Mineral pigments, wood panels, 48 x 48 inches</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/IMG_20231106_143042_529.jpg" alt="Blue Chair">
+                <div class="artwork-info">
+                    <h4>Blue Chair</h4>
+                    <p>Oil on Canvas (2022-2025)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/IMG_8165.jpg" alt="Remote Controls">
+                <div class="artwork-info">
+                    <h4>Remote Controls</h4>
+                    <p>Mixed Media (2022-2025)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/Picture1 (1).jpg" alt="Meditation">
+                <div class="artwork-info">
+                    <h4>Meditation</h4>
+                    <p>Mixed Media on Paper (2022-2025)</p>
+                </div>
+            </div>
+            <div class="artwork-card">
+                <img src="data/Haoyi_art_works/daily life 2022-2025/IMG_2367.jpg" alt="Night Scene">
+                <div class="artwork-info">
+                    <h4>Night Scene</h4>
+                    <p>Oil on Canvas (2022-2025)</p>
                 </div>
             </div>
         </div>
