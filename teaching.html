@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching - Haoyi Song</title>
+    <link rel="stylesheet" href="styles-detail.css">
+    <style>
+        .teaching-selector {
+            margin: 2rem 0 3rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .teaching-btn {
+            padding: 0.8rem 2rem;
+            background-color: white;
+            border: 2px solid #8b4513;
+            color: #8b4513;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .teaching-btn:hover {
+            background-color: #8b4513;
+            color: white;
+        }
+
+        .teaching-btn.active {
+            background-color: #8b4513;
+            color: white;
+        }
+
+        .teaching-section {
+            display: none;
+        }
+
+        .teaching-section.active {
+            display: block;
+        }
+
+        .section-intro {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <div class="detail-page">
+        <h1>Teaching Experience</h1>
+        <p class="series-description">
+            Art education across different age groups and settings, teaching various mediums including oil painting, collage, clay relief, drawing, and digital art.
+        </p>
+
+        <div class="teaching-selector">
+            <button class="teaching-btn active" onclick="showTeachingSection('k12')">K-12 Education</button>
+            <button class="teaching-btn" onclick="showTeachingSection('college')">College & Adult Education</button>
+        </div>
+
+        <!-- K-12 Teaching Section -->
+        <div id="k12" class="teaching-section active">
+            <h2 style="color: #8b4513; margin-bottom: 1rem;">K-12 Art Education</h2>
+            <p class="section-intro">
+                Teaching various mediums including oil painting, collage, clay relief, and drawing to K-12 students. Fostering creativity and artistic expression in young learners.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/class_activities_k12/IMG_0605.JPG" alt="Class Activity">
+                    <div class="artwork-info">
+                        <h4>Class Activities</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/class_activities_k12/IMG_6517.JPG" alt="Class Activity">
+                    <div class="artwork-info">
+                        <h4>Class Activities</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/class_activities_k12/IMG_7402.JPG" alt="Class Activity">
+                    <div class="artwork-info">
+                        <h4>Class Activities</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/oil_painting_k12/IMG_1018.JPG" alt="Oil Painting Class">
+                    <div class="artwork-info">
+                        <h4>Oil Painting Class</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/oil_painting_k12/IMG_7463.jpg" alt="Oil Painting Class">
+                    <div class="artwork-info">
+                        <h4>Oil Painting Class</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/clay_relif_k12/IMG_3270.jpg" alt="Clay Relief">
+                    <div class="artwork-info">
+                        <h4>Clay Relief</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/collage_k12/IMG_0360.JPG" alt="Collage Class">
+                    <div class="artwork-info">
+                        <h4>Collage Class</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/exhibition_k12/IMG_0934.JPG" alt="Student Exhibition">
+                    <div class="artwork-info">
+                        <h4>Student Exhibition</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_k12/exhibition_k12/IMG_1001.JPG" alt="Student Exhibition">
+                    <div class="artwork-info">
+                        <h4>Student Exhibition</h4>
+                        <p>K-12 Teaching</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- College Teaching Section -->
+        <div id="college" class="teaching-section">
+            <h2 style="color: #8b4513; margin-bottom: 1rem;">College & Adult Education</h2>
+            <p class="section-intro">
+                Teaching Associate at The University of Texas at Dallas. Courses include Drawing Foundation (ARTS1316) and Painting Foundation (ARTS2316), covering fundamental techniques, theory, and contemporary practices.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS2316_painting foundation/20231207_110531.jpg" alt="Painting Foundation">
+                    <div class="artwork-info">
+                        <h4>Painting Foundation Class</h4>
+                        <p>ARTS2316 - UTD</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS2316_painting foundation/20240307_105950.jpg" alt="Painting Foundation">
+                    <div class="artwork-info">
+                        <h4>Painting Studio</h4>
+                        <p>ARTS2316 - UTD</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS2316_painting foundation/20240328_112627.jpg" alt="Painting Foundation">
+                    <div class="artwork-info">
+                        <h4>Student Work</h4>
+                        <p>ARTS2316 - UTD</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS2316_painting foundation/20240905_120535.jpg" alt="Painting Foundation">
+                    <div class="artwork-info">
+                        <h4>Class Session</h4>
+                        <p>ARTS2316 - UTD</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS2316_painting foundation/20241114_100924.jpg" alt="Painting Foundation">
+                    <div class="artwork-info">
+                        <h4>Painting Workshop</h4>
+                        <p>ARTS2316 - UTD</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/teaching_college/ARTS1316_drawing foundation/PXL_20251017_023301962.jpg" alt="Drawing Foundation">
+                    <div class="artwork-info">
+                        <h4>Drawing Foundation</h4>
+                        <p>ARTS1316 - UTD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" src="" alt="">
+    </div>
+
+    <script src="lightbox.js"></script>
+    <script>
+        function showTeachingSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.teaching-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.teaching-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(section).classList.add('active');
+
+            // Highlight active button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

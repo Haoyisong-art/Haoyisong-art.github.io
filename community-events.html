@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Events - Haoyi Song</title>
+    <link rel="stylesheet" href="styles-detail.css">
+    <style>
+        /* Override default styles for community events */
+        .gallery-grid .artwork-card {
+            border-radius: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .gallery-grid .artwork-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: contain;
+            background: white;
+            padding: 0.5rem;
+        }
+
+        .gallery-grid .artwork-info {
+            display: none;
+        }
+
+        .event-card {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .event-title {
+            color: #8b4513;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-meta {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .event-description {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .event-quote {
+            font-style: italic;
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-left: 4px solid #8b4513;
+            margin: 1.5rem 0;
+            color: #666;
+        }
+
+        .video-wrapper {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper h4 {
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .video-wrapper iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <div class="detail-page">
+        <h1>Community Events</h1>
+        <p class="series-description">
+            As a director and community artist, I create participatory performances and art programs that bring together diverse communities through collaborative art-making.
+            My work integrates performance, visual arts, and social engagement to address themes of cultural memory, labor, healing, and human connection.
+        </p>
+
+        <!-- The Promise of a Garden & 5000 Flowers Project -->
+        <div class="event-card">
+            <h2 class="event-title">The Promise of a Garden & 5000 Flowers Project</h2>
+            <p class="event-meta">Leeds Playhouse, University of Leeds, UK | August 2021</p>
+
+            <p class="event-description">
+                A major community theatre production co-produced with The Performance Ensemble, Leeds Older People's Forum, and Leeds 2023.
+                The Quarry Theatre at Leeds Playhouse was transformed into a magical garden where a company of older performers shared stories, visions, and dreams of what has been and what might happen tomorrow.
+            </p>
+
+            <p class="event-description">
+                <strong>The 5000 Flowers Project:</strong> A city-wide participatory art initiative inviting the people of Leeds to create flowers for the garden installation.
+                The project engaged community venues, schools, colleges, day centres, care homes, and neighborhood networks. Each flower was photographed and acknowledged, combining the art of nature with human creativity.
+            </p>
+
+            <div class="event-quote">
+                "Nature has been a faithful companion in lockdown. This production blended performance, dance, music, film and photography as a moment for Leeds to remember and gather strength to move past the pandemic."
+            </div>
+
+            <p class="event-description">
+                <strong>Performances:</strong> August 18-21, 2021 at Leeds Playhouse<br>
+                <strong>Venue:</strong> Leeds Playhouse, Playhouse Square, Quarry Hill, Leeds LS2 7UP
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Directed Events/Garden 2021 - Ben Pugh - XT4A1573.jpg" alt="Garden Event">
+                    <div class="artwork-info">
+                        <h4>Garden Performance</h4>
+                        <p>2021</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/Sally - Poppy 1.jpg" alt="Performance">
+                    <div class="artwork-info">
+                        <h4>Performance Scene</h4>
+                        <p>2021</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3864.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event Setup</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3917.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3918.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_3959.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_4803.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_6148.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_8788.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9154.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9155.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Directed Events/IMG_9156.JPG" alt="Event">
+                    <div class="artwork-info">
+                        <h4>Event</h4>
+                        <p>Documentation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Art Program 2016-2021 -->
+        <div class="event-card">
+            <h2 class="event-title">Community Art Program</h2>
+            <p class="event-meta">2016-2021</p>
+
+            <p class="event-description">
+                I designed and guided various types of artistic expression for different populations in the community, including children, factory workers, and seniors.
+                This multi-year program encompassed Action Painting, Movement Painting, and Performance Art, engaging diverse communities in creative expression.
+            </p>
+
+            <h3 style="color: #8b4513; margin-top: 2rem; margin-bottom: 1rem;">Action Painting</h3>
+            <p class="event-description">
+                Community-based action painting workshops bringing together participants from various backgrounds to explore spontaneous artistic creation.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image5.jpg" alt="Action Painting">
+                    <div class="artwork-info">
+                        <h4>Action Painting Workshop</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image6.jpg" alt="Action Painting">
+                    <div class="artwork-info">
+                        <h4>Action Painting Session</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image15.jpg" alt="Action Painting">
+                    <div class="artwork-info">
+                        <h4>Outdoor Workshop</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image18.png" alt="Action Painting">
+                    <div class="artwork-info">
+                        <h4>Community Gathering</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #8b4513; margin-top: 2rem; margin-bottom: 1rem;">Movement Painting</h3>
+            <p class="event-description">
+                Community engagement through dynamic artistic expression, combining physical movement with visual art creation.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image14.jpg" alt="Movement Painting">
+                    <div class="artwork-info">
+                        <h4>Movement Painting</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image40.jpg" alt="Movement Painting">
+                    <div class="artwork-info">
+                        <h4>Movement Painting Session</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #8b4513; margin-top: 2rem; margin-bottom: 1rem;">Performative Art</h3>
+            <p class="event-description">
+                This project integrated different forms of art, such as Chinese traditional music, dance, and calligraphy.
+                The project utilized body as medium to deliver the concept that are proposed by Chinese traditional art: "Qi".
+                Qi represents rhythm and strength of movement, which further guides visual art creation.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image28.png" alt="Performance Art">
+                    <div class="artwork-info">
+                        <h4>Performative Art</h4>
+                        <p>Community Art Program</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inter-generational Documentary Project -->
+        <div class="event-card">
+            <h2 class="event-title">Inter-generational Documentary Project</h2>
+            <p class="event-meta">University of Leeds Collaboration</p>
+
+            <p class="event-description">
+                This documentary gathers life stories from seniors from different countries. It includes two parts: reflection on their life and suggestions for young people.
+                This documentary project is a teamwork. I collaborated with other students in the University of Leeds. My responsibilities included conducting interviews and film editing.
+            </p>
+
+            <div class="video-wrapper">
+                <h4>The Promise of a Garden: Documentary</h4>
+                <iframe
+                    src="https://www.youtube.com/embed/id-UrcJlaK4"
+                    title="Inter-generational Documentary"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image19.png" alt="Documentary Interview">
+                    <div class="artwork-info">
+                        <h4>Documentary Interview</h4>
+                        <p>Inter-generational Project</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image20.png" alt="Documentary Interview">
+                    <div class="artwork-info">
+                        <h4>Documentary Interview</h4>
+                        <p>Inter-generational Project</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QSMC 2018 Evening Party -->
+        <div class="event-card">
+            <h2 class="event-title">QSMC 2018 Evening Party</h2>
+            <p class="event-meta">Factory Workers Program, China | 2018</p>
+
+            <p class="event-description">
+                In electronics factories in China, the suicide rate is very high. In order to brighten the spirits of factory workers, I designed and directed a program for their benefit.
+                My responsibilities included orchestrating the stage design, making props, creating costumes, and directing various types of visual artists in the performances.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image38.png" alt="QSMC 2018">
+                    <div class="artwork-info">
+                        <h4>Stage Design</h4>
+                        <p>QSMC 2018</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image36.png" alt="QSMC 2018">
+                    <div class="artwork-info">
+                        <h4>Performance Direction</h4>
+                        <p>QSMC 2018</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image35.jpg" alt="QSMC 2018">
+                    <div class="artwork-info">
+                        <h4>Evening Party</h4>
+                        <p>QSMC 2018</p>
+                    </div>
+                </div>
+                <div class="artwork-card">
+                    <img src="data/Haoyi_art_works/pptx_extracted/ppt/media/image31.png" alt="QSMC 2018">
+                    <div class="artwork-info">
+                        <h4>Performance</h4>
+                        <p>QSMC 2018</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" src="" alt="">
+    </div>
+
+    <script src="lightbox.js"></script>
+</body>
+</html>
