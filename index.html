@@ -39,6 +39,14 @@
             transform: translateY(0) !important;
         }
 
+        /* Hide nav when spiritual page is active - works on all screen sizes */
+        body[data-page="spiritual"] #mainNav {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
 
         nav ul {
             list-style: none;
@@ -428,8 +436,8 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Keep navigation always visible on mobile */
-            nav {
+            /* Keep navigation always visible on mobile - except on spiritual page */
+            body:not([data-page="spiritual"]) nav {
                 transform: translateY(0) !important;
                 display: block !important;
             }
@@ -572,12 +580,19 @@
             selectedPage.classList.add('active');
             const nav = document.getElementById('mainNav');
 
+            // Set data attribute on body for styling
+            document.body.setAttribute('data-page', pageId);
+
             if (pageId === 'home') {
                 selectedPage.style.display = 'flex';
                 nav.style.display = 'block';
+                nav.style.visibility = 'visible';
             } else if (pageId === 'spiritual') {
                 selectedPage.style.display = 'block';
+                // Force hide nav with multiple properties
                 nav.style.display = 'none';
+                nav.style.visibility = 'hidden';
+                nav.style.opacity = '0';
                 // Load spiritual space - use setTimeout to ensure iframe is ready
                 setTimeout(() => {
                     spiritualIframe.src = 'spiritual-space.html';
@@ -585,6 +600,7 @@
             } else {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'block';
+                nav.style.visibility = 'visible';
             }
 
             window.scrollTo(0, 0);
