@@ -213,47 +213,45 @@
         /* Music control button */
         .music-control-button {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
+            top: 1rem;
+            right: 1rem;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.15);
+            background: transparent;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.85rem;
-            border-radius: 20px;
+            border: none;
+            padding: 0.3rem 0.5rem;
+            font-size: 1.2rem;
+            border-radius: 0;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
             transition: all 0.3s;
         }
 
         .music-control-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
+            opacity: 0.7;
         }
 
         /* Back to home button */
         .back-home-button {
             position: fixed;
-            top: 2rem;
-            right: 10rem;
+            top: 1rem;
+            right: 3.5rem;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.15);
+            background: transparent;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.85rem;
-            border-radius: 20px;
+            border: none;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.7rem;
+            border-radius: 0;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
         }
 
         .back-home-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
+            opacity: 0.7;
         }
 
         /* Pray again button */
@@ -334,10 +332,10 @@
     <div class="animism-badge">Animism · 万物灵</div>
 
     <!-- Back to Home button -->
-    <a href="index.html" class="back-home-button">← Back to Home</a>
+    <a href="index.html" class="back-home-button">Back to Home</a>
 
     <!-- Music control button -->
-    <button class="music-control-button" id="musicControl" onclick="toggleMusic()">🔊 Music On</button>
+    <button class="music-control-button" id="musicControl" onclick="toggleMusic()">🔊</button>
 
     <!-- Cosmos canvas -->
     <canvas id="cosmosCanvas"></canvas>
@@ -1116,7 +1114,7 @@
 
         function updateMusicButton() {
             const button = document.getElementById('musicControl');
-            button.textContent = audioPlaying ? '🔊 Music On' : '🔇 Music Off';
+            button.textContent = audioPlaying ? '🔊' : '🔇';
         }
 
         // ============================================
