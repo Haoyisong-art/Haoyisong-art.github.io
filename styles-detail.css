@@ -32,7 +32,7 @@ nav {
 }
 
 .back-link:hover {
-    color: #8b4513;
+    color: #666666;
 }
 
 .detail-page {
@@ -48,7 +48,7 @@ h1 {
     font-weight: 300;
     margin-bottom: 1rem;
     color: #2c2c2c;
-    border-bottom: 1px solid #8b4513;
+    border-bottom: 1px solid #666666;
     padding-bottom: 0.5rem;
     display: inline-block;
     letter-spacing: 1px;

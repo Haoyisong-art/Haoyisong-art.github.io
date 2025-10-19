@@ -39,28 +39,6 @@
             transform: translateY(0) !important;
         }
 
-        .nav-pin {
-            position: fixed;
-            top: 0.5rem;
-            right: 1rem;
-            z-index: 1001;
-            background: rgba(139, 69, 19, 0.8);
-            color: white;
-            border: none;
-            padding: 0.3rem 0.6rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .nav-pin:hover {
-            background: rgba(139, 69, 19, 1);
-        }
-
-        .nav-pin.active {
-            background: rgba(139, 69, 19, 1);
-        }
 
         nav ul {
             list-style: none;
@@ -79,7 +57,7 @@
         }
 
         nav a:hover {
-            color: #8b4513;
+            color: #666666;
         }
 
         /* Page Container */
@@ -143,7 +121,7 @@
             font-size: 1.1rem;
             margin-bottom: 0.8rem;
             border: none;
-            color: #8b4513;
+            color: #666666;
             text-align: left;
         }
 
@@ -159,7 +137,7 @@
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
             color: #2c2c2c;
-            border-bottom: 3px solid #8b4513;
+            border-bottom: 3px solid #666666;
             padding-bottom: 0.5rem;
             display: inline-block;
         }
@@ -167,7 +145,7 @@
         h3 {
             font-size: 1.8rem;
             margin: 2rem 0 1rem;
-            color: #8b4513;
+            color: #666666;
         }
 
         p {
@@ -233,7 +211,7 @@
         }
 
         .contact-item a {
-            color: #8b4513;
+            color: #666666;
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -265,7 +243,7 @@
             color: #2c2c2c;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid #8b4513;
+            border-bottom: 3px solid #666666;
             display: inline-block;
         }
 
@@ -387,7 +365,7 @@
         }
 
         .event-title {
-            color: #8b4513;
+            color: #666666;
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
@@ -405,7 +383,7 @@
         }
 
         .experience-item h4 {
-            color: #8b4513;
+            color: #666666;
             margin-bottom: 0.5rem;
         }
 
@@ -493,9 +471,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Pin Button -->
-    <button class="nav-pin" id="navPin" onclick="toggleNavPin()">📌</button>
-
     <!-- Navigation -->
     <nav id="mainNav">
         <ul>
@@ -530,8 +505,8 @@
 
             <!-- Contact Info - Below Artist Statement -->
             <div style="margin-top: 0.8rem; text-align: left; font-size: 0.6rem; line-height: 1; color: #666;">
-                <p style="margin-bottom: 0.15rem;">Email: <a href="mailto:haoyisong92@outlook.com" style="color: #8b4513; text-decoration: none;">haoyisong92@outlook.com</a></p>
-                <p style="margin-bottom: 0;">Instagram: <a href="https://instagram.com/haoyi_song" target="_blank" style="color: #8b4513; text-decoration: none;">@haoyi_song</a></p>
+                <p style="margin-bottom: 0.15rem;">Email: <a href="mailto:haoyisong92@outlook.com" style="color: #666666; text-decoration: none;">haoyisong92@outlook.com</a></p>
+                <p style="margin-bottom: 0;">Instagram: <a href="https://instagram.com/haoyi_song" target="_blank" style="color: #666666; text-decoration: none;">@haoyi_song</a></p>
             </div>
         </div>
     </div>
@@ -539,9 +514,7 @@
 
     <!-- Research Page -->
     <div id="research" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-
-        <div style="max-width: 800px; margin: 4rem auto; padding: 0 3rem;">
+        <div style="max-width: 800px; margin: 0 auto; padding: 8rem 3rem 2rem; display: flex; flex-direction: column; justify-content: center; min-height: 100vh;">
             <p style="font-style: italic; color: #666; margin-bottom: 2rem; line-height: 1.2;">
                 VPAS Doctoral Program, University of Texas at Dallas
             </p>
@@ -563,23 +536,6 @@
                 <li style="margin-bottom: 0.5rem;">It then examines traditional textile practices like embroidery, not just as craft, but as a form of discipline and affective regulation, where the repetitive labor and physical confinement recode pain and endurance into moral virtue.</li>
                 <li style="margin-bottom: 0.5rem;">Finally, it analyzes how contemporary artists, both within China and in the diaspora, engage with these material legacies to explore themes of memory, trauma, and identity, positioning their work, and my own studio practice, as a form of practice-as-research.</li>
             </ul>
-
-            <h3 style="font-size: 1.3rem; color: #8b4513; margin-top: 3rem; margin-bottom: 1rem;">Broader Research Interests</h3>
-
-            <p style="font-size: 0.85rem; line-height: 1.2; margin-bottom: 1rem;">
-                My research interests lie at the intersection of Chinese gender history, visual culture, and body studies. I investigate how women's bodies are governed not just by rules, but through the management of emotion and sensation, a process I term affective governance. My work focuses on the sentient body: the body that feels pain, pride, shame, and hope, and reveals how these feelings become the very medium of social and political control.
-            </p>
-
-            <p style="font-size: 0.85rem; line-height: 1.2; margin-bottom: 1rem;">
-                I am currently focused on my doctoral project, Affective Governance: Shame, Pride, and the Sentient History of the Chinese Female Body. This project traces how dominant ideologies are inscribed upon the body through a carefully managed emotional economy. It examines key historical and contemporary sites of bodily transformation, including:
-            </p>
-
-            <ul style="margin: 0 0 1rem 2rem; line-height: 1.2; font-size: 0.85rem;">
-                <li style="margin-bottom: 0.5rem;">The pious suffering of self-harm for virtue.</li>
-                <li style="margin-bottom: 0.5rem;">The aesthetic pride and social anxiety of footbinding.</li>
-                <li style="margin-bottom: 0.5rem;">The biopolitical fear surrounding state reproductive policies.</li>
-                <li style="margin-bottom: 0.5rem;">The aspirational hope driving the cosmetic surgery market.</li>
-            </ul>
         </div>
     </div>
 
@@ -589,37 +545,18 @@
     </div>
 
     <script>
-        // Navigation auto-hide and pin functionality
+        // Navigation auto-hide functionality
         let lastScrollTop = 0;
         let touchStartY = 0;
         let isMobile = window.innerWidth <= 768;
-        let navPinned = false;
         let navHideTimeout;
 
-        function toggleNavPin() {
-            const nav = document.getElementById('mainNav');
-            const pinBtn = document.getElementById('navPin');
-            navPinned = !navPinned;
-
-            if (navPinned) {
-                nav.classList.add('pinned');
-                nav.classList.remove('hidden');
-                pinBtn.classList.add('active');
-            } else {
-                nav.classList.remove('pinned');
-                pinBtn.classList.remove('active');
-                // Auto-hide after unpinning
-                startNavHideTimer();
-            }
-        }
-
         function startNavHideTimer() {
-            if (navPinned) return;
             clearTimeout(navHideTimeout);
             navHideTimeout = setTimeout(() => {
                 const nav = document.getElementById('mainNav');
                 const spiritualPage = document.getElementById('spiritual');
-                if (!spiritualPage.classList.contains('active') && !navPinned) {
+                if (!spiritualPage.classList.contains('active')) {
                     nav.classList.add('hidden');
                 }
             }, 3000);
@@ -632,7 +569,6 @@
         }
 
         function handleNavigation() {
-            if (navPinned) return;
             const nav = document.getElementById('mainNav');
             const spiritualPage = document.getElementById('spiritual');
             if (spiritualPage && spiritualPage.classList.contains('active')) return;
@@ -648,7 +584,7 @@
 
         // Show nav on mouse move to top
         document.addEventListener('mousemove', (e) => {
-            if (e.clientY < 80 && !navPinned) {
+            if (e.clientY < 80) {
                 showNav();
             }
         });
@@ -721,17 +657,14 @@
             const selectedPage = document.getElementById(pageId);
             selectedPage.classList.add('active');
             const nav = document.getElementById('mainNav');
-            const pinBtn = document.getElementById('navPin');
 
             if (pageId === 'home') {
                 selectedPage.style.display = 'flex';
                 nav.style.display = 'block';
-                pinBtn.style.display = 'block';
                 showNav();
             } else if (pageId === 'spiritual') {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'none';
-                pinBtn.style.display = 'none';
                 // Load spiritual space - use setTimeout to ensure iframe is ready
                 setTimeout(() => {
                     spiritualIframe.src = 'spiritual-space.html';
@@ -739,7 +672,6 @@
             } else {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'block';
-                pinBtn.style.display = 'block';
                 showNav();
             }
 
