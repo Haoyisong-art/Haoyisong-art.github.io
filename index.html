@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Times New Roman', Times, serif;
             line-height: 1.6;
             color: #333;
             background-color: #fafafa;
@@ -94,13 +94,13 @@
         }
 
         #home h1 {
-            font-size: 4rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: #2c2c2c;
         }
 
         #home .subtitle {
-            font-size: 1.3rem;
+            font-size: 0.65rem;
             color: #666;
             line-height: 1.8;
         }
@@ -470,13 +470,11 @@
         <ul>
             <li><a onclick="showPage('spiritual')">My Spiritual Space</a></li>
             <li><a href="index.html">Home</a></li>
-            <li><a onclick="showPage('intro')">Background</a></li>
             <li><a onclick="showPage('research')">Research</a></li>
             <li><a href="paintings.html">Paintings</a></li>
             <li><a href="installation.html">Installation & Sculpture</a></li>
             <li><a href="teaching.html">Teaching</a></li>
             <li><a href="community-events.html">Community Events</a></li>
-            <li><a onclick="showPage('contact')">Contact</a></li>
         </ul>
     </nav>
 
@@ -485,8 +483,8 @@
         <div class="home-center">
             <h1>Haoyi Song</h1>
             <div class="subtitle">
-                <p>PhD Candidate @UT Dallas</p>
-                <p>Professional Artist</p>
+                <p>PhD Candidate, Visual and Performing Arts</p>
+                <p>The University of Texas at Dallas</p>
             </div>
             <div style="margin-top: 2rem;">
                 <img src="data/Haoyi_art_works/daily life 2022-2025/False Wonder No.1.jpg" alt="False Wonder No.1" style="max-width: 400px; width: 100%; height: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
@@ -504,53 +502,18 @@
             <p>
                 Grounded in cross-cultural perspectives, my art highlights both shared human experiences and cultural specificities in how bodies, identities, and emotional regimes are constructed.
             </p>
+
+            <h2 style="margin-top: 2.5rem;">Education</h2>
+            <p style="margin-bottom: 0.5rem;"><strong>2021 -</strong> Ph.D. Candidate, Visual and Performing Arts<br>The University of Texas at Dallas</p>
+            <p style="margin-bottom: 0.5rem;"><strong>2021</strong> - M.A. in Culture, Creativity, and Entrepreneurship<br>University of Leeds, United Kingdom</p>
+            <p style="margin-bottom: 0.5rem;"><strong>2009</strong> - B.A. in Fine Arts (Oil Painting)<br>Sichuan Fine Arts Institute, Chongqing, China</p>
+
+            <h2 style="margin-top: 2.5rem;">Contact</h2>
+            <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="mailto:haoyisong92@outlook.com" style="color: #8b4513; text-decoration: none;">haoyisong92@outlook.com</a></p>
+            <p style="margin-bottom: 0.5rem;"><strong>Instagram:</strong> <a href="https://instagram.com/haoyi_song" target="_blank" style="color: #8b4513; text-decoration: none;">@haoyi_song</a></p>
         </div>
     </div>
 
-    <!-- Background/Intro Page -->
-    <div id="intro" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Background</h2>
-
-        <h3 style="color: #8b4513; margin-top: 2rem;">Education</h3>
-        <p><strong>Present</strong> - Ph.D. Student, Visual and Performing Arts<br>
-        The University of Texas at Dallas</p>
-
-        <p><strong>2021</strong> - M.A. in Culture, Creativity, and Entrepreneurship<br>
-        University of Leeds, United Kingdom</p>
-
-        <p><strong>2009</strong> - B.A. in Fine Arts (Oil Painting)<br>
-        Sichuan Fine Arts Institute, Chongqing, China</p>
-
-        <h3 style="color: #8b4513; margin-top: 2rem;">Teaching & Professional Positions</h3>
-        <p><strong>2023-Present</strong> - Teaching Associate<br>
-        University of Texas at Dallas, School of Arts, Humanities, and Technology</p>
-
-        <p><strong>2022-2023</strong> - Teaching Assistant<br>
-        University of Texas at Dallas</p>
-
-        <p><strong>2014-2016</strong> - Painting Instructor<br>
-        Chongqing Normal University, Department of Continuing Education, China</p>
-
-        <p><strong>2010-2014</strong> - Painting Instructor<br>
-        Sichuan Fine Arts Institute, Art Training Center, China</p>
-
-        <h3 style="color: #8b4513; margin-top: 2rem;">Professional Service</h3>
-        <p><strong>2021</strong> - Student Externship, Leeds Playhouse, UK<br>
-        <em>The Promise of a Garden Project</em></p>
-
-        <p><strong>2017-2020</strong> - Director<br>
-        Chongqing Lukla Cultural Media Co. Ltd., China</p>
-
-        <p><strong>2016-2017</strong> - Executive Director and Art Director<br>
-        Chongqing Baogaimu Cultural Media Co. Ltd., China</p>
-
-        <h3 style="color: #8b4513; margin-top: 2rem;">Selected Exhibitions & Presentations</h3>
-        <p><strong>2024</strong> - "Limelight" Research, Art, & Writing Graduate Student Conference, Dallas, TX</p>
-        <p><strong>2024</strong> - Group Exhibitions, Dallas & Richardson, TX</p>
-        <p><strong>2023</strong> - "False Wonders" Graduate Student Conference, Dallas, TX</p>
-        <p><strong>2018-2020</strong> - Group Exhibitions, Chongqing, China</p>
-    </div>
 
     <!-- Research Page -->
     <div id="research" class="page">
@@ -594,23 +557,6 @@
     <!-- My Spiritual Space Page -->
     <div id="spiritual" class="page">
         <iframe src="spiritual-space.html" style="width: 100vw; height: 100vh; border: none; position: fixed; top: 0; left: 0;"></iframe>
-    </div>
-
-
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <a class="back-button" onclick="showPage('home')">← Back to Home</a>
-        <h2>Contact Me</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>Email:</strong>
-                <a href="mailto:haoyisong92@outlook.com">haoyisong92@outlook.com</a>
-            </div>
-            <div class="contact-item">
-                <strong>Instagram:</strong>
-                <a href="https://instagram.com/haoyi_song" target="_blank">@haoyi_song</a>
-            </div>
-        </div>
     </div>
 
     <script>

@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 300;
     line-height: 1.7;
     color: #333;
@@ -28,7 +28,7 @@ nav {
     color: #333;
     font-weight: 500;
     transition: color 0.3s;
-    font-size: 1.1rem;
+    font-size: 0.55rem;
 }
 
 .back-link:hover {
@@ -39,10 +39,12 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 6rem 2rem 3rem;
+    transform: scale(0.7);
+    transform-origin: top center;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 300;
     margin-bottom: 1rem;
     color: #2c2c2c;
@@ -53,7 +55,7 @@ h1 {
 }
 
 .series-description {
-    font-size: 0.95rem;
+    font-size: 0.475rem;
     font-weight: 300;
     line-height: 1.8;
     color: #555;
@@ -103,14 +105,14 @@ h1 {
 .artwork-info h4 {
     margin-bottom: 0.5rem;
     color: #2c2c2c;
-    font-size: 1rem;
+    font-size: 0.5rem;
     font-weight: 400;
     letter-spacing: 0.5px;
 }
 
 .artwork-info p {
     color: #666;
-    font-size: 0.85rem;
+    font-size: 0.425rem;
     font-weight: 300;
     line-height: 1.6;
     letter-spacing: 0.3px;
@@ -135,9 +137,10 @@ h1 {
 }
 
 .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
+    padding: 3rem;
 }
 
 .lightbox-close {
