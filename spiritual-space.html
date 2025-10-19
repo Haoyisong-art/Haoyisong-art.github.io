@@ -11,9 +11,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            height: 100svh; /* Small viewport height for mobile browsers */
+            position: fixed;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Georgia', serif;
-            overflow: hidden;
             background: #000;
             color: white;
         }
@@ -23,8 +31,9 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
+            height: 100svh; /* Small viewport for mobile */
             z-index: 1;
         }
 
@@ -33,8 +42,9 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
+            height: 100svh; /* Small viewport for mobile */
             z-index: 3;
             pointer-events: none;
         }
@@ -332,7 +342,8 @@
             }
 
             .prayer-bar {
-                bottom: 15vh; /* Higher on mobile: 15% of screen height */
+                bottom: 18vh; /* Higher on mobile: 18% of screen height for Chrome */
+                bottom: max(18vh, 120px); /* Ensure minimum 120px from bottom */
                 flex-wrap: nowrap;
                 justify-content: center;
                 gap: 0.3rem;
@@ -352,7 +363,8 @@
 
             .collaboration-credit {
                 font-size: 0.65rem;
-                bottom: 2vh; /* Viewport-relative on mobile */
+                bottom: 3vh; /* Higher on mobile */
+                bottom: max(3vh, 20px); /* Ensure minimum 20px from bottom */
             }
         }
 
