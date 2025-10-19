@@ -287,14 +287,14 @@
         @media (max-width: 768px) {
             .prayer-bar {
                 bottom: 2rem;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 justify-content: center;
-                gap: 0.6rem;
+                gap: 0.3rem;
             }
 
             .prayer-button {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
             }
 
             .element-selector {
@@ -365,10 +365,10 @@
 
     <!-- Bottom prayer bar -->
     <div class="prayer-bar" id="prayerBar">
-        <button class="prayer-button" onclick="generatePrayer('en', 'pray')">Pray</button>
         <button class="prayer-button" onclick="generatePrayer('zh', 'pray')">祈福</button>
-        <button class="prayer-button" onclick="generatePrayer('en', 'relief')">Relief</button>
         <button class="prayer-button" onclick="generatePrayer('zh', 'relief')">消灾</button>
+        <button class="prayer-button" onclick="generatePrayer('en', 'pray')">Pray</button>
+        <button class="prayer-button" onclick="generatePrayer('en', 'relief')">Relief</button>
     </div>
 
     <!-- Pray again button -->
