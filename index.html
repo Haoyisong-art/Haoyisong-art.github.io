@@ -27,12 +27,39 @@
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.6rem 0;
             transition: transform 0.3s ease-in-out;
         }
 
         nav.hidden {
             transform: translateY(-100%);
+        }
+
+        nav.pinned {
+            transform: translateY(0) !important;
+        }
+
+        .nav-pin {
+            position: fixed;
+            top: 0.5rem;
+            right: 1rem;
+            z-index: 1001;
+            background: rgba(139, 69, 19, 0.8);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-pin:hover {
+            background: rgba(139, 69, 19, 1);
+        }
+
+        .nav-pin.active {
+            background: rgba(139, 69, 19, 1);
         }
 
         nav ul {
@@ -73,10 +100,11 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             padding: 2rem;
+            padding-top: 8rem;
             gap: 4rem;
         }
 
@@ -465,8 +493,11 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Pin Button -->
+    <button class="nav-pin" id="navPin" onclick="toggleNavPin()">📌</button>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <ul>
             <li><a onclick="showPage('spiritual')">My Spiritual Space</a></li>
             <li><a href="index.html">Home</a></li>
@@ -560,29 +591,78 @@
 
     <!-- My Spiritual Space Page -->
     <div id="spiritual" class="page">
-        <iframe src="spiritual-space.html" style="width: 100vw; height: 100vh; border: none; position: fixed; top: 0; left: 0;"></iframe>
+        <iframe id="spiritualIframe" src="" style="width: 100vw; height: 100vh; border: none; position: fixed; top: 0; left: 0;"></iframe>
     </div>
 
     <script>
-        // Mobile navigation auto-hide
+        // Navigation auto-hide and pin functionality
         let lastScrollTop = 0;
         let touchStartY = 0;
         let isMobile = window.innerWidth <= 768;
+        let navPinned = false;
+        let navHideTimeout;
+
+        function toggleNavPin() {
+            const nav = document.getElementById('mainNav');
+            const pinBtn = document.getElementById('navPin');
+            navPinned = !navPinned;
+
+            if (navPinned) {
+                nav.classList.add('pinned');
+                nav.classList.remove('hidden');
+                pinBtn.classList.add('active');
+            } else {
+                nav.classList.remove('pinned');
+                pinBtn.classList.remove('active');
+                // Auto-hide after unpinning
+                startNavHideTimer();
+            }
+        }
+
+        function startNavHideTimer() {
+            if (navPinned) return;
+            clearTimeout(navHideTimeout);
+            navHideTimeout = setTimeout(() => {
+                const nav = document.getElementById('mainNav');
+                const spiritualPage = document.getElementById('spiritual');
+                if (!spiritualPage.classList.contains('active') && !navPinned) {
+                    nav.classList.add('hidden');
+                }
+            }, 3000);
+        }
+
+        function showNav() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.remove('hidden');
+            startNavHideTimer();
+        }
 
         function handleNavigation() {
-            if (!isMobile) return;
-            const nav = document.querySelector('nav');
+            if (navPinned) return;
+            const nav = document.getElementById('mainNav');
             const spiritualPage = document.getElementById('spiritual');
             if (spiritualPage && spiritualPage.classList.contains('active')) return;
 
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTop > lastScrollTop && scrollTop > 100) {
-                nav.classList.remove('show');
+                if (!isMobile) nav.classList.add('hidden');
             } else {
-                nav.classList.add('show');
+                nav.classList.remove('hidden');
             }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }
+
+        // Show nav on mouse move to top
+        document.addEventListener('mousemove', (e) => {
+            if (e.clientY < 80 && !navPinned) {
+                showNav();
+            }
+        });
+
+        // Start auto-hide timer on page load
+        window.addEventListener('load', () => {
+            startNavHideTimer();
+        });
 
         function handleTouchStart(e) {
             if (!isMobile) return;
@@ -629,28 +709,50 @@
 
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
+            const spiritualIframe = document.getElementById('spiritualIframe');
+
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.display = 'none';
             });
 
+            // Stop spiritual space music when leaving
+            if (spiritualIframe && spiritualIframe.src) {
+                spiritualIframe.src = '';
+            }
+
             const selectedPage = document.getElementById(pageId);
             selectedPage.classList.add('active');
-            const nav = document.querySelector('nav');
+            const nav = document.getElementById('mainNav');
+            const pinBtn = document.getElementById('navPin');
 
             if (pageId === 'home') {
                 selectedPage.style.display = 'flex';
                 nav.style.display = 'block';
+                pinBtn.style.display = 'block';
+                showNav();
             } else if (pageId === 'spiritual') {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'none';
+                pinBtn.style.display = 'none';
+                // Load spiritual space only when needed
+                spiritualIframe.src = 'spiritual-space.html';
             } else {
                 selectedPage.style.display = 'block';
                 nav.style.display = 'block';
+                pinBtn.style.display = 'block';
+                showNav();
             }
 
             window.scrollTo(0, 0);
         }
+
+        // Listen for messages from spiritual space iframe
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'showHome') {
+                showPage('home');
+            }
+        });
 
         // Lightbox functionality
         document.addEventListener('DOMContentLoaded', function() {

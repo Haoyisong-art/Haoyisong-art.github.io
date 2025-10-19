@@ -1140,8 +1140,14 @@
             audio.currentTime = 0;
             audioPlaying = false;
 
-            // Navigate to home
-            window.location.href = 'index.html';
+            // Check if we're in an iframe
+            if (window.parent !== window) {
+                // We're in an iframe, tell parent to show home page
+                window.parent.postMessage({action: 'showHome'}, '*');
+            } else {
+                // Direct navigation
+                window.location.href = 'index.html';
+            }
         }
 
         // ============================================
