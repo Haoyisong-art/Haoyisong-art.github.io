@@ -961,10 +961,11 @@
                     particleCtx.shadowBlur = 10;
                     particleCtx.fill();
                 } else if (this.type === 'shatter' || this.type === 'wood-break' || this.type === 'earth-crack') {
-                    particleCtx.rotate(this.rotation || 0);
                     particleCtx.beginPath();
-                    particleCtx.rect(-this.size, -this.size, this.size * 2, this.size * 2);
+                    particleCtx.arc(0, 0, this.size, 0, Math.PI * 2);
                     particleCtx.fillStyle = `rgba(200, 220, 255, ${this.opacity})`;
+                    particleCtx.shadowBlur = 8;
+                    particleCtx.shadowColor = 'rgba(200, 220, 255, 0.3)';
                     particleCtx.fill();
                 } else if (this.type === 'flood') {
                     particleCtx.beginPath();
